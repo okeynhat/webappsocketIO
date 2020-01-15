@@ -19,7 +19,7 @@
     }
     // default readings count set to 20
     else {
-      $readings_count = 20;
+      $readings_count = 10;
     }
 
     $last_reading = getLastReadings();
@@ -161,7 +161,7 @@
     function setTemperature(curVal){
     	//set range for Temperature in Celsius -5 Celsius to 38 Celsius
     	var minTemp = -15.0;
-    	var maxTemp = 60.0;
+    	var maxTemp = 40.0;
         //set range for Temperature in Fahrenheit 23 Fahrenheit to 100 Fahrenheit
     	//var minTemp = 23;
     	//var maxTemp = 100;
