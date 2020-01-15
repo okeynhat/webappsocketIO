@@ -26,6 +26,7 @@
     $last_reading_temp = $last_reading["value1"];
     $last_reading_humi = $last_reading["value2"];
     $last_reading_time = $last_reading["reading_time"];
+    $last_reading_cbmua = $last_reading["cambienmua"];
 
     // Uncomment to set timezone to - 1 hour (you can change 1 to any number)
     //$last_reading_time = date("Y-m-d H:i:s", strtotime("$last_reading_time - 1 hours"));
@@ -107,9 +108,11 @@
             </table>
         </div>
     </section>
+    <h2>Trạng Thái Cảm Biến Mưa</h2>
 <?php
+    echo 'Giá Trị Cảm Biến:' .$last_reading_cbmua. ;
     echo   '<h2> Bảng Dữ Liệu ' . $readings_count . ' Lần Đọc Gần Nhất</h2>
-            <table cellspacing="5" cellpadding="5" id="tableReadings">
+            <table cellspacing="6" cellpadding="5" id="tableReadings">
                 <tr>
                     <th>ID</th>
                     <th>Cảm Biến</th>
@@ -130,6 +133,7 @@
             $row_value2 = $row["value2"];
             $row_value3 = $row["value3"];
             $row_reading_time = $row["reading_time"];
+            $row_cambienmua = $row["cambienmua"];
             // Uncomment to set timezone to - 1 hour (you can change 1 to any number)
             //$row_reading_time = date("Y-m-d H:i:s", strtotime("$row_reading_time - 1 hours"));
             // Uncomment to set timezone to + 7 hours (you can change 7 to any number)
@@ -143,6 +147,7 @@
                     <td>' . $row_value2 . '</td>
                     <td>' . $row_value3 . '</td>
                     <td>' . $row_reading_time . '</td>
+                    <td>' . $row_cambienmua . '</td>
                   </tr>';
         }
         echo '</table>';
@@ -198,6 +203,7 @@
     <div id="chart-temperature" class="container"></div>
     <div id="chart-humidity" class="container"></div>
     <div id="chart-pressure" class="container"></div>
+
 <script>
 
 var value1 = <?php echo $value1; ?>;
