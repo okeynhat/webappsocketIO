@@ -2,7 +2,7 @@
 <?php
   include_once('esp-database.php');
   $api_key_value = "tPmAT5Ab3j7F9";
-  $api_key= $sensor = $location = $value1 = $value2 = $value3 = $cambienmua = "";
+  $api_key= $sensor = $location = $value1 = $value2 = $value3 = "";
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $api_key = test_input($_POST["api_key"]);
@@ -12,17 +12,16 @@
       $value1 = test_input($_POST["value1"]);
       $value2 = test_input($_POST["value2"]);
       $value3 = test_input($_POST["value3"]);
-      $cambienmua = test_input($_POST["cambienmua"]);
 
-      $result = insertReading($sensor, $location, $value1, $value2, $value3, $cambienmua);
+      $result = insertReading($sensor, $location, $value1, $value2, $value3);
       echo $result;
     }
     else {
-      echo "Lỗi API key";
+      echo "Wrong API Key provided.";
     }
   }
   else {
-    echo "Không có dữ liệu HTTP POST";
+    echo "No data posted with HTTP POST.";
   }
 
   function test_input($data) {

@@ -26,7 +26,6 @@
     $last_reading_temp = $last_reading["value1"];
     $last_reading_humi = $last_reading["value2"];
     $last_reading_time = $last_reading["reading_time"];
-    $last_reading_cbmua = $last_reading["cambienmua"];
 
     // Uncomment to set timezone to - 1 hour (you can change 1 to any number)
     //$last_reading_time = date("Y-m-d H:i:s", strtotime("$last_reading_time - 1 hours"));
@@ -108,11 +107,9 @@
             </table>
         </div>
     </section>
-    <h2>Trạng Thái Cảm Biến Mưa</h2>
 <?php
-    echo $last_reading_cbmua;
     echo   '<h2> Bảng Dữ Liệu ' . $readings_count . ' Lần Đọc Gần Nhất</h2>
-            <table cellspacing="6" cellpadding="5" id="tableReadings">
+            <table cellspacing="5" cellpadding="5" id="tableReadings">
                 <tr>
                     <th>ID</th>
                     <th>Cảm Biến</th>
@@ -133,7 +130,6 @@
             $row_value2 = $row["value2"];
             $row_value3 = $row["value3"];
             $row_reading_time = $row["reading_time"];
-            $row_cambienmua = $row["cambienmua"];
             // Uncomment to set timezone to - 1 hour (you can change 1 to any number)
             //$row_reading_time = date("Y-m-d H:i:s", strtotime("$row_reading_time - 1 hours"));
             // Uncomment to set timezone to + 7 hours (you can change 7 to any number)
@@ -147,7 +143,6 @@
                     <td>' . $row_value2 . '</td>
                     <td>' . $row_value3 . '</td>
                     <td>' . $row_reading_time . '</td>
-                    <td>' . $row_cambienmua . '</td>
                   </tr>';
         }
         echo '</table>';
@@ -197,91 +192,6 @@
         var capped = Math.min(from[1], Math.max(from[0], value)) - from[0];
         return ~~(capped * scale + to[0]);
     }
-</script>
-
-<h2>ESP Weather Station</h2>
-    <div id="chart-temperature" class="container"></div>
-    <div id="chart-humidity" class="container"></div>
-    <div id="chart-pressure" class="container"></div>
-
-<script>
-
-var value1 = <?php echo $value1; ?>;
-var value2 = <?php echo $value2; ?>;
-var value3 = <?php echo $value3; ?>;
-var reading_time = <?php echo $reading_time; ?>;
-
-var chartT = new Highcharts.Chart({
-  chart:{ renderTo : 'chart-temperature' },
-  title: { text: 'BME280 Temperature' },
-  series: [{
-    showInLegend: false,
-    data: value1
-  }],
-  plotOptions: {
-    line: { animation: false,
-      dataLabels: { enabled: true }
-    },
-    series: { color: '#059e8a' }
-  },
-  xAxis: { 
-    type: 'datetime',
-    categories: reading_time
-  },
-  yAxis: {
-    title: { text: 'Temperature (Celsius)' }
-    //title: { text: 'Temperature (Fahrenheit)' }
-  },
-  credits: { enabled: false }
-});
-
-var chartH = new Highcharts.Chart({
-  chart:{ renderTo:'chart-humidity' },
-  title: { text: 'BME280 Humidity' },
-  series: [{
-    showInLegend: false,
-    data: value2
-  }],
-  plotOptions: {
-    line: { animation: false,
-      dataLabels: { enabled: true }
-    }
-  },
-  xAxis: {
-    type: 'datetime',
-    //dateTimeLabelFormats: { second: '%H:%M:%S' },
-    categories: reading_time
-  },
-  yAxis: {
-    title: { text: 'Humidity (%)' }
-  },
-  credits: { enabled: false }
-});
-
-
-var chartP = new Highcharts.Chart({
-  chart:{ renderTo:'chart-pressure' },
-  title: { text: 'BME280 Pressure' },
-  series: [{
-    showInLegend: false,
-    data: value3
-  }],
-  plotOptions: {
-    line: { animation: false,
-      dataLabels: { enabled: true }
-    },
-    series: { color: '#18009c' }
-  },
-  xAxis: {
-    type: 'datetime',
-    categories: reading_time
-  },
-  yAxis: {
-    title: { text: 'Pressure (hPa)' }
-  },
-  credits: { enabled: false }
-});
-
 </script>
 
 </body>
