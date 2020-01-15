@@ -111,12 +111,12 @@
             <table cellspacing="5" cellpadding="5" id="tableReadings">
                 <tr>
                     <th>ID</th>
-                    <th>Sensor</th>
-                    <th>Location</th>
-                    <th>Value 1</th>
-                    <th>Value 2</th>
+                    <th>Cảm Biến</th>
+                    <th>Vị Trí</th>
+                    <th>Nhiệt Độ</th>
+                    <th>Độ Ẩm</th>
                     <th>Value 3</th>
-                    <th>Timestamp</th>
+                    <th>Thời Gian Lấy</th>
                 </tr>';
 
     $result = getAllReadings($readings_count);
