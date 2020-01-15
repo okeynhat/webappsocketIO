@@ -1,0 +1,2603 @@
+
+<!DOCTYPE html>
+<html lang="en-US"
+	prefix="og: http://ogp.me/ns#" >
+<head>
+	<meta charset="UTF-8">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<title>DIY Cloud Weather Station with ESP32 or ESP8266 | Random Nerd Tutorials</title>
+
+<!-- All in One SEO Pack 2.12.1 by Michael Torbert of Semper Fi Web Designob_start_detected [-1,-1] -->
+<link rel="author" href="https://plus.google.com/+RuiSantosdotme/posts" />
+<meta name="description"  content="Build a Cloud Weather Station dashboard to visualize your ESP32 or ESP8266 sensor readings from anywhere in the world. You&#039;ll see your data displayed on gauges and on a table." />
+
+<meta name="keywords"  content="diy cloud weather station with esp32 esp8266,cloud weather station with esp32 esp8266 arduino ide,,cloud weather station with esp32 esp8266 mysql,cloud weather station with esp32 esp8266 php database,esp32 esp8266 http post request weather station,esp32 esp8266 gauge tables charts" />
+
+<link rel="canonical" href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/" />
+<meta property="og:title" content="DIY Cloud Weather Station with ESP32 or ESP8266 | Random Nerd Tutorials" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/" />
+<meta property="og:image" content="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/DIY-Cloud-Weather-Station-ESP32-ESP8266-p.jpg?fit=813%2C457&#038;ssl=1" />
+<meta property="og:site_name" content="Random Nerd Tutorials" />
+<meta property="og:description" content="Build a Cloud Weather Station dashboard to visualize your ESP32 or ESP8266 sensor readings from anywhere in the world. You&#039;ll see your data displayed on gauges and on a table." />
+<meta property="article:published_time" content="2019-12-27T13:55:34Z" />
+<meta property="article:modified_time" content="2019-12-27T13:55:49Z" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="DIY Cloud Weather Station with ESP32 or ESP8266 | Random Nerd Tutorials" />
+<meta name="twitter:description" content="Build a Cloud Weather Station dashboard to visualize your ESP32 or ESP8266 sensor readings from anywhere in the world. You&#039;ll see your data displayed on gauges and on a table." />
+<meta name="twitter:image" content="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/DIY-Cloud-Weather-Station-ESP32-ESP8266-p.jpg?fit=813%2C457&#038;ssl=1" />
+<meta itemprop="image" content="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/DIY-Cloud-Weather-Station-ESP32-ESP8266-p.jpg?fit=813%2C457&#038;ssl=1" />
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//scripts.mediavine.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="Random Nerd Tutorials &raquo; Feed" href="https://randomnerdtutorials.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Random Nerd Tutorials &raquo; Comments Feed" href="https://randomnerdtutorials.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Random Nerd Tutorials &raquo; DIY Cloud Weather Station with ESP32/ESP8266 (MySQL Database and PHP) Comments Feed" href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/randomnerdtutorials.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.3.2"}};
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='generate-fonts-css'  href='https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://randomnerdtutorials.com/wp-includes/css/dist/block-library/style.min.css?ver=5.3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='generate-style-grid-css'  href='https://randomnerdtutorials.com/wp-content/themes/generatepress/css/unsemantic-grid.min.css?ver=2.4.1' type='text/css' media='all' />
+<link rel='stylesheet' id='generate-style-css'  href='https://randomnerdtutorials.com/wp-content/themes/generatepress/style.min.css?ver=2.4.1' type='text/css' media='all' />
+<style id='generate-style-inline-css' type='text/css'>
+.entry-header .entry-meta {display:none;}.post-navigation {display:none;}.single footer.entry-meta {display:none;}
+body{background-color:#ffffff;color:#3a3a3a;}a, a:visited{color:#1b78e2;}a:visited{color:#1b78e2;}a:hover, a:focus, a:active{color:#000000;}body .grid-container{max-width:1085px;}.wp-block-group__inner-container{max-width:1085px;margin-left:auto;margin-right:auto;}body, button, input, select, textarea{font-family:"Open Sans", sans-serif;font-size:18px;}body{line-height:1.4;}p{margin-bottom:1.4em;}.entry-content > [class*="wp-block-"]:not(:last-child){margin-bottom:1.4em;}.main-navigation .main-nav ul ul li a{font-size:14px;}.widget-title{font-weight:600;}button:not(.menu-toggle),html input[type="button"],input[type="reset"],input[type="submit"],.button,.button:visited,.wp-block-button .wp-block-button__link{font-size:20px;}h1{font-weight:600;font-size:36px;line-height:1.1em;margin-bottom:14px;}h2{font-weight:600;font-size:36px;line-height:1.3em;margin-bottom:18px;}h3{font-weight:600;font-size:29px;line-height:1.3em;margin-bottom:10px;}h4{font-weight:600;font-size:20px;}@media (max-width:768px){.main-title{font-size:30px;}h1{font-size:27px;}h2{font-size:27px;}}.top-bar{background-color:#636363;color:#ffffff;}.top-bar a,.top-bar a:visited{color:#ffffff;}.top-bar a:hover{color:#303030;}.site-header{background-color:#ffffff;color:#3a3a3a;}.site-header a,.site-header a:visited{color:#3a3a3a;}.main-title a,.main-title a:hover,.main-title a:visited{color:#222222;}.site-description{color:#757575;}.main-navigation,.main-navigation ul ul{background-color:#2f4468;}.main-navigation .main-nav ul li a,.menu-toggle{color:#ffffff;}.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a{color:#dee5ed;background-color:#2f4468;}button.menu-toggle:hover,button.menu-toggle:focus,.main-navigation .mobile-bar-items a,.main-navigation .mobile-bar-items a:hover,.main-navigation .mobile-bar-items a:focus{color:#ffffff;}.main-navigation .main-nav ul li[class*="current-menu-"] > a{color:#ffffff;background-color:rgba(10,10,10,0.31);}.main-navigation .main-nav ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a{color:#ffffff;background-color:rgba(10,10,10,0.31);}.navigation-search input[type="search"],.navigation-search input[type="search"]:active, .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li.search-item.active > a{color:#dee5ed;background-color:#2f4468;}.main-navigation ul ul{background-color:#3f3f3f;}.main-navigation .main-nav ul ul li a{color:#ffffff;}.main-navigation .main-nav ul ul li:hover > a,.main-navigation .main-nav ul ul li:focus > a,.main-navigation .main-nav ul ul li.sfHover > a{color:#ffffff;background-color:#4f4f4f;}.main-navigation .main-nav ul ul li[class*="current-menu-"] > a{color:#ffffff;background-color:#4f4f4f;}.main-navigation .main-nav ul ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul ul li[class*="current-menu-"].sfHover > a{color:#ffffff;background-color:#4f4f4f;}.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .one-container .container, .separate-containers .paging-navigation, .inside-page-header{background-color:#ffffff;}.entry-title a,.entry-title a:visited{color:#2f4468;}.entry-title a:hover{color:#0a0000;}.entry-meta{color:#878787;}.entry-meta a,.entry-meta a:visited{color:#727272;}.entry-meta a:hover{color:#0a0101;}.sidebar .widget{background-color:#ffffff;}.sidebar .widget .widget-title{color:#000000;}.footer-widgets{color:#ffffff;background-color:#2f4468;}.footer-widgets a,.footer-widgets a:visited{color:#ffffff;}.footer-widgets .widget-title{color:#ffffff;}.site-info{color:#2f4468;}.site-info a,.site-info a:visited{color:#2f4468;}.site-info a:hover{color:#0a0a0a;}.footer-bar .widget_nav_menu .current-menu-item a{color:#0a0a0a;}input[type="text"],input[type="email"],input[type="url"],input[type="password"],input[type="search"],input[type="tel"],input[type="number"],textarea,select{color:#666666;background-color:#fafafa;border-color:#cccccc;}input[type="text"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="number"]:focus,textarea:focus,select:focus{color:#666666;background-color:#ffffff;border-color:#bfbfbf;}button,html input[type="button"],input[type="reset"],input[type="submit"],a.button,a.button:visited,a.wp-block-button__link:not(.has-background){color:#ffffff;background-color:#2f4468;}button:hover,html input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,a.button:hover,button:focus,html input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,a.button:focus,a.wp-block-button__link:not(.has-background):active,a.wp-block-button__link:not(.has-background):focus,a.wp-block-button__link:not(.has-background):hover{color:#ffffff;background-color:#0c2c68;}.generate-back-to-top,.generate-back-to-top:visited{background-color:rgba( 0,0,0,0.4 );color:#ffffff;}.generate-back-to-top:hover,.generate-back-to-top:focus{background-color:rgba( 0,0,0,0.6 );color:#ffffff;}.inside-header{padding:0px;}.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header, .wp-block-group__inner-container{padding:40px 30px 40px 30px;}.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull{margin-left:-30px;width:calc(100% + 60px);max-width:calc(100% + 60px);}.one-container.right-sidebar .site-main,.one-container.both-right .site-main{margin-right:30px;}.one-container.left-sidebar .site-main,.one-container.both-left .site-main{margin-left:30px;}.one-container.both-sidebars .site-main{margin:0px 30px 0px 30px;}.separate-containers .widget, .separate-containers .site-main > *, .separate-containers .page-header, .widget-area .main-navigation{margin-bottom:10px;}.separate-containers .site-main{margin:10px;}.both-right.separate-containers .inside-left-sidebar{margin-right:5px;}.both-right.separate-containers .inside-right-sidebar{margin-left:5px;}.both-left.separate-containers .inside-left-sidebar{margin-right:5px;}.both-left.separate-containers .inside-right-sidebar{margin-left:5px;}.separate-containers .page-header-image, .separate-containers .page-header-contained, .separate-containers .page-header-image-single, .separate-containers .page-header-content-single{margin-top:10px;}.separate-containers .inside-right-sidebar, .separate-containers .inside-left-sidebar{margin-top:10px;margin-bottom:10px;}.rtl .menu-item-has-children .dropdown-menu-toggle{padding-left:20px;}.rtl .main-navigation .main-nav ul li.menu-item-has-children > a{padding-right:20px;}.widget-area .widget{padding:6px;}@media (max-width:768px){.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header, .wp-block-group__inner-container{padding:30px;}.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull{margin-left:-30px;width:calc(100% + 60px);max-width:calc(100% + 60px);}}/* End cached CSS */@media (max-width: 768px){.main-navigation .menu-toggle,.main-navigation .mobile-bar-items,.sidebar-nav-mobile:not(#sticky-placeholder){display:block;}.main-navigation ul,.gen-sidebar-nav{display:none;}[class*="nav-float-"] .site-header .inside-header > *{float:none;clear:both;}}@font-face {font-family: "GeneratePress";src:  url("https://randomnerdtutorials.com/wp-content/themes/generatepress/fonts/generatepress.eot");src:  url("https://randomnerdtutorials.com/wp-content/themes/generatepress/fonts/generatepress.eot#iefix") format("embedded-opentype"),  url("https://randomnerdtutorials.com/wp-content/themes/generatepress/fonts/generatepress.woff2") format("woff2"),  url("https://randomnerdtutorials.com/wp-content/themes/generatepress/fonts/generatepress.woff") format("woff"),  url("https://randomnerdtutorials.com/wp-content/themes/generatepress/fonts/generatepress.ttf") format("truetype"),  url("https://randomnerdtutorials.com/wp-content/themes/generatepress/fonts/generatepress.svg#GeneratePress") format("svg");font-weight: normal;font-style: normal;}.main-navigation .slideout-toggle a:before,.slide-opened .slideout-overlay .slideout-exit:before {font-family: GeneratePress;}.slideout-navigation .dropdown-menu-toggle:before {content: "\f107" !important;}.slideout-navigation .sfHover > a .dropdown-menu-toggle:before {content: "\f106" !important;}
+.navigation-branding .main-title{font-weight:bold;text-transform:none;font-size:45px;}@media (max-width: 768px){.navigation-branding .main-title{font-size:30px;}}
+.main-navigation .navigation-logo img {height:60px;}@media (max-width: 1095px) {.main-navigation .navigation-logo.site-logo {margin-left:0;}body.sticky-menu-logo.nav-float-left .main-navigation .site-logo.navigation-logo {margin-right:0;}}.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a{transition: line-height 300ms ease}.main-navigation.toggled .main-nav > ul{background-color: #2f4468}
+</style>
+<link rel='stylesheet' id='generate-mobile-style-css'  href='https://randomnerdtutorials.com/wp-content/themes/generatepress/css/mobile.min.css?ver=2.4.1' type='text/css' media='all' />
+<link rel='stylesheet' id='generate-child-css'  href='https://randomnerdtutorials.com/wp-content/themes/generatepress_child/style.css?ver=1567165377' type='text/css' media='all' />
+<link rel='stylesheet' id='elementor-icons-css'  href='https://randomnerdtutorials.com/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=5.5.0' type='text/css' media='all' />
+<link rel='stylesheet' id='elementor-animations-css'  href='https://randomnerdtutorials.com/wp-content/plugins/elementor/assets/lib/animations/animations.min.css?ver=2.8.0' type='text/css' media='all' />
+<link rel='stylesheet' id='elementor-frontend-css'  href='https://randomnerdtutorials.com/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=2.8.0' type='text/css' media='all' />
+<link rel='stylesheet' id='elementor-pro-css'  href='https://randomnerdtutorials.com/wp-content/plugins/elementor-pro/assets/css/frontend.min.css?ver=2.7.3' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-5-all-css'  href='https://randomnerdtutorials.com/wp-content/plugins/elementor/assets/lib/font-awesome/css/all.min.css?ver=2.8.0' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-4-shim-css'  href='https://randomnerdtutorials.com/wp-content/plugins/elementor/assets/lib/font-awesome/css/v4-shims.min.css?ver=2.8.0' type='text/css' media='all' />
+<link rel='stylesheet' id='elementor-post-83058-css'  href='https://randomnerdtutorials.com/wp-content/uploads/elementor/css/post-83058.css?ver=1575977788' type='text/css' media='all' />
+<link rel='stylesheet' id='generate-blog-css'  href='https://randomnerdtutorials.com/wp-content/plugins/gp-premium/blog/functions/css/style-min.css?ver=1.9.1' type='text/css' media='all' />
+<link rel='stylesheet' id='generate-sticky-css'  href='https://randomnerdtutorials.com/wp-content/plugins/gp-premium/menu-plus/functions/css/sticky.min.css?ver=1.9.1' type='text/css' media='all' />
+<link rel='stylesheet' id='generate-menu-logo-css'  href='https://randomnerdtutorials.com/wp-content/plugins/gp-premium/menu-plus/functions/css/menu-logo.min.css?ver=1.9.1' type='text/css' media='all' />
+<style id='generate-menu-logo-inline-css' type='text/css'>
+@media (max-width: 768px){.sticky-menu-logo .navigation-stick:not(.mobile-header-navigation) .menu-toggle,.menu-logo .main-navigation:not(.mobile-header-navigation) .menu-toggle{display:inline-block;clear:none;width:auto;float:right;}.sticky-menu-logo .navigation-stick:not(.mobile-header-navigation) .mobile-bar-items,.menu-logo .main-navigation:not(.mobile-header-navigation) .mobile-bar-items{position:relative;float:right;}.regular-menu-logo .main-navigation:not(.navigation-stick):not(.mobile-header-navigation) .menu-toggle{display:inline-block;clear:none;width:auto;float:right;}.regular-menu-logo .main-navigation:not(.navigation-stick):not(.mobile-header-navigation) .mobile-bar-items{position:relative;float:right;}body[class*="nav-float-"].menu-logo-enabled:not(.sticky-menu-logo) .main-navigation .main-nav{display:block;}.sticky-menu-logo.nav-float-left .navigation-stick:not(.mobile-header-navigation) .menu-toggle,.menu-logo.nav-float-left .main-navigation:not(.mobile-header-navigation) .menu-toggle,.regular-menu-logo.nav-float-left .main-navigation:not(.navigation-stick):not(.mobile-header-navigation) .menu-toggle{float:left;}}
+</style>
+<link rel='stylesheet' id='jetpack_css-css'  href='https://randomnerdtutorials.com/wp-content/plugins/jetpack/css/jetpack.css?ver=8.0' type='text/css' media='all' />
+<script>if (document.location.protocol != "https:") {document.location = document.URL.replace(/^http:/i, "https:");}</script><script type='text/javascript' src='https://randomnerdtutorials.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' async="async" data-noptimize="1" data-cfasync="false" src='https://scripts.mediavine.com/tags/random-nerd-tutorials.js?ver=5.3.2'></script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.min.js?ver=2.8.0'></script>
+<link rel='https://api.w.org/' href='https://randomnerdtutorials.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://randomnerdtutorials.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://randomnerdtutorials.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='ESP32 Relay Module &#8211; Control AC Appliances (Web Server)' href='https://randomnerdtutorials.com/esp32-relay-module-ac-web-server/' />
+<link rel='next' title='Year in Review 2019 – Random Nerd Tutorials' href='https://randomnerdtutorials.com/year-in-review-2019/' />
+<meta name="generator" content="WordPress 5.3.2" />
+<link rel='shortlink' href='https://randomnerdtutorials.com/?p=92139' />
+<link rel="alternate" type="application/json+oembed" href="https://randomnerdtutorials.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Frandomnerdtutorials.com%2Fcloud-weather-station-esp32-esp8266%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://randomnerdtutorials.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Frandomnerdtutorials.com%2Fcloud-weather-station-esp32-esp8266%2F&#038;format=xml" />
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'/>
+<link rel='dns-prefetch' href='//i0.wp.com'/>
+<link rel='dns-prefetch' href='//i1.wp.com'/>
+<link rel='dns-prefetch' href='//i2.wp.com'/>
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-41273278-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-41273278-2');
+</script><link rel="icon" href="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/03/n-favicon-2018.png?fit=16%2C16&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/03/n-favicon-2018.png?fit=16%2C16&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/03/n-favicon-2018.png?fit=16%2C16&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/03/n-favicon-2018.png?fit=16%2C16&#038;ssl=1" />
+</head>
+
+<body data-rsssl=1 class="post-template-default single single-post postid-92139 single-format-standard wp-embed-responsive post-image-above-header post-image-aligned-center sticky-menu-no-transition sticky-enabled menu-logo menu-logo-enabled both-sticky-menu right-sidebar nav-above-header fluid-header separate-containers active-footer-widgets-0 nav-search-enabled nav-aligned-center header-aligned-center dropdown-hover featured-image-active elementor-default elementor-page-82536" itemtype="https://schema.org/Blog" itemscope>
+	<a class="screen-reader-text skip-link" href="#content" title="Skip to content">Skip to content</a>		<nav id="site-navigation" class="auto-hide-sticky main-navigation" itemtype="https://schema.org/SiteNavigationElement" itemscope>
+			<div class="inside-navigation grid-container grid-parent">
+				<div class="site-logo sticky-logo navigation-logo">
+				<a href="https://randomnerdtutorials.com/" title="Random Nerd Tutorials" rel="home">
+					<img src="https://randomnerdtutorials.com/wp-content/uploads/2016/04/logornt.png" alt="Random Nerd Tutorials" />
+				</a>
+			</div><form method="get" class="search-form navigation-search" action="https://randomnerdtutorials.com/">
+				<input type="search" class="search-field" value="" name="s" title="Search" />
+			</form>		<div class="mobile-bar-items">
+						<span class="search-item">
+				<a aria-label="Open Search Bar" href="#">
+									</a>
+			</span>
+		</div><!-- .mobile-bar-items -->
+						<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<span class="mobile-menu">Menu</span>				</button>
+				<div id="primary-menu" class="main-nav"><ul id="menu-newtop" class=" menu sf-menu"><li id="menu-item-20482" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-20482"><a href="https://randomnerdtutorials.com/">Home</a></li>
+<li id="menu-item-20487" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20487"><a href="https://randomnerdtutorials.com/download">Free eBooks</a></li>
+<li id="menu-item-20484" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20484"><a href="https://randomnerdtutorials.com/about">About</a></li>
+<li id="menu-item-20485" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20485"><a href="https://randomnerdtutorials.com/contact">Contact</a></li>
+<li id="menu-item-20498" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20498"><a href="https://randomnerdtutorials.com/projects/">Projects</a></li>
+<li id="menu-item-20486" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20486"><a href="#More">More<span role="presentation" class="dropdown-menu-toggle"></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-43624" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43624"><a target="_blank" rel="noopener noreferrer" href="https://makeradvisor.com/">MakerAdvisor.com</a></li>
+	<li id="menu-item-68854" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-68854"><a target="_blank" rel="noopener noreferrer" href="https://rntlab.com/login">Member Login</a></li>
+	<li id="menu-item-68853" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-68853"><a target="_blank" rel="noopener noreferrer" href="https://rntlab.com/">Join the RNT Lab</a></li>
+</ul>
+</li>
+<li id="menu-item-20483" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20483"><a href="https://randomnerdtutorials.com/courses/">Get Courses<span role="presentation" class="dropdown-menu-toggle"></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-40154" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-40154"><a href="https://randomnerdtutorials.com/courses/">All eBooks &#038; Courses</a></li>
+	<li id="menu-item-83302" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-83302"><a href="https://randomnerdtutorials.com/micropython-programming-with-esp32-and-esp8266/"><strong>MicroPython Programming with ESP32 and ESP8266</strong></a></li>
+	<li id="menu-item-69105" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-69105"><a href="https://randomnerdtutorials.com/learn-esp32-with-arduino-ide/">Learn ESP32 with Arduino IDE</a></li>
+	<li id="menu-item-40149" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-40149"><a href="https://randomnerdtutorials.com/home-automation-using-esp8266/">Home Automation Using ESP8266</a></li>
+	<li id="menu-item-40150" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-40150"><a href="https://randomnerdtutorials.com/build-a-home-automation-system-for-100/">Build a Home Automation System for $100</a></li>
+	<li id="menu-item-40151" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-40151"><a href="https://randomnerdtutorials.com/arduino-step-by-step-projects/">Arduino Step-by-step Projects</a></li>
+	<li id="menu-item-40153" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-40153"><a href="https://randomnerdtutorials.com/android-apps-for-arduino-with-mit-app-inventor-2/">Android Apps For Arduino</a></li>
+	<li id="menu-item-40152" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-40152"><a href="https://randomnerdtutorials.com/electronics-for-beginners/">Electronics For Beginners</a></li>
+</ul>
+</li>
+<li class="search-item"><a aria-label="Open Search Bar" href="#"></a></li></ul></div>			</div><!-- .inside-navigation -->
+		</nav><!-- #site-navigation -->
+				<header id="masthead" class="site-header" itemtype="https://schema.org/WPHeader" itemscope>
+			<div class="inside-header">
+							</div><!-- .inside-header -->
+		</header><!-- #masthead -->
+		
+	<div id="page" class="hfeed site grid-container container grid-parent">
+				<div id="content" class="site-content">
+			
+	<div id="primary" class="content-area grid-parent mobile-grid-100 grid-75 tablet-grid-75">
+		<main id="main" class="site-main">
+			
+<article id="post-92139" class="post-92139 post type-post status-publish format-standard has-post-thumbnail hentry category-esp32 category-esp32-project category-esp32-arduino-ide category-0-esp32 category-project" itemtype="https://schema.org/CreativeWork" itemscope>
+	<div class="inside-article">
+		
+		<header class="entry-header">
+			<h1 class="entry-title" itemprop="headline">DIY Cloud Weather Station with ESP32/ESP8266 (MySQL Database and PHP)</h1>			<div class="entry-meta">
+							</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+		
+		<div class="entry-content" itemprop="text">
+			
+<p>Build a cloud weather station dashboard to visualize your ESP32 or ESP8266 sensor readings from anywhere in the world. You&#8217;ll see your sensor data displayed on gauges and on a table. The ESP32 or ESP8266 will make an HTTP POST request to a PHP script to insert your data into a MySQL database.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-full"><img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/DIY-Cloud-Weather-Station-ESP32-ESP8266-p.jpg?w=813&#038;ssl=1" alt="DIY Cloud Weather Station with ESP32/ESP8266 MySQL Database and PHP" class="wp-image-92186" srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/DIY-Cloud-Weather-Station-ESP32-ESP8266-p.jpg?w=1280&amp;ssl=1 1280w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/DIY-Cloud-Weather-Station-ESP32-ESP8266-p.jpg?resize=300%2C169&amp;ssl=1 300w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/DIY-Cloud-Weather-Station-ESP32-ESP8266-p.jpg?resize=1024%2C576&amp;ssl=1 1024w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/DIY-Cloud-Weather-Station-ESP32-ESP8266-p.jpg?resize=768%2C432&amp;ssl=1 768w" sizes="(max-width: 813px) 100vw, 813px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p>Previously, we&#8217;ve stored sensor readings to a database and <a href="https://randomnerdtutorials.com/esp32-esp8266-mysql-database-php/">display them on a table</a> or <a href="https://randomnerdtutorials.com/visualize-esp32-esp8266-sensor-readings-from-anywhere/">charts that you can access from anywhere</a> using your own server. Now, I’ve decided to take a few steps further and add some more information to the web page.</p>
+
+
+
+<p>I&#8217;ve added two gauges to display the latest temperature and humidity readings as well as some statistics about the minimum, maximum and average readings from an amount of readings that you can define. You can also visualize all the latest readings on a table and you can select how many readings you want to show.</p>
+
+
+
+<p>To build this project, you&#8217;ll use these technologies:</p>
+
+
+
+<ul><li>ESP32 or ESP8266 programmed with Arduino IDE</li><li>Hosting server and domain name</li><li>PHP script to insert data into MySQL and display it on a web page</li><li>MySQL database to store readings</li></ul>
+
+
+
+<h2>Watch the Video Demonstration</h2>
+
+
+
+<p>To see how the project works, you can watch the following video demonstration:</p>
+
+
+<p style="text-align:center"><iframe width="720" height="405" src="https://www.youtube.com/embed/C6BfIcshUy8?rel=0" frameborder="0" allowfullscreen></iframe></p>
+
+
+
+<h2>0. Download Source Code</h2>
+
+
+
+<p>For this project, you&#8217;ll need these files:</p>
+
+
+
+<ul><li>SQL query to create your table: <a rel="noreferrer noopener" aria-label=" (opens in a new tab)" href="https://github.com/RuiSantosdotme/Cloud-Weather-Station-ESP32-ESP8266/blob/master/code/SensorData_Table.sql" target="_blank">SensorData_Table.sql</a></li><li>Insert and access database readings: <a rel="noreferrer noopener" aria-label=" (opens in a new tab)" href="https://github.com/RuiSantosdotme/Cloud-Weather-Station-ESP32-ESP8266/blob/master/code/esp-database.php" target="_blank">esp-database.php</a></li><li>Handle HTTP Post requests: <a rel="noreferrer noopener" aria-label=" (opens in a new tab)" href="https://github.com/RuiSantosdotme/Cloud-Weather-Station-ESP32-ESP8266/blob/master/code/esp-post-data.php" target="_blank">esp-post-data.php</a></li><li>CSS file to style your web page: <a rel="noreferrer noopener" aria-label=" (opens in a new tab)" href="https://github.com/RuiSantosdotme/Cloud-Weather-Station-ESP32-ESP8266/blob/master/code/esp-style.css" target="_blank">esp-style.css</a></li><li>Display your sensor readings: <a rel="noreferrer noopener" aria-label=" (opens in a new tab)" href="https://github.com/RuiSantosdotme/Cloud-Weather-Station-ESP32-ESP8266/blob/master/code/esp-weather-station.php" target="_blank">esp-weather-station.php</a></li><li>Arduino Sketch for ESP32/ESP8266: <a rel="noreferrer noopener" aria-label=" (opens in a new tab)" href="https://github.com/RuiSantosdotme/Cloud-Weather-Station-ESP32-ESP8266/blob/master/code/ESP_HTTP_POST_MySQL.ino" target="_blank">ESP_HTTP_POST_MySQL.ino</a></li><li><a rel="noreferrer noopener" aria-label=" (opens in a new tab)" href="https://github.com/RuiSantosdotme/Cloud-Weather-Station-ESP32-ESP8266/archive/master.zip" target="_blank"><strong>Download all projects files</strong></a></li></ul>
+
+
+
+<h2>1. Hosting Your PHP Application and MySQL Database</h2>
+
+
+
+<p>The goal of this project is to have your own domain name and hosting account that allows you to store sensor readings from the ESP32 or ESP8266. You can visualize the readings from anywhere in the world by accessing your own server domain. </p>
+
+
+
+<p>Here&#8217;s a high level overview on how the projects works:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-full"><a href="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Gauge-weather-station-project-overview.png?ssl=1"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Gauge-weather-station-project-overview.png?w=813&#038;ssl=1" alt="Hosting PHP Application and MySQL Database ESP32 ESP8266 Gauge weather station project overview" class="wp-image-92140" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Gauge-weather-station-project-overview.png?w=1000&amp;ssl=1 1000w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Gauge-weather-station-project-overview.png?resize=300%2C276&amp;ssl=1 300w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Gauge-weather-station-project-overview.png?resize=768%2C707&amp;ssl=1 768w" sizes="(max-width: 813px) 100vw, 813px" data-recalc-dims="1" /></a></figure></div>
+
+
+
+<ol><li>You have an ESP32 or ESP8266 that sends sensor readings to your own server. For this, you have your board connected to your router;</li><li>In your server, there’s a php script that allows you to store your readings in a MySQL database;</li><li>Then, another php script will display the web page with the gauges, table and all the other information;</li><li>Finally, you can visualize the readings from anywhere in the world by accessing your own domain name.</li></ol>
+
+
+
+<h3>Hosting Services</h3>
+
+
+
+<p>I recommend using one of the following hosting services that can handle all the project requirements:</p>
+
+
+
+<ul><li><a rel="noreferrer noopener" aria-label=" (opens in a new tab)" href="https://randomnerdtutorials.com/bluehost" target="_blank">Bluehost (user-friendly with cPanel)</a>: free domain name when you sign up for the 3-year plan. I recommend choosing the unlimited websites option;</li><li><a rel="noreferrer noopener" aria-label=" (opens in a new tab)" style="font-size: inherit; background-color: initial;" href="https://randomnerdtutorials.com/digitalocean" target="_blank">Digital Ocean</a><span style="font-size: inherit; background-color: initial;">: Linux server that you manage through a command line. I only recommended this option for advanced users.</span></li></ul>
+
+
+
+<p>Those two services are the ones that I use and personally recommend, but you can use any other hosting service. Any hosting service that offers PHP and MySQL will work with this tutorial. If you don&#8217;t have a hosting account, I recommend <a href="https://randomnerdtutorials.com/bluehost">signing up for Bluehost</a>.</p>
+
+
+
+<p style="text-align:center"><a href="https://randomnerdtutorials.com/bluehost" target="_blank" class="button" rel="noopener noreferrer">Get Hosting and Domain Name with Bluehost »</a></p>
+
+
+
+<p>When buying a hosting account, you&#8217;ll also have to purchase a domain name. This is what makes this project interesting: you&#8217;ll be able to go your domain name (http://example.com) and see your ESP readings.</p>
+
+
+
+<p>If you like our projects, you might consider signing up to one of the recommended hosting services, because you&#8217;ll be supporting our work.</p>
+
+
+
+<p class="rntbox rntclgreen"><strong>Note: </strong> you can also run a <a href="https://randomnerdtutorials.com/raspberry-pi-apache-mysql-php-lamp-server/">LAMP (Linux, Apache, MySQL, PHP) server</a> on a Raspberry Pi to <a href="https://randomnerdtutorials.com/esp32-esp8266-raspberry-pi-lamp-server/">access data in your local network</a>. However, the purpose of this tutorial is to publish readings in your own domain name that you can access from anywhere in the world. This allows you to easily access your ESP readings without relying on a third-party IoT platform.</p>
+
+
+
+<h2>2. Preparing Your MySQL Database</h2>
+
+
+
+<p>After signing up for a <a rel="noreferrer noopener" aria-label="hosting and setting up a domain name (opens in a new tab)" href="https://randomnerdtutorials.com/bluehost" target="_blank">hosting account and setting up a domain name</a>, you can login to your cPanel or similar dashboard. After that, follow the next steps to create your database, username, password and SQL table.</p>
+
+
+
+<h3>Creating a database and user</h3>
+
+
+
+<p>Open the &#8220;<strong>Advanced</strong>&#8221; tab:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-full"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/cpanel-bluehost-advanced-tab.jpg?w=813&#038;ssl=1" alt="Bluehost Advanced tab" class="wp-image-92154" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/cpanel-bluehost-advanced-tab.jpg?w=794&amp;ssl=1 794w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/cpanel-bluehost-advanced-tab.jpg?resize=300%2C205&amp;ssl=1 300w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/cpanel-bluehost-advanced-tab.jpg?resize=768%2C525&amp;ssl=1 768w" sizes="(max-width: 794px) 100vw, 794px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p><strong>1.</strong> Type &#8220;database&#8221; in the search bar and select &#8220;MySQL Database Wizard&#8221;.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/A-CPanel-select-MySQL-database-wizard-to-create-db.png?w=813&#038;ssl=1" alt="CPanel select MySQL database wizard to create db" class="wp-image-88086" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/A-CPanel-select-MySQL-database-wizard-to-create-db.png?w=826&amp;ssl=1 826w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/A-CPanel-select-MySQL-database-wizard-to-create-db.png?resize=300%2C109&amp;ssl=1 300w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/A-CPanel-select-MySQL-database-wizard-to-create-db.png?resize=768%2C279&amp;ssl=1 768w" sizes="(max-width: 813px) 100vw, 813px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p><strong>2.</strong> Enter your desired Database name. In my case, the database name is <span class="rnthl rntliteral">esp_data</span>. Then, press the &#8220;Next Step&#8221; button:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter"><img src="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/ESP32-ESP8266-CPanel-Create-MySQL-Database.png?w=813&#038;ssl=1" alt="ESP32 ESP8266 CPanel Create MySQL Database" class="wp-image-88072" srcset="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/ESP32-ESP8266-CPanel-Create-MySQL-Database.png?w=609&amp;ssl=1 609w, https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/ESP32-ESP8266-CPanel-Create-MySQL-Database.png?resize=300%2C207&amp;ssl=1 300w" sizes="(max-width: 609px) 100vw, 609px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p><strong>Note: </strong> later you&#8217;ll have to use the database name with the prefix that your host gives you (my database prefix in the screenshot above is blurred). I&#8217;ll refer to it as <span class="rnthl rntliteral">example_esp_data</span> from now on.</p>
+
+
+
+<p><strong>3.</strong> Type your Database username and set a password. You must save all those details, because you&#8217;ll need them later to establish a database connection with your PHP code.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/ESP32-ESP8266-CPanel-Create-MySQL-Database-User-Password.png?w=813&#038;ssl=1" alt="ESP32 ESP8266 CPanel Create MySQL Database User and Password" class="wp-image-88073" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/ESP32-ESP8266-CPanel-Create-MySQL-Database-User-Password.png?w=590&amp;ssl=1 590w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/ESP32-ESP8266-CPanel-Create-MySQL-Database-User-Password.png?resize=288%2C300&amp;ssl=1 288w" sizes="(max-width: 590px) 100vw, 590px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p>That&#8217;s it! Your new database and user were created successfully. Now, save all your details because you&#8217;ll need them later:</p>
+
+
+
+<ul><li><strong>Database name</strong>: example_esp_data</li><li><strong>Username</strong>: example_esp_board</li><li><strong>Password</strong>: your password</li></ul>
+
+
+
+<h3>Creating a SQL table</h3>
+
+
+
+<p>After creating your database and user, go back to cPanel dashboard and search for &#8220;phpMyAdmin&#8221;.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter"><img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/ESP32-ESP8266-CPanel-Open-PHPMyAdmin.png?w=813&#038;ssl=1" alt="ESP32 ESP8266 CPanel Open PHPMyAdmin" class="wp-image-88076" srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/ESP32-ESP8266-CPanel-Open-PHPMyAdmin.png?w=570&amp;ssl=1 570w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/ESP32-ESP8266-CPanel-Open-PHPMyAdmin.png?resize=300%2C166&amp;ssl=1 300w" sizes="(max-width: 570px) 100vw, 570px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p>In the left sidebar, select your database name <span class="rnthl rntliteral">example_esp_data</span> and open the &#8220;SQL&#8221; tab. </p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-full"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/ESP32-ESP8266-PHPMyAdmin-Open-Database.png?w=813&#038;ssl=1" alt="ESP32 ESP8266 PHPMyAdmin Open Database" class="wp-image-88078" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/ESP32-ESP8266-PHPMyAdmin-Open-Database.png?w=797&amp;ssl=1 797w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/ESP32-ESP8266-PHPMyAdmin-Open-Database.png?resize=300%2C196&amp;ssl=1 300w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/ESP32-ESP8266-PHPMyAdmin-Open-Database.png?resize=768%2C502&amp;ssl=1 768w" sizes="(max-width: 797px) 100vw, 797px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p class="rntbox rntcorange"><strong>Important: </strong> make sure you&#8217;ve opened the <span class="rnthl rntliteral">example_esp_data</span> database. Then, click the SQL tab. If you don&#8217;t follow these exact steps and run the SQL query, you might create a table in the wrong database.</p>
+
+
+
+<p>Copy the SQL query in the following snippet:</p>
+
+
+<pre style="max-height: 40em; margin-bottom: 20px;"><code class="language-c">CREATE TABLE SensorData (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    sensor VARCHAR(30) NOT NULL,
+    location VARCHAR(30) NOT NULL,
+    value1 VARCHAR(10),
+    value2 VARCHAR(10),
+    value3 VARCHAR(10),
+    reading_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)
+</code></pre>
+	<p style="text-align:center"><a class="rntwhite" href="https://github.com/RuiSantosdotme/Cloud-Weather-Station-ESP32-ESP8266/raw/master/code/SensorData_Table.sql" target="_blank">View raw code</a></p>
+
+
+
+<p>Paste it in the SQL query field (highlighted with a red rectangle) and press the &#8220;Go&#8221; button to create your table:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter"><img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-ESP8266-PHPMyAdmin-Create-SQL-Table.png?resize=813.75%2C404&#038;ssl=1" alt="ESP32 ESP8266 PHPMyAdmin Create SQL Table" class="wp-image-85943" srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-ESP8266-PHPMyAdmin-Create-SQL-Table.png?resize=1024%2C509&amp;ssl=1 1024w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-ESP8266-PHPMyAdmin-Create-SQL-Table.png?resize=300%2C149&amp;ssl=1 300w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-ESP8266-PHPMyAdmin-Create-SQL-Table.png?resize=768%2C381&amp;ssl=1 768w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-ESP8266-PHPMyAdmin-Create-SQL-Table.png?w=1031&amp;ssl=1 1031w" sizes="(max-width: 813px) 100vw, 813px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p>After that, you should see your newly created table called <span class="rnthl rntliteral">SensorData</span> in the <span class="rnthl rntliteral">example_esp_data</span> database as shown in the figure below:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-full"><a href="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-ESP8266-PHPMyAdmin-View-SQL-Database.png?ssl=1"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-ESP8266-PHPMyAdmin-View-SQL-Database.png?w=813&#038;ssl=1" alt="ESP32 ESP8266 PHPMyAdmin View SQL Database" class="wp-image-85945" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-ESP8266-PHPMyAdmin-View-SQL-Database.png?w=1148&amp;ssl=1 1148w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-ESP8266-PHPMyAdmin-View-SQL-Database.png?resize=300%2C100&amp;ssl=1 300w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-ESP8266-PHPMyAdmin-View-SQL-Database.png?resize=768%2C256&amp;ssl=1 768w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-ESP8266-PHPMyAdmin-View-SQL-Database.png?resize=1024%2C341&amp;ssl=1 1024w" sizes="(max-width: 813px) 100vw, 813px" data-recalc-dims="1" /></a></figure></div>
+
+
+
+<h2>3. PHP Script HTTP POST &#8211; Receive and Insert Data in MySQL Database</h2>
+
+
+
+<p>In this section, we&#8217;re going to create a PHP script that is responsible for receiving incoming requests from the ESP32 or ESP8266 and inserting the data into a MySQL database.</p>
+
+
+
+<p>If you&#8217;re using a hosting provider with cPanel, you can search for &#8220;File Manager&#8221;:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter"><img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/ESP32-ESP8266-CPanel-Open-Edit-PHP-Files.png?w=813&#038;ssl=1" alt="ESP32 ESP8266 CPanel Open Edit PHP Files with File Manager" data-recalc-dims="1"/></figure></div>
+
+
+
+<p>Then, select the <strong>public_html</strong> option and press the &#8220;+ File&#8221; button to create a new <em>.php</em> file.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter"><img src="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-ESP8266-CPanel-Create-New-PHP-File.png?w=813&#038;ssl=1" alt="ESP32 ESP8266 CPanel Create New PHP File" class="wp-image-85940" srcset="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-ESP8266-CPanel-Create-New-PHP-File.png?w=849&amp;ssl=1 849w, https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-ESP8266-CPanel-Create-New-PHP-File.png?resize=300%2C122&amp;ssl=1 300w, https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-ESP8266-CPanel-Create-New-PHP-File.png?resize=768%2C313&amp;ssl=1 768w" sizes="(max-width: 813px) 100vw, 813px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p class="rntbox rntclblue"><strong>Note: </strong> if you&#8217;re following this tutorial and you&#8217;re not familiar with PHP or MySQL, I recommend creating these exact files. Otherwise, you&#8217;ll need to modify the ESP sketch provided with different URL paths. </p>
+
+
+
+<p>Create a new file in <strong>/public_html</strong> with this exact name and extension: <em>esp-post-data.php</em></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-full"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Create-esp-post-data-PHP-file.png?w=813&#038;ssl=1" alt="Create esp post data PHP file" class="wp-image-92143" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Create-esp-post-data-PHP-file.png?w=500&amp;ssl=1 500w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Create-esp-post-data-PHP-file.png?resize=300%2C149&amp;ssl=1 300w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p>Edit the newly created file (<em>esp-post-data.php</em>) and copy the following snippet:</p>
+
+
+<pre style="max-height: 40em; margin-bottom: 20px;"><code class="language-c">&lt;!--
+  Rui Santos
+  Complete project details at https://RandomNerdTutorials.com/cloud-weather-station-esp32-esp8266/
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files.
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+--&gt;
+&lt;?php
+  include_once('esp-database.php');
+
+  // Keep this API Key value to be compatible with the ESP code provided in the project page. If you change this value, the ESP sketch needs to match
+  $api_key_value = &quot;tPmAT5Ab3j7F9&quot;;
+
+  $api_key= $sensor = $location = $value1 = $value2 = $value3 = &quot;&quot;;
+
+  if ($_SERVER[&quot;REQUEST_METHOD&quot;] == &quot;POST&quot;) {
+    $api_key = test_input($_POST[&quot;api_key&quot;]);
+    if($api_key == $api_key_value) {
+      $sensor = test_input($_POST[&quot;sensor&quot;]);
+      $location = test_input($_POST[&quot;location&quot;]);
+      $value1 = test_input($_POST[&quot;value1&quot;]);
+      $value2 = test_input($_POST[&quot;value2&quot;]);
+      $value3 = test_input($_POST[&quot;value3&quot;]);
+
+      $result = insertReading($sensor, $location, $value1, $value2, $value3);
+      echo $result;
+    }
+    else {
+      echo &quot;Wrong API Key provided.&quot;;
+    }
+  }
+  else {
+    echo &quot;No data posted with HTTP POST.&quot;;
+  }
+
+  function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+</code></pre>
+	<p style="text-align:center"><a class="rntwhite" href="https://github.com/RuiSantosdotme/Cloud-Weather-Station-ESP32-ESP8266/raw/master/code/esp-post-data.php" target="_blank">View raw code</a></p>
+
+
+
+<h2>4. PHP Script for Database Functions</h2>
+
+
+
+<p>Create a new file in <strong>/public_html</strong> that is responsible for inserting and accessing data in your database. Name your file: <em>esp-database.php</em> </p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Create-esp-database-PHP-file.png?w=813&#038;ssl=1" alt="Create esp database PHP file" class="wp-image-92142" srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Create-esp-database-PHP-file.png?w=500&amp;ssl=1 500w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Create-esp-database-PHP-file.png?resize=300%2C149&amp;ssl=1 300w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p>Copy that PHP script:</p>
+
+
+<pre style="max-height: 40em; margin-bottom: 20px;"><code class="language-c">&lt;!--
+  Rui Santos
+  Complete project details at https://RandomNerdTutorials.com/cloud-weather-station-esp32-esp8266/
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files.
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+--&gt;
+&lt;?php
+  $servername = &quot;localhost&quot;;
+
+  // REPLACE with your Database name
+  $dbname = &quot;REPLACE_WITH_YOUR_DATABASE_NAME&quot;;
+  // REPLACE with Database user
+  $username = &quot;REPLACE_WITH_YOUR_USERNAME&quot;;
+  // REPLACE with Database user password
+  $password = &quot;REPLACE_WITH_YOUR_PASSWORD&quot;;
+
+  function insertReading($sensor, $location, $value1, $value2, $value3) {
+    global $servername, $username, $password, $dbname;
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn-&gt;connect_error) {
+      die(&quot;Connection failed: &quot; . $conn-&gt;connect_error);
+    }
+
+    $sql = &quot;INSERT INTO SensorData (sensor, location, value1, value2, value3)
+    VALUES ('&quot; . $sensor . &quot;', '&quot; . $location . &quot;', '&quot; . $value1 . &quot;', '&quot; . $value2 . &quot;', '&quot; . $value3 . &quot;')&quot;;
+
+    if ($conn-&gt;query($sql) === TRUE) {
+      return &quot;New record created successfully&quot;;
+    }
+    else {
+      return &quot;Error: &quot; . $sql . &quot;&lt;br&gt;&quot; . $conn-&gt;error;
+    }
+    $conn-&gt;close();
+  }
+  
+  function getAllReadings($limit) {
+    global $servername, $username, $password, $dbname;
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn-&gt;connect_error) {
+      die(&quot;Connection failed: &quot; . $conn-&gt;connect_error);
+    }
+
+    $sql = &quot;SELECT id, sensor, location, value1, value2, value3, reading_time FROM SensorData order by reading_time desc limit &quot; . $limit;
+    if ($result = $conn-&gt;query($sql)) {
+      return $result;
+    }
+    else {
+      return false;
+    }
+    $conn-&gt;close();
+  }
+  function getLastReadings() {
+    global $servername, $username, $password, $dbname;
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn-&gt;connect_error) {
+      die(&quot;Connection failed: &quot; . $conn-&gt;connect_error);
+    }
+
+    $sql = &quot;SELECT id, sensor, location, value1, value2, value3, reading_time FROM SensorData order by reading_time desc limit 1&quot; ;
+    if ($result = $conn-&gt;query($sql)) {
+      return $result-&gt;fetch_assoc();
+    }
+    else {
+      return false;
+    }
+    $conn-&gt;close();
+  }
+
+  function minReading($limit, $value) {
+     global $servername, $username, $password, $dbname;
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn-&gt;connect_error) {
+      die(&quot;Connection failed: &quot; . $conn-&gt;connect_error);
+    }
+
+    $sql = &quot;SELECT MIN(&quot; . $value . &quot;) AS min_amount FROM (SELECT &quot; . $value . &quot; FROM SensorData order by reading_time desc limit &quot; . $limit . &quot;) AS min&quot;;
+    if ($result = $conn-&gt;query($sql)) {
+      return $result-&gt;fetch_assoc();
+    }
+    else {
+      return false;
+    }
+    $conn-&gt;close();
+  }
+
+  function maxReading($limit, $value) {
+     global $servername, $username, $password, $dbname;
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn-&gt;connect_error) {
+      die(&quot;Connection failed: &quot; . $conn-&gt;connect_error);
+    }
+
+    $sql = &quot;SELECT MAX(&quot; . $value . &quot;) AS max_amount FROM (SELECT &quot; . $value . &quot; FROM SensorData order by reading_time desc limit &quot; . $limit . &quot;) AS max&quot;;
+    if ($result = $conn-&gt;query($sql)) {
+      return $result-&gt;fetch_assoc();
+    }
+    else {
+      return false;
+    }
+    $conn-&gt;close();
+  }
+
+  function avgReading($limit, $value) {
+     global $servername, $username, $password, $dbname;
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn-&gt;connect_error) {
+      die(&quot;Connection failed: &quot; . $conn-&gt;connect_error);
+    }
+
+    $sql = &quot;SELECT AVG(&quot; . $value . &quot;) AS avg_amount FROM (SELECT &quot; . $value . &quot; FROM SensorData order by reading_time desc limit &quot; . $limit . &quot;) AS avg&quot;;
+    if ($result = $conn-&gt;query($sql)) {
+      return $result-&gt;fetch_assoc();
+    }
+    else {
+      return false;
+    }
+    $conn-&gt;close();
+  }
+?&gt;
+</code></pre>
+	<p style="text-align:center"><a class="rntwhite" href="https://github.com/RuiSantosdotme/Cloud-Weather-Station-ESP32-ESP8266/raw/master/code/esp-database.php" target="_blank">View raw code</a></p>
+
+
+
+<p>Before saving the file, you need to modify the <span class="rnthl rntliteral">$dbname</span>, <span class="rnthl rntliteral">$username</span> and <span class="rnthl rntliteral">$password</span> variables with your unique details:</p>
+
+
+
+<pre class="wp-block-code language-c"><code>// Your Database name
+$dbname = "example_esp_data";
+// Your Database user
+$username = "example_esp_board";
+// Your Database user password
+$password = "YOUR_USER_PASSWORD";</code></pre>
+
+
+
+<p>After adding the database name, username and password, save the file and continue with this tutorial. If you try to access your domain name in the next URL path, you&#8217;ll see the following:</p>
+
+
+
+<pre class="wp-block-code"><code>http://example.com/esp-post-data.php</code></pre>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/esp-post-data-example-PHP-file.png?w=813&#038;ssl=1" alt="esp post data via HTTP example PHP file" class="wp-image-92150" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/esp-post-data-example-PHP-file.png?w=679&amp;ssl=1 679w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/esp-post-data-example-PHP-file.png?resize=300%2C104&amp;ssl=1 300w" sizes="(max-width: 679px) 100vw, 679px" data-recalc-dims="1" /></figure></div>
+
+
+
+<h2>5. PHP Script &#8211; Display Database Readings on Gauges and Table</h2>
+
+
+
+<p>You&#8217;ll also need to add a CSS file to style your dashboard, name it: <em>esp-style.css</em>:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Create-esp-style-CSS-file.png?w=813&#038;ssl=1" alt="Create esp style CSS file" class="wp-image-92144" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Create-esp-style-CSS-file.png?w=500&amp;ssl=1 500w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Create-esp-style-CSS-file.png?resize=300%2C149&amp;ssl=1 300w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p>Copy that CSS to your file and save it:</p>
+
+
+<pre style="max-height: 40em; margin-bottom: 20px;"><code class="language-css">/**
+  Rui Santos
+  Complete project details at https://RandomNerdTutorials.com/cloud-weather-station-esp32-esp8266/
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files.
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+**/
+body {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    font-family: Arial;
+    top: 50%;
+    left: 50%;
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        width: 100%;
+    }
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2 { font-size: 2.5rem; }
+
+.header {
+	 padding: 1rem;
+	 margin: 0 0 2rem 0;
+	 background: #f2f2f2;
+}
+
+h1 {
+    font-size: 2rem;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.content {
+    display: flex;
+}
+
+@media screen and (max-width: 500px) /* Mobile */ {
+    .content {
+        flex-direction: column;
+    }
+}
+
+.mask {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    width: 12.5rem;
+    height: 6.25rem;
+    margin: 1.25rem;
+}
+
+.semi-circle {
+    position: relative;
+    display: block;
+    width: 12.5rem;
+    height: 6.25rem;
+    background: linear-gradient(to right, #3498db 0%, #05b027 33%, #f1c40f 70%, #c0392b 100%);
+    border-radius: 50% 50% 50% 50% / 100% 100% 0% 0%;
+}
+
+.semi-circle::before {
+    content: &quot;&quot;;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    z-index: 2;
+    display: block;
+    width: 8.75rem;
+    height: 4.375rem;
+    margin-left: -4.375rem;
+    background: #fff;
+    border-radius: 50% 50% 50% 50% / 100% 100% 0% 0%;
+}
+
+.semi-circle--mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12.5rem;
+    height: 12.5rem;
+    background: transparent;
+    transform: rotate(120deg) translate3d(0, 0, 0);
+    transform-origin: center center;
+    backface-visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.semi-circle--mask::before {
+    content: &quot;&quot;;
+    position: absolute;
+    top: 0;
+    left: 0%;
+    z-index: 2;
+    display: block;
+    width: 12.625rem;
+    height: 6.375rem;
+    margin: -1px 0 0 -1px;
+    background: #f2f2f2;
+    border-radius: 50% 50% 50% 50% / 100% 100% 0% 0%;
+}
+
+.gauge--2 .semi-circle { background: #3498db; }
+
+.gauge--2 .semi-circle--mask { transform: rotate(20deg) translate3d(0, 0, 0); }
+
+#tableReadings { border-collapse: collapse; }
+
+#tableReadings td, #tableReadings th {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+#tableReadings tr:nth-child(even){ background-color: #f2f2f2; }
+
+#tableReadings tr:hover { background-color: #ddd; }
+
+#tableReadings th {
+    padding: 10px;
+    background-color: #2f4468;
+    color: white;
+}
+</code></pre>
+	<p style="text-align:center"><a class="rntwhite" href="https://github.com/RuiSantosdotme/Cloud-Weather-Station-ESP32-ESP8266/raw/master/code/esp-style.css" target="_blank">View raw code</a></p>
+
+
+
+<p>Finally, create another PHP file in the <strong>/public_html</strong> directory that will display all the database content in a web page. Name your new file: <em>esp-weather-station.php </em></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-full"><img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Create-esp-weather-station-PHP-file.png?w=813&#038;ssl=1" alt="Create esp weather station PHP file" class="wp-image-92145" srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Create-esp-weather-station-PHP-file.png?w=500&amp;ssl=1 500w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Create-esp-weather-station-PHP-file.png?resize=300%2C149&amp;ssl=1 300w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p>Edit the newly created file (<em>esp-weather-station.php</em>) and copy the following code:</p>
+
+
+<pre style="max-height: 40em; margin-bottom: 20px;"><code class="language-c">&lt;!--
+  Rui Santos
+  Complete project details at https://RandomNerdTutorials.com/cloud-weather-station-esp32-esp8266/
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files.
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+--&gt;
+&lt;?php
+    include_once('esp-database.php');
+    if ($_GET[&quot;readingsCount&quot;]){
+      $data = $_GET[&quot;readingsCount&quot;];
+      $data = trim($data);
+      $data = stripslashes($data);
+      $data = htmlspecialchars($data);
+      $readings_count = $_GET[&quot;readingsCount&quot;];
+    }
+    // default readings count set to 20
+    else {
+      $readings_count = 20;
+    }
+
+    $last_reading = getLastReadings();
+    $last_reading_temp = $last_reading[&quot;value1&quot;];
+    $last_reading_humi = $last_reading[&quot;value2&quot;];
+    $last_reading_time = $last_reading[&quot;reading_time&quot;];
+
+    // Uncomment to set timezone to - 1 hour (you can change 1 to any number)
+    //$last_reading_time = date(&quot;Y-m-d H:i:s&quot;, strtotime(&quot;$last_reading_time - 1 hours&quot;));
+    // Uncomment to set timezone to + 7 hours (you can change 7 to any number)
+    //$last_reading_time = date(&quot;Y-m-d H:i:s&quot;, strtotime(&quot;$last_reading_time + 7 hours&quot;));
+
+    $min_temp = minReading($readings_count, 'value1');
+    $max_temp = maxReading($readings_count, 'value1');
+    $avg_temp = avgReading($readings_count, 'value1');
+
+    $min_humi = minReading($readings_count, 'value2');
+    $max_humi = maxReading($readings_count, 'value2');
+    $avg_humi = avgReading($readings_count, 'value2');
+?&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;esp-style.css&quot;&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+        &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;header class=&quot;header&quot;&gt;
+        &lt;h1&gt;📊 ESP Weather Station&lt;/h1&gt;
+        &lt;form method=&quot;get&quot;&gt;
+            &lt;input type=&quot;number&quot; name=&quot;readingsCount&quot; min=&quot;1&quot; placeholder=&quot;Number of readings (&lt;?php echo $readings_count; ?&gt;)&quot;&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;UPDATE&quot;&gt;
+        &lt;/form&gt;
+    &lt;/header&gt;
+&lt;body&gt;
+    &lt;p&gt;Last reading: &lt;?php echo $last_reading_time; ?&gt;&lt;/p&gt;
+    &lt;section class=&quot;content&quot;&gt;
+	    &lt;div class=&quot;box gauge--1&quot;&gt;
+	    &lt;h3&gt;TEMPERATURE&lt;/h3&gt;
+              &lt;div class=&quot;mask&quot;&gt;
+			  &lt;div class=&quot;semi-circle&quot;&gt;&lt;/div&gt;
+			  &lt;div class=&quot;semi-circle--mask&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		    &lt;p style=&quot;font-size: 30px;&quot; id=&quot;temp&quot;&gt;--&lt;/p&gt;
+		    &lt;table cellspacing=&quot;5&quot; cellpadding=&quot;5&quot;&gt;
+		        &lt;tr&gt;
+		            &lt;th colspan=&quot;3&quot;&gt;Temperature &lt;?php echo $readings_count; ?&gt; readings&lt;/th&gt;
+	            &lt;/tr&gt;
+		        &lt;tr&gt;
+		            &lt;td&gt;Min&lt;/td&gt;
+                    &lt;td&gt;Max&lt;/td&gt;
+                    &lt;td&gt;Average&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;&lt;?php echo $min_temp['min_amount']; ?&gt; &amp;deg;C&lt;/td&gt;
+                    &lt;td&gt;&lt;?php echo $max_temp['max_amount']; ?&gt; &amp;deg;C&lt;/td&gt;
+                    &lt;td&gt;&lt;?php echo round($avg_temp['avg_amount'], 2); ?&gt; &amp;deg;C&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;box gauge--2&quot;&gt;
+            &lt;h3&gt;HUMIDITY&lt;/h3&gt;
+            &lt;div class=&quot;mask&quot;&gt;
+                &lt;div class=&quot;semi-circle&quot;&gt;&lt;/div&gt;
+                &lt;div class=&quot;semi-circle--mask&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;p style=&quot;font-size: 30px;&quot; id=&quot;humi&quot;&gt;--&lt;/p&gt;
+            &lt;table cellspacing=&quot;5&quot; cellpadding=&quot;5&quot;&gt;
+                &lt;tr&gt;
+                    &lt;th colspan=&quot;3&quot;&gt;Humidity &lt;?php echo $readings_count; ?&gt; readings&lt;/th&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;Min&lt;/td&gt;
+                    &lt;td&gt;Max&lt;/td&gt;
+                    &lt;td&gt;Average&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;&lt;?php echo $min_humi['min_amount']; ?&gt; %&lt;/td&gt;
+                    &lt;td&gt;&lt;?php echo $max_humi['max_amount']; ?&gt; %&lt;/td&gt;
+                    &lt;td&gt;&lt;?php echo round($avg_humi['avg_amount'], 2); ?&gt; %&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+&lt;?php
+    echo   '&lt;h2&gt; View Latest ' . $readings_count . ' Readings&lt;/h2&gt;
+            &lt;table cellspacing=&quot;5&quot; cellpadding=&quot;5&quot; id=&quot;tableReadings&quot;&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;ID&lt;/th&gt;
+                    &lt;th&gt;Sensor&lt;/th&gt;
+                    &lt;th&gt;Location&lt;/th&gt;
+                    &lt;th&gt;Value 1&lt;/th&gt;
+                    &lt;th&gt;Value 2&lt;/th&gt;
+                    &lt;th&gt;Value 3&lt;/th&gt;
+                    &lt;th&gt;Timestamp&lt;/th&gt;
+                &lt;/tr&gt;';
+
+    $result = getAllReadings($readings_count);
+        if ($result) {
+        while ($row = $result-&gt;fetch_assoc()) {
+            $row_id = $row[&quot;id&quot;];
+            $row_sensor = $row[&quot;sensor&quot;];
+            $row_location = $row[&quot;location&quot;];
+            $row_value1 = $row[&quot;value1&quot;];
+            $row_value2 = $row[&quot;value2&quot;];
+            $row_value3 = $row[&quot;value3&quot;];
+            $row_reading_time = $row[&quot;reading_time&quot;];
+            // Uncomment to set timezone to - 1 hour (you can change 1 to any number)
+            //$row_reading_time = date(&quot;Y-m-d H:i:s&quot;, strtotime(&quot;$row_reading_time - 1 hours&quot;));
+            // Uncomment to set timezone to + 7 hours (you can change 7 to any number)
+            //$row_reading_time = date(&quot;Y-m-d H:i:s&quot;, strtotime(&quot;$row_reading_time + 7 hours&quot;));
+
+            echo '&lt;tr&gt;
+                    &lt;td&gt;' . $row_id . '&lt;/td&gt;
+                    &lt;td&gt;' . $row_sensor . '&lt;/td&gt;
+                    &lt;td&gt;' . $row_location . '&lt;/td&gt;
+                    &lt;td&gt;' . $row_value1 . '&lt;/td&gt;
+                    &lt;td&gt;' . $row_value2 . '&lt;/td&gt;
+                    &lt;td&gt;' . $row_value3 . '&lt;/td&gt;
+                    &lt;td&gt;' . $row_reading_time . '&lt;/td&gt;
+                  &lt;/tr&gt;';
+        }
+        echo '&lt;/table&gt;';
+        $result-&gt;free();
+    }
+?&gt;
+
+&lt;script&gt;
+    var value1 = &lt;?php echo $last_reading_temp; ?&gt;;
+    var value2 = &lt;?php echo $last_reading_humi; ?&gt;;
+    setTemperature(value1);
+    setHumidity(value2);
+
+    function setTemperature(curVal){
+    	//set range for Temperature in Celsius -5 Celsius to 38 Celsius
+    	var minTemp = -5.0;
+    	var maxTemp = 38.0;
+        //set range for Temperature in Fahrenheit 23 Fahrenheit to 100 Fahrenheit
+    	//var minTemp = 23;
+    	//var maxTemp = 100;
+
+    	var newVal = scaleValue(curVal, [minTemp, maxTemp], [0, 180]);
+    	$('.gauge--1 .semi-circle--mask').attr({
+    		style: '-webkit-transform: rotate(' + newVal + 'deg);' +
+    		'-moz-transform: rotate(' + newVal + 'deg);' +
+    		'transform: rotate(' + newVal + 'deg);'
+    	});
+    	$(&quot;#temp&quot;).text(curVal + ' ºC');
+    }
+
+    function setHumidity(curVal){
+    	//set range for Humidity percentage 0 % to 100 %
+    	var minHumi = 0;
+    	var maxHumi = 100;
+
+    	var newVal = scaleValue(curVal, [minHumi, maxHumi], [0, 180]);
+    	$('.gauge--2 .semi-circle--mask').attr({
+    		style: '-webkit-transform: rotate(' + newVal + 'deg);' +
+    		'-moz-transform: rotate(' + newVal + 'deg);' +
+    		'transform: rotate(' + newVal + 'deg);'
+    	});
+    	$(&quot;#humi&quot;).text(curVal + ' %');
+    }
+
+    function scaleValue(value, from, to) {
+        var scale = (to[1] - to[0]) / (from[1] - from[0]);
+        var capped = Math.min(from[1], Math.max(from[0], value)) - from[0];
+        return ~~(capped * scale + to[0]);
+    }
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+	<p style="text-align:center"><a class="rntwhite" href="https://github.com/RuiSantosdotme/Cloud-Weather-Station-ESP32-ESP8266/raw/master/code/esp-weather-station.php" target="_blank">View raw code</a></p>
+
+
+
+<p>If you try to access your domain name in the following URL path, you&#8217;ll see the following:</p>
+
+
+
+<pre class="wp-block-code"><code>http://example.com/esp-weather-station.php</code></pre>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-full"><img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-Empty-Test-Dashboard.png?w=813&#038;ssl=1" alt="ESP32 ESP8266 Weather Station Empty Test Dashboard" class="wp-image-92148" srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-Empty-Test-Dashboard.png?w=909&amp;ssl=1 909w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-Empty-Test-Dashboard.png?resize=300%2C281&amp;ssl=1 300w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-Empty-Test-Dashboard.png?resize=768%2C720&amp;ssl=1 768w" sizes="(max-width: 813px) 100vw, 813px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p>That&#8217;s it! If you see that web page with empty values in your browser, it means that everything is ready. In the next section, you&#8217;ll learn how to insert data from your ESP32 or ESP8266 into the database.</p>
+
+
+
+<h2>6. Preparing Your ESP32 or ESP8266</h2>
+
+
+
+<p>This project is compatible with both the ESP32 and ESP8266 boards. You just need to assemble a simple circuit and upload the sketch provided to insert temperature, humidity, pressure and more into your database every 10 minutes.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/08/esp32-vs-esp8266-devlopment-boards.jpg?w=813&#038;ssl=1" alt="ESP32 vs ESP8266 Development Boards" data-recalc-dims="1"/></figure></div>
+
+
+
+<h3>Parts Required</h3>
+
+
+
+<p>For this example we&#8217;ll get sensor readings from the BME280 sensor. Here&#8217;s a list of parts you need to build the circuit for this project:</p>
+
+
+
+<ul><li><a rel="noreferrer noopener" aria-label=" (opens in a new tab)" href="https://makeradvisor.com/tools/esp32-dev-board-wi-fi-bluetooth/" target="_blank">ESP32 board</a>&nbsp;(read <a rel="noreferrer noopener" href="https://makeradvisor.com/esp32-development-boards-review-comparison/" target="_blank">Best ESP32 dev boards</a>)</li><li>Alternative &#8211; <a rel="noreferrer noopener" href="https://makeradvisor.com/tools/esp8266-esp-12e-nodemcu-wi-fi-development-board/" target="_blank">ESP8266</a> board (read <a href="https://makeradvisor.com/tools/esp32-dev-board-wi-fi-bluetooth/" target="_blank" rel="noreferrer noopener" aria-label=" (opens in a new tab)">Best ESP8266 dev boards</a>)</li><li><a rel="noreferrer noopener" href="https://makeradvisor.com/tools/bme280-sensor-module/" target="_blank">BME280 sensor</a></li><li><a rel="noreferrer noopener" href="https://makeradvisor.com/tools/jumper-wires-kit-120-pieces/" target="_blank">Jumper wires</a></li><li><a rel="noreferrer noopener" href="https://makeradvisor.com/tools/mb-102-solderless-breadboard-830-points/" target="_blank">Breadboard</a></li></ul>
+
+
+<p>You can use the preceding links or go directly to <a href="https://makeradvisor.com/tools/?utm_source=rnt&utm_medium=post&utm_campaign=post" target="_blank">MakerAdvisor.com/tools</a> to find all the parts for your projects at the best price!</p><p style="text-align:center;"><a href="https://makeradvisor.com/tools/?utm_source=rnt&utm_medium=post&utm_campaign=post" target="_blank"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2017/10/header-200.png?w=813&#038;ssl=1" data-recalc-dims="1"></a></p>
+
+
+
+<h3>Schematics</h3>
+
+
+
+<p>The BME280 sensor module we’re using communicates via I2C communication protocol, so you need to connect it to the ESP32 or ESP8266 I2C pins.</p>
+
+
+
+<h4>BME280 wiring to ESP32</h4>
+
+
+
+<p>The ESP32 I2C pins are:</p>
+
+
+
+<ul><li><strong>GPIO 22:</strong>&nbsp;SCL (SCK)</li><li><strong>GPIO 21:</strong>&nbsp;SDA (SDI)</li></ul>
+
+
+
+<p>So, assemble your circuit as shown in the next schematic diagram (<a href="https://randomnerdtutorials.com/esp32-bme280-arduino-ide-pressure-temperature-humidity/">Guide for ESP32 with BME280</a> and <a href="https://randomnerdtutorials.com/esp32-web-server-with-bme280-mini-weather-station/">ESP32 BME280 Web Server</a>).</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter"><img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/03/ESP32-bme280_bb.png?w=813&#038;ssl=1" alt="BME280 wiring to ESP32" class="wp-image-56623" srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/03/ESP32-bme280_bb.png?w=750&amp;ssl=1 750w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/03/ESP32-bme280_bb.png?resize=300%2C261&amp;ssl=1 300w" sizes="(max-width: 750px) 100vw, 750px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p class="rntbox rntclblue"><strong>Recommended reading:</strong> <a href="https://randomnerdtutorials.com/esp32-pinout-reference-gpios/">ESP32 Pinout Reference Guide</a></p>
+
+
+
+<h4>BME280 wiring to ESP8266</h4>
+
+
+
+<p>The ESP8266 I2C pins are:</p>
+
+
+
+<ul><li><strong>GPIO 5&nbsp;</strong>(D1): SCL (SCK)</li><li><strong>GPIO 4&nbsp;</strong>(D2): SDA (SDI)</li></ul>
+
+
+
+<p>Assemble your circuit as in the next schematic diagram if you&#8217;re using an ESP8266 board (<a href="https://randomnerdtutorials.com/esp8266-bme280-arduino-ide/">read Guide for ESP8266 with BME280</a>).</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP8266-BME280-Arduino-IDE.png?w=813&#038;ssl=1" alt="BME280 wiring to ESP8266" class="wp-image-85980" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP8266-BME280-Arduino-IDE.png?w=705&amp;ssl=1 705w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP8266-BME280-Arduino-IDE.png?resize=300%2C226&amp;ssl=1 300w" sizes="(max-width: 705px) 100vw, 705px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p class="rntbox rntclblue"><strong>Recommended reading:</strong> <a href="https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/">ESP8266 Pinout Reference Guide</a> </p>
+
+
+
+<h3>ESP32/ESP8266 Code</h3>
+
+
+
+<p>We’ll program the ESP32/ESP8266 using Arduino IDE, so you must have the ESP add-on installed in your Arduino IDE. </p>
+
+
+
+<p>Follow one of the next tutorials depending on the board you&#8217;re using:</p>
+
+
+
+<ul><li><a href="https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/">Install the ESP32 Board in Arduino IDE</a> &#8211; you also need to <a href="https://randomnerdtutorials.com/esp32-bme280-arduino-ide-pressure-temperature-humidity/">install the BME280 Library and Adafruit_Sensor library</a></li><li><a style="font-size: inherit; background-color: initial;" href="https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/">Install the ESP8266 Board in Arduino IDE</a> &#8211; you also need to <a href="https://randomnerdtutorials.com/esp8266-bme280-arduino-ide/">install the BME280 Library and Adafruit_Sensor library</a> </li></ul>
+
+
+
+<p>After installing the necessary board add-ons and libraries, copy the following code to your Arduino IDE, but don’t upload it yet. You need to make some changes to make it work for you.</p>
+
+
+<pre style="max-height: 40em; margin-bottom: 20px;"><code class="language-c">/*
+  Rui Santos
+  Complete project details at Complete project details at https://RandomNerdTutorials.com/cloud-weather-station-esp32-esp8266/
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files.
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+*/
+
+#ifdef ESP32
+  #include &lt;WiFi.h&gt;
+  #include &lt;HTTPClient.h&gt;
+#else
+  #include &lt;ESP8266WiFi.h&gt;
+  #include &lt;ESP8266HTTPClient.h&gt;
+  #include &lt;WiFiClient.h&gt;
+#endif
+
+#include &lt;Wire.h&gt;
+#include &lt;Adafruit_Sensor.h&gt;
+#include &lt;Adafruit_BME280.h&gt;
+
+const char* ssid = &quot;REPLACE_WITH_YOUR_SSID&quot;;
+const char* password = &quot;REPLACE_WITH_YOUR_PASSWORD&quot;;
+
+//Your Domain name with URL path or IP address with path
+const char* serverName = &quot;http://example.com/esp-post-data.php&quot;;
+
+// Keep this API Key value to be compatible with the PHP code provided in the project page.
+// If you change the apiKeyValue value, the PHP file /esp-post-data.php also needs to have the same key
+String apiKeyValue = &quot;tPmAT5Ab3j7F9&quot;;
+String sensorName = &quot;BME280&quot;;
+String sensorLocation = &quot;Office&quot;;
+
+/*#include &lt;SPI.h&gt;
+#define BME_SCK 18
+#define BME_MISO 19
+#define BME_MOSI 23
+#define BME_CS 5*/
+
+#define SEALEVELPRESSURE_HPA (1013.25)
+
+Adafruit_BME280 bme;  // I2C
+//Adafruit_BME280 bme(BME_CS);  // hardware SPI
+//Adafruit_BME280 bme(BME_CS, BME_MOSI, BME_MISO, BME_SCK);  // software SPI
+
+// the following variables are unsigned longs because the time, measured in
+// milliseconds, will quickly become a bigger number than can be stored in an int.
+unsigned long lastTime = 0;
+// Timer set to 10 minutes (600000)
+//unsigned long timerDelay = 600000;
+// Set timer to 30 seconds (30000)
+unsigned long timerDelay = 30000;
+
+void setup() {
+  Serial.begin(115200);
+
+  WiFi.begin(ssid, password);
+  Serial.println(&quot;Connecting&quot;);
+  while(WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(&quot;.&quot;);
+  }
+  Serial.println(&quot;&quot;);
+  Serial.print(&quot;Connected to WiFi network with IP Address: &quot;);
+  Serial.println(WiFi.localIP());
+
+  // (you can also pass in a Wire library object like &amp;Wire2)
+  bool status = bme.begin(0x76);
+  if (!status) {
+    Serial.println(&quot;Could not find a valid BME280 sensor, check wiring or change I2C address!&quot;);
+    while (1);
+  }
+  
+  Serial.println(&quot;Timer set to 30 seconds (timerDelay variable), it will take 30 seconds before publishing the first reading.&quot;);
+}
+
+void loop() {
+  //Send an HTTP POST request every 10 minutes
+  if ((millis() - lastTime) &gt; timerDelay) {
+    //Check WiFi connection status
+    if(WiFi.status()== WL_CONNECTED){
+      HTTPClient http;
+
+      // Your Domain name with URL path or IP address with path
+      http.begin(serverName);
+
+      // Specify content-type header
+      http.addHeader(&quot;Content-Type&quot;, &quot;application/x-www-form-urlencoded&quot;);
+
+      // Prepare your HTTP POST request data
+      String httpRequestData = &quot;api_key=&quot; + apiKeyValue + &quot;&amp;sensor=&quot; + sensorName
+                            + &quot;&amp;location=&quot; + sensorLocation + &quot;&amp;value1=&quot; + String(bme.readTemperature())
+                            + &quot;&amp;value2=&quot; + String(bme.readHumidity()) + &quot;&amp;value3=&quot; + String(bme.readPressure()/100.0F) + &quot;&quot;;
+      Serial.print(&quot;httpRequestData: &quot;);
+      Serial.println(httpRequestData);
+
+      // You can comment the httpRequestData variable above
+      // then, use the httpRequestData variable below (for testing purposes without the BME280 sensor)
+      //String httpRequestData = &quot;api_key=tPmAT5Ab3j7F9&amp;sensor=BME280&amp;location=Office&amp;value1=24.75&amp;value2=49.54&amp;value3=1005.14&quot;;
+
+      // Send HTTP POST request
+      int httpResponseCode = http.POST(httpRequestData);
+
+      // If you need an HTTP request with a content type: text/plain
+      //http.addHeader(&quot;Content-Type&quot;, &quot;text/plain&quot;);
+      //int httpResponseCode = http.POST(&quot;Hello, World!&quot;);
+
+      // If you need an HTTP request with a content type: application/json, use the following:
+      //http.addHeader(&quot;Content-Type&quot;, &quot;application/json&quot;);
+      //int httpResponseCode = http.POST(&quot;{\&quot;value1\&quot;:\&quot;19\&quot;,\&quot;value2\&quot;:\&quot;67\&quot;,\&quot;value3\&quot;:\&quot;78\&quot;}&quot;);
+
+      if (httpResponseCode&gt;0) {
+        Serial.print(&quot;HTTP Response code: &quot;);
+        Serial.println(httpResponseCode);
+      }
+      else {
+        Serial.print(&quot;Error code: &quot;);
+        Serial.println(httpResponseCode);
+      }
+      // Free resources
+      http.end();
+    }
+    else {
+      Serial.println(&quot;WiFi Disconnected&quot;);
+    }
+    lastTime = millis();
+  }
+}
+</code></pre>
+	<p style="text-align:center"><a class="rntwhite" href="https://github.com/RuiSantosdotme/Cloud-Weather-Station-ESP32-ESP8266/raw/master/code/ESP_HTTP_POST_MySQL.ino" target="_blank">View raw code</a></p>
+
+
+
+<h4>Setting your network credentials</h4>
+
+
+
+<p>You need to modify the following lines with your network credentials: SSID and password. The code is well commented on where you should make the changes.</p>
+
+
+
+<pre class="wp-block-code language-c"><code>// Replace with your network credentials
+const char* ssid     = "REPLACE_WITH_YOUR_SSID";
+const char* password = "REPLACE_WITH_YOUR_PASSWORD";</code></pre>
+
+
+
+<h4>Setting your serverName</h4>
+
+
+
+<p>You also need to type your domain name, so the ESP publishes the readings to your own server.</p>
+
+
+
+<pre class="wp-block-code language-c"><code>const char* serverName = "http://example.com/esp-post-data.php";</code></pre>
+
+
+
+<p>Now, you can upload the code to your board. It should work straight away both in the ESP32 or ESP8266 board. If you want to learn how the code works, read the next section.</p>
+
+
+
+<h4>How the code works</h4>
+
+
+
+<p>This project is already quite long, so we won&#8217;t cover in detail how the code works, but here&#8217;s a quick summary:</p>
+
+
+
+<ul><li>Import all the libraries to make it work (it will import either the ESP32 or ESP8266 libraries based on the selected board in your Arduino IDE)</li><li>Set variables that you might want to change (<span class="rnthl rntliteral">apiKeyValue</span>, <span class="rnthl rntliteral">sensorName</span>, <span class="rnthl rntliteral">sensorLocation</span>)</li><li>The <span class="rnthl rntliteral">apiKeyValue</span> is just a random string that you can modify. It&#8217;s used for security reasons, so only anyone that knows your API key can publish data to your database</li><li>Initialize the serial communication for debugging purposes</li><li>Establish a Wi-Fi connection with your router</li><li>Initialize the BME280 to get readings</li></ul>
+
+
+
+<p>Then, in the <span class="rnthl rntliteral">loop()</span> is where you actually make the HTTP POST request every 10 minutes with the latest BME280 readings:</p>
+
+
+
+<pre class="wp-block-code language-c"><code>// Your Domain name with URL path or IP address with path
+http.begin(serverName);
+
+// Specify content-type header
+http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+// Prepare your HTTP POST request data
+String httpRequestData = "api_key=" + apiKeyValue + "&amp;sensor=" + sensorName                      + "&amp;location=" + sensorLocation + "&amp;value1=" + String(bme.readTemperature())                      + "&amp;value2=" + String(bme.readHumidity()) + "&amp;value3=" + String(bme.readPressure()/100.0F) + "";
+
+int httpResponseCode = http.POST(httpRequestData);</code></pre>
+
+
+
+<p>You can comment the <span class="rnthl rntliteral">httpRequestData</span> variable above that concatenates all the BME280 readings and use the <span class="rnthl rntliteral">httpRequestData</span> variable below for testing purposes:</p>
+
+
+
+<pre class="wp-block-code language-c"><code>String httpRequestData = "api_key=tPmAT5Ab3j7F9&amp;sensor=BME280&amp;location=Office&amp;value1=24.75&amp;value2=49.54&amp;value3=1005.14";</code></pre>
+
+
+
+<h2>Demonstration</h2>
+
+
+
+<p>After completing all the steps, let your ESP board collect some readings and publish them to your server. </p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-BME280-Arduino-IDE-MySQL.jpg?w=813&#038;ssl=1" alt="ESP32 BME280 Arduino IDE MySQL" class="wp-image-86000" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-BME280-Arduino-IDE-MySQL.jpg?w=750&amp;ssl=1 750w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/06/ESP32-BME280-Arduino-IDE-MySQL.jpg?resize=300%2C168&amp;ssl=1 300w" sizes="(max-width: 750px) 100vw, 750px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p>If everything is correct, this is what you should see in your Arduino IDE Serial Monitor:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-full"><img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Arduino-IDE-Serial-Monitor-ESP32-ESP8266-Weather-Station.png?w=813&#038;ssl=1" alt="Arduino IDE Serial Monitor ESP32 ESP8266 Weather Station" class="wp-image-92158" srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Arduino-IDE-Serial-Monitor-ESP32-ESP8266-Weather-Station.png?w=1228&amp;ssl=1 1228w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Arduino-IDE-Serial-Monitor-ESP32-ESP8266-Weather-Station.png?resize=300%2C126&amp;ssl=1 300w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Arduino-IDE-Serial-Monitor-ESP32-ESP8266-Weather-Station.png?resize=1024%2C430&amp;ssl=1 1024w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/Arduino-IDE-Serial-Monitor-ESP32-ESP8266-Weather-Station.png?resize=768%2C323&amp;ssl=1 768w" sizes="(max-width: 813px) 100vw, 813px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p>If you open your domain name in this URL path:</p>
+
+
+
+<pre class="wp-block-code"><code>http://example.com/esp-weather-station.php</code></pre>
+
+
+
+<p>You should see the latest 20 readings stored in your database. There’s two gauges that show the latest temperature and humidity readings, and a timestamp.</p>
+
+
+
+<p>Refresh the web page to see the latest readings:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-full"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-Data-Example-Temperature-Humidity-Gauges.png?w=813&#038;ssl=1" alt="ESP32 ESP8266 Weather Station Data Example Temperature Humidity Gauges" class="wp-image-92146" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-Data-Example-Temperature-Humidity-Gauges.png?w=1089&amp;ssl=1 1089w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-Data-Example-Temperature-Humidity-Gauges.png?resize=300%2C249&amp;ssl=1 300w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-Data-Example-Temperature-Humidity-Gauges.png?resize=1024%2C850&amp;ssl=1 1024w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-Data-Example-Temperature-Humidity-Gauges.png?resize=768%2C638&amp;ssl=1 768w" sizes="(max-width: 813px) 100vw, 813px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p>There&#8217;s a field where you can type the number of readings to visualize, as well as the number of readings for these statistics: minimum, maximum and average. By default it’s set to 20. For example, if you type 30 and press the update button, you’ll see that your web page updates and recalculates all the values.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-full"><img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/input-field-esp32-esp8266-weather-station.png?w=813&#038;ssl=1" alt="input field esp32 esp8266 weather station" class="wp-image-92191" srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/input-field-esp32-esp8266-weather-station.png?w=561&amp;ssl=1 561w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/input-field-esp32-esp8266-weather-station.png?resize=300%2C72&amp;ssl=1 300w" sizes="(max-width: 561px) 100vw, 561px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p>The web page is also mobile responsive, so you can use any device to access:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-full is-resized"><img src="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-Data-Example-Temperature-Humidity-Gauges-mobile-responsive-smartphone.jpg?resize=428%2C621&#038;ssl=1" alt="ESP32 ESP8266 Weather Station Data mobile responsive web page smartphone" class="wp-image-92187" width="428" height="621" srcset="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-Data-Example-Temperature-Humidity-Gauges-mobile-responsive-smartphone.jpg?w=479&amp;ssl=1 479w, https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-Data-Example-Temperature-Humidity-Gauges-mobile-responsive-smartphone.jpg?resize=207%2C300&amp;ssl=1 207w" sizes="(max-width: 428px) 100vw, 428px" data-recalc-dims="1" /></figure></div>
+
+
+
+<p>You can also go to phpMyAdmin to manage the data stored in your <span class="rnthl rntliteral">SensorData</span> table. You can delete it, edit, etc&#8230;</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-full"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-SensorData-Table-MySQL-PHPMyAdmin.png?w=813&#038;ssl=1" alt="ESP32 ESP8266 Weather Station SensorData Table MySQL PHPMyAdmin" class="wp-image-92149" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-SensorData-Table-MySQL-PHPMyAdmin.png?w=983&amp;ssl=1 983w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-SensorData-Table-MySQL-PHPMyAdmin.png?resize=300%2C164&amp;ssl=1 300w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP32-ESP8266-Weather-Station-SensorData-Table-MySQL-PHPMyAdmin.png?resize=768%2C420&amp;ssl=1 768w" sizes="(max-width: 813px) 100vw, 813px" data-recalc-dims="1" /></figure></div>
+
+
+
+<h2>Wrapping Up</h2>
+
+
+
+<p>In this tutorial you&#8217;ve learned how to publish sensor data into a database in your own server domain that you can access from anywhere in the world. This requires that you have your own <a rel="noreferrer noopener" aria-label="server and domain name (opens in a new tab)" href="https://randomnerdtutorials.com/bluehost" target="_blank">server and domain name</a> (alternatively, you can use a <a href="https://randomnerdtutorials.com/esp32-esp8266-raspberry-pi-lamp-server/">Raspberry Pi LAMP Server for local access</a>).</p>
+
+
+
+<p>I encourage you to change the web page appearance, add more features (<a href="https://randomnerdtutorials.com/esp32-esp8266-send-email-notification/">like email notifications</a>), publish data from different sensors, use multiple ESP boards, and much more.</p>
+
+
+
+<p><strong>You might also like reading:</strong></p>
+
+
+
+<ul><li><strong><a href="https://randomnerdtutorials.com/learn-esp32-with-arduino-ide/">[Course] </a></strong><span><strong><a href="https://randomnerdtutorials.com/learn-esp32-with-arduino-ide/">Learn ESP32 with Arduino IDE</a></strong></span></li><li><a href="https://randomnerdtutorials.com/esp32-esp8266-send-email-notification/">ESP32/ESP8266 Send Email Notification using PHP Script</a></li><li><a href="https://randomnerdtutorials.com/visualize-esp32-esp8266-sensor-readings-from-anywhere/">Visualize Your Sensor Readings from Anywhere in the World (ESP32/ESP8266 + MySQL + PHP) using Charts</a></li><li><a href="https://randomnerdtutorials.com/esp32-relay-module-ac-web-server/">ESP32 Relay Module Web Server</a></li></ul>
+
+
+
+<p>I hope you liked this project. If you have any questions, post a comment below and we&#8217;ll try to get back to you.</p>
+
+
+
+<p class="rntbox rntclgray">If you like ESP32, you might consider enrolling in our course &#8220;<a href="https://randomnerdtutorials.com/learn-esp32-with-arduino-ide/">Learn ESP32 with Arduino IDE</a>&#8220;. You can also access our free <a href="https://randomnerdtutorials.com/projects-esp32/">ESP32 resources here</a>. </p>
+
+
+
+<p>Thank you for reading.</p>
+		</div><!-- .entry-content -->
+
+					<footer class="entry-meta">
+						<nav id="nav-below" class="post-navigation">
+			<span class="screen-reader-text">Post navigation</span>
+
+					</nav><!-- #nav-below -->
+					</footer><!-- .entry-meta -->
+		<br>
+		<div data-elementor-type="section" data-elementor-id="83032" class="elementor elementor-83032" data-elementor-settings="[]">
+			<div class="elementor-inner">
+				<div class="elementor-section-wrap">
+							<section class="elementor-element elementor-element-2d8a9105 elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="2d8a9105" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+				<div class="elementor-row">
+				<div class="elementor-element elementor-element-2280806f elementor-column elementor-col-100 elementor-top-column" data-id="2280806f" data-element_type="column">
+			<div class="elementor-column-wrap  elementor-element-populated">
+					<div class="elementor-widget-wrap">
+				<section class="elementor-element elementor-element-4a840dd4 elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-inner-section" data-id="4a840dd4" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+				<div class="elementor-row">
+				<div class="elementor-element elementor-element-3497580 elementor-column elementor-col-50 elementor-inner-column" data-id="3497580" data-element_type="column">
+			<div class="elementor-column-wrap  elementor-element-populated">
+					<div class="elementor-widget-wrap">
+				<div class="elementor-element elementor-element-7b0162e9 elementor-widget elementor-widget-image" data-id="7b0162e9" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-image">
+											<a data-elementor-open-lightbox="" href="https://randomnerdtutorials.com/micropython-programming-with-esp32-and-esp8266/">
+							<img width="500" height="500" src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/12/micropython-cover-ebook-1-1f.jpg?fit=500%2C500&amp;ssl=1" class="attachment-full size-full" alt="" srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/12/micropython-cover-ebook-1-1f.jpg?w=500&amp;ssl=1 500w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/12/micropython-cover-ebook-1-1f.jpg?resize=150%2C150&amp;ssl=1 150w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/12/micropython-cover-ebook-1-1f.jpg?resize=300%2C300&amp;ssl=1 300w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/12/micropython-cover-ebook-1-1f.jpg?resize=80%2C80&amp;ssl=1 80w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/12/micropython-cover-ebook-1-1f.jpg?resize=220%2C220&amp;ssl=1 220w" sizes="(max-width: 500px) 100vw, 500px" />								</a>
+											</div>
+				</div>
+				</div>
+						</div>
+			</div>
+		</div>
+				<div class="elementor-element elementor-element-45a69540 elementor-column elementor-col-50 elementor-inner-column" data-id="45a69540" data-element_type="column">
+			<div class="elementor-column-wrap  elementor-element-populated">
+					<div class="elementor-widget-wrap">
+				<div class="elementor-element elementor-element-d7f411a elementor-widget elementor-widget-heading" data-id="d7f411a" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><a href="https://randomnerdtutorials.com/micropython-programming-with-esp32-and-esp8266/">[eBook] MicroPython Programming with ESP32 and ESP8266</a></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-5dc4402f elementor-hidden-phone elementor-widget elementor-widget-text-editor" data-id="5dc4402f" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>Learn how to program and build projects with the ESP32 and ESP8266 using MicroPython firmware <strong><a href="https://randomnerdtutorials.com/micropython-programming-with-esp32-and-esp8266/" rel="noopener">DOWNLOAD »</a></strong></p></div>
+				</div>
+				</div>
+						</div>
+			</div>
+		</div>
+						</div>
+			</div>
+		</section>
+				<div class="elementor-element elementor-element-4de314b8 elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-text-editor" data-id="4de314b8" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>Learn how to program and build projects with the ESP32 and ESP8266 using MicroPython firmware <strong><a href="https://randomnerdtutorials.com/micropython-programming-with-esp32-and-esp8266/" rel="noopener">DOWNLOAD »</a></strong></p></div>
+				</div>
+				</div>
+						</div>
+			</div>
+		</div>
+						</div>
+			</div>
+		</section>
+						</div>
+			</div>
+		</div>
+		
+		<div data-elementor-type="section" data-elementor-id="82533" class="elementor elementor-82533" data-elementor-settings="[]">
+			<div class="elementor-inner">
+				<div class="elementor-section-wrap">
+							<section class="elementor-element elementor-element-31c9920 elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="31c9920" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+				<div class="elementor-row">
+				<div class="elementor-element elementor-element-e6bec81 elementor-column elementor-col-100 elementor-top-column" data-id="e6bec81" data-element_type="column">
+			<div class="elementor-column-wrap  elementor-element-populated">
+					<div class="elementor-widget-wrap">
+				<div class="elementor-element elementor-element-ae5f36f elementor-widget elementor-widget-text-editor" data-id="ae5f36f" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><h3>Recommended Resources</h3></div>
+				</div>
+				</div>
+						</div>
+			</div>
+		</div>
+						</div>
+			</div>
+		</section>
+				<section class="elementor-element elementor-element-df31b19 elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="df31b19" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+				<div class="elementor-row">
+				<div class="elementor-element elementor-element-f988f78 elementor-column elementor-col-33 elementor-top-column" data-id="f988f78" data-element_type="column">
+			<div class="elementor-column-wrap  elementor-element-populated">
+					<div class="elementor-widget-wrap">
+				<div class="elementor-element elementor-element-ea4ffd5 elementor-widget elementor-widget-image" data-id="ea4ffd5" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-image">
+											<a data-elementor-open-lightbox="" href="https://randomnerdtutorials.com/build-a-home-automation-system-for-100/">
+							<img width="400" height="225" src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2017/10/home-automation-sb-img.jpg?fit=400%2C225&amp;ssl=1" class="attachment-full size-full" alt="" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2017/10/home-automation-sb-img.jpg?w=400&amp;ssl=1 400w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2017/10/home-automation-sb-img.jpg?resize=300%2C169&amp;ssl=1 300w" sizes="(max-width: 400px) 100vw, 400px" />								</a>
+											</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-1d03956 elementor-widget elementor-widget-text-editor" data-id="1d03956" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p><strong><a href="https://randomnerdtutorials.com/build-a-home-automation-system-for-100/">Build a Home Automation System from Scratch »</a> </strong>With Raspberry Pi, ESP8266, Arduino, and Node-RED.</p></div>
+				</div>
+				</div>
+						</div>
+			</div>
+		</div>
+				<div class="elementor-element elementor-element-c804b9b elementor-column elementor-col-33 elementor-top-column" data-id="c804b9b" data-element_type="column">
+			<div class="elementor-column-wrap  elementor-element-populated">
+					<div class="elementor-widget-wrap">
+				<div class="elementor-element elementor-element-caff517 elementor-widget elementor-widget-image" data-id="caff517" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-image">
+											<a data-elementor-open-lightbox="" href="https://randomnerdtutorials.com/home-automation-using-esp8266/">
+							<img width="400" height="225" src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2017/10/esp8266-sb-img.jpg?fit=400%2C225&amp;ssl=1" class="attachment-full size-full" alt="" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2017/10/esp8266-sb-img.jpg?w=400&amp;ssl=1 400w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2017/10/esp8266-sb-img.jpg?resize=300%2C169&amp;ssl=1 300w" sizes="(max-width: 400px) 100vw, 400px" />								</a>
+											</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-7bc712f elementor-widget elementor-widget-text-editor" data-id="7bc712f" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p><strong><a href="https://randomnerdtutorials.com/home-automation-using-esp8266/">Home Automation using ESP8266 eBook and video course »</a> </strong>Build IoT and home automation projects.</p></div>
+				</div>
+				</div>
+						</div>
+			</div>
+		</div>
+				<div class="elementor-element elementor-element-9487535 elementor-column elementor-col-33 elementor-top-column" data-id="9487535" data-element_type="column">
+			<div class="elementor-column-wrap  elementor-element-populated">
+					<div class="elementor-widget-wrap">
+				<div class="elementor-element elementor-element-330785f elementor-widget elementor-widget-image" data-id="330785f" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-image">
+											<a data-elementor-open-lightbox="" href="https://randomnerdtutorials.com/arduino-step-by-step-projects/">
+							<img width="400" height="225" src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2017/10/arduino-sb-img.jpg?fit=400%2C225&amp;ssl=1" class="attachment-full size-full" alt="" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2017/10/arduino-sb-img.jpg?w=400&amp;ssl=1 400w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2017/10/arduino-sb-img.jpg?resize=300%2C169&amp;ssl=1 300w" sizes="(max-width: 400px) 100vw, 400px" />								</a>
+											</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-e9540a9 elementor-widget elementor-widget-text-editor" data-id="e9540a9" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p><strong><a href="https://randomnerdtutorials.com/arduino-step-by-step-projects/">Arduino Step-by-Step Projects »</a> </strong>Build 25 Arduino projects with our course, even with no prior experience!</p></div>
+				</div>
+				</div>
+						</div>
+			</div>
+		</div>
+						</div>
+			</div>
+		</section>
+				<section class="elementor-element elementor-element-a9e9c13 elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="a9e9c13" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+				<div class="elementor-row">
+				<div class="elementor-element elementor-element-25cf7ca elementor-column elementor-col-100 elementor-top-column" data-id="25cf7ca" data-element_type="column">
+			<div class="elementor-column-wrap  elementor-element-populated">
+					<div class="elementor-widget-wrap">
+				<div class="elementor-element elementor-element-88fc6c0 elementor-widget elementor-widget-text-editor" data-id="88fc6c0" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><h3>What to Read Next&#8230;</h3></div>
+				</div>
+				</div>
+						</div>
+			</div>
+		</div>
+						</div>
+			</div>
+		</section>
+				<section class="elementor-element elementor-element-d68ef93 elementor-section-height-min-height elementor-section-boxed elementor-section-height-default elementor-section-items-middle elementor-section elementor-top-section" data-id="d68ef93" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-no">
+				<div class="elementor-row">
+				<div class="elementor-element elementor-element-4ab337a elementor-column elementor-col-100 elementor-top-column" data-id="4ab337a" data-element_type="column">
+			<div class="elementor-column-wrap  elementor-element-populated">
+					<div class="elementor-widget-wrap">
+				<div class="elementor-element elementor-element-efac60e elementor-grid-3 elementor-grid-tablet-2 elementor-grid-mobile-1 elementor-posts--thumbnail-top elementor-card-shadow-yes elementor-posts__hover-gradient elementor-widget elementor-widget-posts" data-id="efac60e" data-element_type="widget" data-settings="{&quot;cards_row_gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:16,&quot;sizes&quot;:[]},&quot;cards_columns&quot;:&quot;3&quot;,&quot;cards_columns_tablet&quot;:&quot;2&quot;,&quot;cards_columns_mobile&quot;:&quot;1&quot;}" data-widget_type="posts.cards">
+				<div class="elementor-widget-container">
+					<div class="elementor-posts-container elementor-posts elementor-posts--skin-cards elementor-grid">
+				<article class="elementor-post elementor-grid-item post-76664 post type-post status-publish format-standard has-post-thumbnail hentry category-esp32 category-esp32-project category-0-esp32-micropython category-project category-web-server-2">
+			<div class="elementor-post__card">
+				<a class="elementor-post__thumbnail__link" href="https://randomnerdtutorials.com/esp32-esp8266-micropython-web-server/">
+			<div class="elementor-post__thumbnail"><img width="1280" height="720" src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/11/esp32-led-server-micropython.jpg?fit=1280%2C720&amp;ssl=1" class="attachment-full size-full" alt="" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/11/esp32-led-server-micropython.jpg?w=1280&amp;ssl=1 1280w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/11/esp32-led-server-micropython.jpg?resize=300%2C169&amp;ssl=1 300w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/11/esp32-led-server-micropython.jpg?resize=768%2C432&amp;ssl=1 768w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/11/esp32-led-server-micropython.jpg?resize=1024%2C576&amp;ssl=1 1024w" sizes="(max-width: 1280px) 100vw, 1280px" /></div>
+		</a>
+				<div class="elementor-post__text">
+				<h3 class="elementor-post__title">
+			<a href="https://randomnerdtutorials.com/esp32-esp8266-micropython-web-server/">
+				ESP32/ESP8266 MicroPython Web Server &#8211; Control Outputs			</a>
+		</h3>
+				</div>
+					</div>
+		</article>
+				<article class="elementor-post elementor-grid-item post-51833 post type-post status-publish format-standard has-post-thumbnail hentry category-esp32 category-esp32-project category-esp32-arduino-ide category-0-esp32 category-project category-web-server-2">
+			<div class="elementor-post__card">
+				<a class="elementor-post__thumbnail__link" href="https://randomnerdtutorials.com/build-an-all-in-one-esp32-weather-station-shield/">
+			<div class="elementor-post__thumbnail"><img width="1280" height="720" src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/02/esp32-weather-station-shield-thumbnail-f.jpg?fit=1280%2C720&amp;ssl=1" class="attachment-full size-full" alt="" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/02/esp32-weather-station-shield-thumbnail-f.jpg?w=1280&amp;ssl=1 1280w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/02/esp32-weather-station-shield-thumbnail-f.jpg?resize=300%2C169&amp;ssl=1 300w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/02/esp32-weather-station-shield-thumbnail-f.jpg?resize=768%2C432&amp;ssl=1 768w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/02/esp32-weather-station-shield-thumbnail-f.jpg?resize=1024%2C576&amp;ssl=1 1024w" sizes="(max-width: 1280px) 100vw, 1280px" /></div>
+		</a>
+				<div class="elementor-post__text">
+				<h3 class="elementor-post__title">
+			<a href="https://randomnerdtutorials.com/build-an-all-in-one-esp32-weather-station-shield/">
+				Build an All-in-One ESP32 Weather Station Shield			</a>
+		</h3>
+				</div>
+					</div>
+		</article>
+				<article class="elementor-post elementor-grid-item post-67766 post type-post status-publish format-standard has-post-thumbnail hentry category-esp32 category-esp32-project category-esp32-arduino-ide category-0-esp32 category-project">
+			<div class="elementor-post__card">
+				<a class="elementor-post__thumbnail__link" href="https://randomnerdtutorials.com/esp32-access-point-ap-web-server/">
+			<div class="elementor-post__thumbnail"><img width="1280" height="720" src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/07/ESP32-access-point-1.jpg?fit=1280%2C720&amp;ssl=1" class="attachment-full size-full" alt="" srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/07/ESP32-access-point-1.jpg?w=1280&amp;ssl=1 1280w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/07/ESP32-access-point-1.jpg?resize=300%2C169&amp;ssl=1 300w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/07/ESP32-access-point-1.jpg?resize=768%2C432&amp;ssl=1 768w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/07/ESP32-access-point-1.jpg?resize=1024%2C576&amp;ssl=1 1024w" sizes="(max-width: 1280px) 100vw, 1280px" /></div>
+		</a>
+				<div class="elementor-post__text">
+				<h3 class="elementor-post__title">
+			<a href="https://randomnerdtutorials.com/esp32-access-point-ap-web-server/">
+				How to Set an ESP32 Access Point (AP) for Web Server			</a>
+		</h3>
+				</div>
+					</div>
+		</article>
+				<article class="elementor-post elementor-grid-item post-83645 post type-post status-publish format-standard has-post-thumbnail hentry category-esp32 category-esp32-project category-esp32-arduino-ide category-0-esp32 category-guide category-project">
+			<div class="elementor-post__card">
+				<a class="elementor-post__thumbnail__link" href="https://randomnerdtutorials.com/esp32-touch-wake-up-deep-sleep/">
+			<div class="elementor-post__thumbnail"><img width="1280" height="720" src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/ESP32-deep-sleep-touch.jpg?fit=1280%2C720&amp;ssl=1" class="attachment-full size-full" alt="" srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/ESP32-deep-sleep-touch.jpg?w=1280&amp;ssl=1 1280w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/ESP32-deep-sleep-touch.jpg?resize=300%2C169&amp;ssl=1 300w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/ESP32-deep-sleep-touch.jpg?resize=768%2C432&amp;ssl=1 768w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/ESP32-deep-sleep-touch.jpg?resize=1024%2C576&amp;ssl=1 1024w" sizes="(max-width: 1280px) 100vw, 1280px" /></div>
+		</a>
+				<div class="elementor-post__text">
+				<h3 class="elementor-post__title">
+			<a href="https://randomnerdtutorials.com/esp32-touch-wake-up-deep-sleep/">
+				ESP32 Touch Wake Up from Deep Sleep			</a>
+		</h3>
+				</div>
+					</div>
+		</article>
+				<article class="elementor-post elementor-grid-item post-91808 post type-post status-publish format-standard has-post-thumbnail hentry category-esp8266 category-esp8266-project category-esp8266-arduino-ide category-esp8266-projects category-0-esp8266 category-project">
+			<div class="elementor-post__card">
+				<a class="elementor-post__thumbnail__link" href="https://randomnerdtutorials.com/esp8266-relay-module-ac-web-server/">
+			<div class="elementor-post__thumbnail"><img width="1280" height="720" src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP8266-Relay-Module-Tutorial-project-web-server-featured.jpg?fit=1280%2C720&amp;ssl=1" class="attachment-full size-full" alt="ESP8266 Relay Module - Control AC Appliances Web Server" srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP8266-Relay-Module-Tutorial-project-web-server-featured.jpg?w=1280&amp;ssl=1 1280w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP8266-Relay-Module-Tutorial-project-web-server-featured.jpg?resize=300%2C169&amp;ssl=1 300w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP8266-Relay-Module-Tutorial-project-web-server-featured.jpg?resize=1024%2C576&amp;ssl=1 1024w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/12/ESP8266-Relay-Module-Tutorial-project-web-server-featured.jpg?resize=768%2C432&amp;ssl=1 768w" sizes="(max-width: 1280px) 100vw, 1280px" /></div>
+		</a>
+				<div class="elementor-post__text">
+				<h3 class="elementor-post__title">
+			<a href="https://randomnerdtutorials.com/esp8266-relay-module-ac-web-server/">
+				ESP8266 Relay Module &#8211; Control AC Appliances (Web Server)			</a>
+		</h3>
+				</div>
+					</div>
+		</article>
+				<article class="elementor-post elementor-grid-item post-13479 post type-post status-publish format-standard has-post-thumbnail hentry category-adc-analog category-esp8266 category-esp8266-project category-esp8266-projects category-0-esp8266 category-nodemcu category-project">
+			<div class="elementor-post__card">
+				<a class="elementor-post__thumbnail__link" href="https://randomnerdtutorials.com/esp8266-adc-reading-analog-values-with-nodemcu/">
+			<div class="elementor-post__thumbnail"><img width="1280" height="720" src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/05/ESP8266-analog-reading-read-ADC-A0-Arduino-IDE-MicroPython-Lua.jpg?fit=1280%2C720&amp;ssl=1" class="attachment-full size-full" alt="" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/05/ESP8266-analog-reading-read-ADC-A0-Arduino-IDE-MicroPython-Lua.jpg?w=1280&amp;ssl=1 1280w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/05/ESP8266-analog-reading-read-ADC-A0-Arduino-IDE-MicroPython-Lua.jpg?resize=300%2C169&amp;ssl=1 300w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/05/ESP8266-analog-reading-read-ADC-A0-Arduino-IDE-MicroPython-Lua.jpg?resize=768%2C432&amp;ssl=1 768w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/05/ESP8266-analog-reading-read-ADC-A0-Arduino-IDE-MicroPython-Lua.jpg?resize=1024%2C576&amp;ssl=1 1024w" sizes="(max-width: 1280px) 100vw, 1280px" /></div>
+		</a>
+				<div class="elementor-post__text">
+				<h3 class="elementor-post__title">
+			<a href="https://randomnerdtutorials.com/esp8266-adc-reading-analog-values-with-nodemcu/">
+				ESP8266 ADC &#8211; Read Analog Values with Arduino IDE, MicroPython and Lua			</a>
+		</h3>
+				</div>
+					</div>
+		</article>
+				</div>
+				</div>
+				</div>
+						</div>
+			</div>
+		</div>
+						</div>
+			</div>
+		</section>
+						</div>
+			</div>
+		</div>
+		
+<br>
+		<div data-elementor-type="section" data-elementor-id="82829" class="elementor elementor-82829" data-elementor-settings="[]">
+			<div class="elementor-inner">
+				<div class="elementor-section-wrap">
+							<section class="elementor-element elementor-element-1e028b5e elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="1e028b5e" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+				<div class="elementor-row">
+				<div class="elementor-element elementor-element-69628243 elementor-column elementor-col-100 elementor-top-column" data-id="69628243" data-element_type="column">
+			<div class="elementor-column-wrap  elementor-element-populated">
+					<div class="elementor-widget-wrap">
+				<section class="elementor-element elementor-element-4a02bbce elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-inner-section" data-id="4a02bbce" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+				<div class="elementor-row">
+				<div class="elementor-element elementor-element-3a76ce22 elementor-column elementor-col-100 elementor-inner-column" data-id="3a76ce22" data-element_type="column">
+			<div class="elementor-column-wrap  elementor-element-populated">
+					<div class="elementor-widget-wrap">
+				<div class="elementor-element elementor-element-d86fe9d elementor-widget elementor-widget-heading" data-id="d86fe9d" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h3 class="elementor-heading-title elementor-size-default">Enjoyed this project? Stay updated by subscribing our weekly newsletter!</h3>		</div>
+				</div>
+				<div class="elementor-element elementor-element-93ef837 elementor-button-align-stretch elementor-widget elementor-widget-form" data-id="93ef837" data-element_type="widget" data-widget_type="form.default">
+				<div class="elementor-widget-container">
+					<form class="elementor-form" method="post" name="New Form">
+			<input type="hidden" name="post_id" value="82829"/>
+			<input type="hidden" name="form_id" value="93ef837"/>
+
+			<div class="elementor-form-fields-wrapper elementor-labels-">
+								<div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-66 elementor-field-required">
+					<label for="form-field-email" class="elementor-field-label elementor-screen-only">Email</label><input size="1" type="email" name="form_fields[email]" id="form-field-email" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Your Email Address" required="required" aria-required="true">				</div>
+								<div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-33">
+					<button type="submit" class="elementor-button elementor-size-sm">
+						<span >
+															<span class=" elementor-button-icon">
+									<i class="fa fa-envelope-o" aria-hidden="true"></i>																	</span>
+																						<span class="elementor-button-text">SUBSCRIBE</span>
+													</span>
+					</button>
+				</div>
+			</div>
+		</form>
+				</div>
+				</div>
+						</div>
+			</div>
+		</div>
+						</div>
+			</div>
+		</section>
+						</div>
+			</div>
+		</div>
+						</div>
+			</div>
+		</section>
+						</div>
+			</div>
+		</div>
+			</div><!-- .inside-article -->
+</article><!-- #post-## -->
+
+					<div class="comments-area">
+						<div id="comments">
+
+			<h3 class="comments-title">
+			23 thoughts on &ldquo;DIY Cloud Weather Station with ESP32/ESP8266 (MySQL Database and PHP)&rdquo;		</h3>
+
+		
+		<ol class="comment-list">
+			
+		<li id="comment-417721" class="comment even thread-even depth-1 parent">
+			<article id="div-comment-417721" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/b80755bbd9e9324d2204d0be001e3f5d?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/b80755bbd9e9324d2204d0be001e3f5d?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Phil</cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-417721">
+								<time datetime="2019-12-28T09:21:56+00:00" itemprop="datePublished">
+									December 28, 2019 at 9:21 am								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>Excellent project.  It integrates aspects of sensors, data storage and web display into a comprehensive package with server based &#8216;management&#8217;. I&#8217;ll likely use a LAMP server on one of my Raspberry Pis.  Thanks Rui.</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=417721#respond' data-commentid="417721" data-postid="92139" data-belowelement="div-comment-417721" data-respondelement="respond" aria-label='Reply to Phil'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		<ul class="children">
+
+		<li id="comment-417744" class="comment byuser comment-author-sara-santos odd alt depth-2">
+			<article id="div-comment-417744" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/25e3da92f25bc3fde695d9c0d92207b0?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/25e3da92f25bc3fde695d9c0d92207b0?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Sara Santos</cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-417744">
+								<time datetime="2019-12-28T11:26:36+00:00" itemprop="datePublished">
+									December 28, 2019 at 11:26 am								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>Thanks for your comment 😀<br />
+Regards,<br />
+Sara</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=417744#respond' data-commentid="417744" data-postid="92139" data-belowelement="div-comment-417744" data-respondelement="respond" aria-label='Reply to Sara Santos'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+
+		<li id="comment-417784" class="comment even depth-2">
+			<article id="div-comment-417784" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/41ca0c017b030af53adc6fed4db3f39a?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/41ca0c017b030af53adc6fed4db3f39a?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">LukasCissa</cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-417784">
+								<time datetime="2019-12-28T15:08:42+00:00" itemprop="datePublished">
+									December 28, 2019 at 3:08 pm								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>What about to use AWS Lambda? With this frequency of posting data you can use free tier only 😉</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=417784#respond' data-commentid="417784" data-postid="92139" data-belowelement="div-comment-417784" data-respondelement="respond" aria-label='Reply to LukasCissa'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+		<li id="comment-417790" class="comment odd alt thread-odd thread-alt depth-1 parent">
+			<article id="div-comment-417790" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/59e12b6716b9883839a78478e07e700c?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/59e12b6716b9883839a78478e07e700c?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Sanjay Kumar</cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-417790">
+								<time datetime="2019-12-28T15:45:18+00:00" itemprop="datePublished">
+									December 28, 2019 at 3:45 pm								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>Thanks for this post. I always imagine how cayenne and many more website work. I learn a lot of things with this post. I use 000webhost for SQL PHP and HTML file hosting. How I use an NTC thermistor with this code at a place of adafruit bme280<br />
+Keep uploading these Posts</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=417790#respond' data-commentid="417790" data-postid="92139" data-belowelement="div-comment-417790" data-respondelement="respond" aria-label='Reply to Sanjay Kumar'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		<ul class="children">
+
+		<li id="comment-418543" class="comment byuser comment-author-rui-santos bypostauthor even depth-2">
+			<article id="div-comment-418543" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/9461558a0e334e14711e74f60647f31f?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/9461558a0e334e14711e74f60647f31f?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn"><a href='https://randomnerdtutorials.com/' rel='external nofollow ugc' class='url'>Rui Santos</a></cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-418543">
+								<time datetime="2020-01-02T11:13:35+00:00" itemprop="datePublished">
+									January 2, 2020 at 11:13 am								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>I don&#8217;t have those exact instructions, but you can simply replace the section that publishes the readings to send the thermistor values</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=418543#respond' data-commentid="418543" data-postid="92139" data-belowelement="div-comment-418543" data-respondelement="respond" aria-label='Reply to Rui Santos'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+		<li id="comment-417920" class="comment odd alt thread-even depth-1 parent">
+			<article id="div-comment-417920" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/cedf37ecd626c105c3ce80cb176e5fac?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cedf37ecd626c105c3ce80cb176e5fac?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Lavrin</cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-417920">
+								<time datetime="2019-12-29T20:25:00+00:00" itemprop="datePublished">
+									December 29, 2019 at 8:25 pm								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>How difficult is it to modify for BME680?</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=417920#respond' data-commentid="417920" data-postid="92139" data-belowelement="div-comment-417920" data-respondelement="respond" aria-label='Reply to Lavrin'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		<ul class="children">
+
+		<li id="comment-418542" class="comment byuser comment-author-rui-santos bypostauthor even depth-2">
+			<article id="div-comment-418542" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/9461558a0e334e14711e74f60647f31f?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/9461558a0e334e14711e74f60647f31f?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn"><a href='https://randomnerdtutorials.com/' rel='external nofollow ugc' class='url'>Rui Santos</a></cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-418542">
+								<time datetime="2020-01-02T11:12:38+00:00" itemprop="datePublished">
+									January 2, 2020 at 11:12 am								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>You just need to import the right library for that sensor and send those readings instead</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=418542#respond' data-commentid="418542" data-postid="92139" data-belowelement="div-comment-418542" data-respondelement="respond" aria-label='Reply to Rui Santos'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+		<li id="comment-417950" class="comment odd alt thread-odd thread-alt depth-1 parent">
+			<article id="div-comment-417950" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/2ae229ba58422b23d80f0ad76399ea9d?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/2ae229ba58422b23d80f0ad76399ea9d?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn"><a href='http://data.solo.co.in/esp-weather-station.php' rel='external nofollow ugc' class='url'>Sandeep Kishore Jain</a></cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-417950">
+								<time datetime="2019-12-30T03:25:01+00:00" itemprop="datePublished">
+									December 30, 2019 at 3:25 am								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>Amazing project&#8230;. A great improvement over the earlier one &#8211; visually.<br />
+However, can you please check the the semicircle graphs once again both for Temp and humidity. There seems to be an error in how the reading shows up graphically&#8230; I tried by changing the temp range to 0-45*C but does not help much.</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=417950#respond' data-commentid="417950" data-postid="92139" data-belowelement="div-comment-417950" data-respondelement="respond" aria-label='Reply to Sandeep Kishore Jain'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		<ul class="children">
+
+		<li id="comment-418548" class="comment byuser comment-author-rui-santos bypostauthor even depth-2 parent">
+			<article id="div-comment-418548" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/9461558a0e334e14711e74f60647f31f?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/9461558a0e334e14711e74f60647f31f?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn"><a href='https://randomnerdtutorials.com/' rel='external nofollow ugc' class='url'>Rui Santos</a></cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-418548">
+								<time datetime="2020-01-02T11:37:06+00:00" itemprop="datePublished">
+									January 2, 2020 at 11:37 am								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>Thanks for letting me know, my CSS had an error (I wasn&#8217;t assigning the gauges to update them properly).<br />
+The post was updated and you can use this new HTML and JavaScript code: <a href="https://github.com/RuiSantosdotme/Cloud-Weather-Station-ESP32-ESP8266/blob/master/code/esp-weather-station.php" rel="nofollow ugc">https://github.com/RuiSantosdotme/Cloud-Weather-Station-ESP32-ESP8266/blob/master/code/esp-weather-station.php</a></p>
+<p>(I&#8217;ve updated lines: 62, 167, 181)</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=418548#respond' data-commentid="418548" data-postid="92139" data-belowelement="div-comment-418548" data-respondelement="respond" aria-label='Reply to Rui Santos'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		<ul class="children">
+
+		<li id="comment-418725" class="comment odd alt depth-3 parent">
+			<article id="div-comment-418725" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/2ae229ba58422b23d80f0ad76399ea9d?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/2ae229ba58422b23d80f0ad76399ea9d?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">SANDEEP KISHORE JAIN</cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-418725">
+								<time datetime="2020-01-03T06:21:46+00:00" itemprop="datePublished">
+									January 3, 2020 at 6:21 am								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>Thank you very much. Its done.</p>
+<p>May I point out another issue I have noticed&#8230;</p>
+<p>sometimes when you consider more than 20 readings  say 40 &#8211; the max temp is often less than min. temp&#8230;</p>
+<p>19.48 ºC</p>
+<p>Temperature 50 readings<br />
+Min	        Max	Average<br />
+10.01 °C	9.85 °C	14.2 °C</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=418725#respond' data-commentid="418725" data-postid="92139" data-belowelement="div-comment-418725" data-respondelement="respond" aria-label='Reply to SANDEEP KISHORE JAIN'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		<ul class="children">
+
+		<li id="comment-418784" class="comment byuser comment-author-rui-santos bypostauthor even depth-4 parent">
+			<article id="div-comment-418784" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/9461558a0e334e14711e74f60647f31f?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/9461558a0e334e14711e74f60647f31f?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn"><a href='https://randomnerdtutorials.com/' rel='external nofollow ugc' class='url'>Rui Santos</a></cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-418784">
+								<time datetime="2020-01-03T11:42:06+00:00" itemprop="datePublished">
+									January 3, 2020 at 11:42 am								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>I&#8217;m glad that worked for the gauges! How many readings do you have in your database?</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=418784#respond' data-commentid="418784" data-postid="92139" data-belowelement="div-comment-418784" data-respondelement="respond" aria-label='Reply to Rui Santos'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		<ul class="children">
+
+		<li id="comment-418802" class="comment odd alt depth-5">
+			<article id="div-comment-418802" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/2ae229ba58422b23d80f0ad76399ea9d?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/2ae229ba58422b23d80f0ad76399ea9d?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Sandeep Kishore Jain</cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-418802">
+								<time datetime="2020-01-03T12:45:59+00:00" itemprop="datePublished">
+									January 3, 2020 at 12:45 pm								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>12 readings/hour x 24 x5 days or so.. ~ 1000 readings or so</p>
+				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+		<li id="comment-417992" class="comment even thread-even depth-1 parent">
+			<article id="div-comment-417992" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/d6bebc4e9304aa565a3293b5544a5931?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/d6bebc4e9304aa565a3293b5544a5931?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn"><a href='http://www.galgoni.com' rel='external nofollow ugc' class='url'>Jordi</a></cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-417992">
+								<time datetime="2019-12-30T07:55:47+00:00" itemprop="datePublished">
+									December 30, 2019 at 7:55 am								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>Many thanks, for your excellent project. You need a lot of time to build it. It&#8217;s really beautiful.</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=417992#respond' data-commentid="417992" data-postid="92139" data-belowelement="div-comment-417992" data-respondelement="respond" aria-label='Reply to Jordi'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		<ul class="children">
+
+		<li id="comment-418052" class="comment byuser comment-author-sara-santos odd alt depth-2">
+			<article id="div-comment-418052" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/25e3da92f25bc3fde695d9c0d92207b0?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/25e3da92f25bc3fde695d9c0d92207b0?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Sara Santos</cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-418052">
+								<time datetime="2019-12-30T15:15:19+00:00" itemprop="datePublished">
+									December 30, 2019 at 3:15 pm								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>Thank you 😀</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=418052#respond' data-commentid="418052" data-postid="92139" data-belowelement="div-comment-418052" data-respondelement="respond" aria-label='Reply to Sara Santos'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+		<li id="comment-418024" class="comment even thread-odd thread-alt depth-1">
+			<article id="div-comment-418024" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/8d5073910a02341d0461a9a8adeeb93a?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/8d5073910a02341d0461a9a8adeeb93a?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Sergey</cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-418024">
+								<time datetime="2019-12-30T10:35:13+00:00" itemprop="datePublished">
+									December 30, 2019 at 10:35 am								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>Wow! The first project on ESP8266, which I repeated without any problems! Thank you very much!</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=418024#respond' data-commentid="418024" data-postid="92139" data-belowelement="div-comment-418024" data-respondelement="respond" aria-label='Reply to Sergey'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+
+		<li id="comment-418407" class="comment odd alt thread-even depth-1 parent">
+			<article id="div-comment-418407" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/59e12b6716b9883839a78478e07e700c?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/59e12b6716b9883839a78478e07e700c?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Sanjay Kumar</cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-418407">
+								<time datetime="2020-01-01T17:13:38+00:00" itemprop="datePublished">
+									January 1, 2020 at 5:13 pm								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>Thank you sara for this Awesome project.<br />
+I am done with all parts with esp32<br />
+but not done with esp8266 it shows the error code -1 as an Http response.</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=418407#respond' data-commentid="418407" data-postid="92139" data-belowelement="div-comment-418407" data-respondelement="respond" aria-label='Reply to Sanjay Kumar'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		<ul class="children">
+
+		<li id="comment-418544" class="comment byuser comment-author-rui-santos bypostauthor even depth-2">
+			<article id="div-comment-418544" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/9461558a0e334e14711e74f60647f31f?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/9461558a0e334e14711e74f60647f31f?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn"><a href='https://randomnerdtutorials.com/' rel='external nofollow ugc' class='url'>Rui Santos</a></cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-418544">
+								<time datetime="2020-01-02T11:14:13+00:00" itemprop="datePublished">
+									January 2, 2020 at 11:14 am								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>Are your values still being published? Is your BME280 getting the readings?</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=418544#respond' data-commentid="418544" data-postid="92139" data-belowelement="div-comment-418544" data-respondelement="respond" aria-label='Reply to Rui Santos'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+		<li id="comment-418933" class="comment odd alt thread-odd thread-alt depth-1 parent">
+			<article id="div-comment-418933" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/40d286e8a8e54440b6ee78a0d4d466f6?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/40d286e8a8e54440b6ee78a0d4d466f6?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">John</cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-418933">
+								<time datetime="2020-01-03T23:00:38+00:00" itemprop="datePublished">
+									January 3, 2020 at 11:00 pm								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>Hi,<br />
+ Thanks for this project.<br />
+ I have it running on an ESP8266 and have modified it slightly to read values from a DHT22 and a capacitive soil moisture sensor.<br />
+ So have three gauges showing temp, humidity and Soil moisture level.<br />
+Can you show how to add a slider and a button to the to the web page so that when the soil moisture level drops down to a certain % ( as set by the slider) the ESP will turn on a small water pump. Or if desired the button can be used to turn the pump on manually</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=418933#respond' data-commentid="418933" data-postid="92139" data-belowelement="div-comment-418933" data-respondelement="respond" aria-label='Reply to John'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		<ul class="children">
+
+		<li id="comment-419030" class="comment byuser comment-author-rui-santos bypostauthor even depth-2">
+			<article id="div-comment-419030" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/9461558a0e334e14711e74f60647f31f?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/9461558a0e334e14711e74f60647f31f?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn"><a href='https://randomnerdtutorials.com/' rel='external nofollow ugc' class='url'>Rui Santos</a></cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-419030">
+								<time datetime="2020-01-04T16:06:26+00:00" itemprop="datePublished">
+									January 4, 2020 at 4:06 pm								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>Hello John, it&#8217;s definitely possible to implement that feature, however at the moment I don&#8217;t have any tutorials on that exact subject. In the future, I&#8217;ll try to build a project where you set a threshold input like that.<br />
+Regards,<br />
+Rui</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=419030#respond' data-commentid="419030" data-postid="92139" data-belowelement="div-comment-419030" data-respondelement="respond" aria-label='Reply to Rui Santos'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+		<li id="comment-420306" class="comment odd alt thread-even depth-1 parent">
+			<article id="div-comment-420306" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/3368dca96d451c4da743295abbd9cd1c?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/3368dca96d451c4da743295abbd9cd1c?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Chisomo</cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-420306">
+								<time datetime="2020-01-09T21:42:04+00:00" itemprop="datePublished">
+									January 9, 2020 at 9:42 pm								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>Thank you Rui and Sarah for this project,<br />
+I modified the code to get readings from DHT11 sensor via arduino ethernet shield and added email notifications. Every seem to work just fine. Will be looking forward to more of DIY&#8217;s.</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=420306#respond' data-commentid="420306" data-postid="92139" data-belowelement="div-comment-420306" data-respondelement="respond" aria-label='Reply to Chisomo'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		<ul class="children">
+
+		<li id="comment-420425" class="comment byuser comment-author-sara-santos even depth-2">
+			<article id="div-comment-420425" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/25e3da92f25bc3fde695d9c0d92207b0?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/25e3da92f25bc3fde695d9c0d92207b0?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Sara Santos</cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-420425">
+								<time datetime="2020-01-10T11:47:59+00:00" itemprop="datePublished">
+									January 10, 2020 at 11:47 am								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>That&#8217;s great!<br />
+We&#8217;ll be posting a new tutorial/project every week, so stay tuned!<br />
+Regards,<br />
+Sara</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=420425#respond' data-commentid="420425" data-postid="92139" data-belowelement="div-comment-420425" data-respondelement="respond" aria-label='Reply to Sara Santos'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+		<li id="comment-421578" class="comment odd alt thread-odd thread-alt depth-1 parent">
+			<article id="div-comment-421578" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/0f4235d48aba9389da9914b0c1bb807f?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/0f4235d48aba9389da9914b0c1bb807f?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Basti</cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-421578">
+								<time datetime="2020-01-14T17:02:49+00:00" itemprop="datePublished">
+									January 14, 2020 at 5:02 pm								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>is it possible to do this without using a domain? So to have the SQL at home in the privat network?</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=421578#respond' data-commentid="421578" data-postid="92139" data-belowelement="div-comment-421578" data-respondelement="respond" aria-label='Reply to Basti'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		<ul class="children">
+
+		<li id="comment-421595" class="comment byuser comment-author-sara-santos even depth-2">
+			<article id="div-comment-421595" class="comment-body" itemtype="https://schema.org/Comment" itemscope>
+				<footer class="comment-meta">
+					<img alt='' src='https://secure.gravatar.com/avatar/25e3da92f25bc3fde695d9c0d92207b0?s=50&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/25e3da92f25bc3fde695d9c0d92207b0?s=100&#038;d=mm&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />					<div class="comment-author-info">
+						<div class="comment-author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+							<cite itemprop="name" class="fn">Sara Santos</cite>						</div><!-- .comment-author -->
+
+						<div class="entry-meta comment-metadata">
+							<a href="https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/#comment-421595">
+								<time datetime="2020-01-14T18:17:48+00:00" itemprop="datePublished">
+									January 14, 2020 at 6:17 pm								</time>
+							</a>
+													</div><!-- .comment-metadata -->
+					</div><!-- .comment-author-info -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<p>Hi.<br />
+You can use it using a Raspberry Pi.<br />
+See these tutorials:<br />
+&#8211; <a href="https://randomnerdtutorials.com/raspberry-pi-apache-mysql-php-lamp-server/" rel="nofollow ugc">https://randomnerdtutorials.com/raspberry-pi-apache-mysql-php-lamp-server/</a><br />
+&#8211; <a href="https://randomnerdtutorials.com/esp32-esp8266-raspberry-pi-lamp-server/" rel="nofollow ugc">https://randomnerdtutorials.com/esp32-esp8266-raspberry-pi-lamp-server/</a><br />
+I hope this helps.<br />
+Regards,<br />
+Sara</p>
+<span class="reply"><a rel='nofollow' class='comment-reply-link' href='https://randomnerdtutorials.com/cloud-weather-station-esp32-esp8266/?replytocom=421595#respond' data-commentid="421595" data-postid="92139" data-belowelement="div-comment-421595" data-respondelement="respond" aria-label='Reply to Sara Santos'>Reply</a></span>				</div><!-- .comment-content -->
+			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+			<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="/cloud-weather-station-esp32-esp8266/#respond" style="display:none;">Cancel reply</a></small></h3><form action="https://randomnerdtutorials.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate><p class="comment-form-comment"><label for="comment" class="screen-reader-text">Comment</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p><label for="author" class="screen-reader-text">Name</label><input placeholder="Name *" id="author" name="author" type="text" value="" size="30" />
+<label for="email" class="screen-reader-text">Email</label><input placeholder="Email *" id="email" name="email" type="email" value="" size="30" />
+<label for="url" class="screen-reader-text">Website</label><input placeholder="Website" id="url" name="url" type="url" value="" size="30" />
+<p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='92139' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="b526e26fa9" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="188"/></p></form>	</div><!-- #respond -->
+	
+</div><!-- #comments -->
+					</div>
+
+							</main><!-- #main -->
+	</div><!-- #primary -->
+
+	<div id="right-sidebar" class="widget-area grid-25 tablet-grid-25 grid-parent sidebar" itemtype="https://schema.org/WPSideBar" itemscope>
+	<div class="inside-right-sidebar">
+		<aside id="text-48" class="widget inner-padding widget_text">			<div class="textwidget"><p><a href="https://randomnerdtutorials.com/arduino-step-by-step-projects/"><img class="aligncenter" src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2017/10/arduino-sb-img.jpg?w=813" data-recalc-dims="1" /></a><br />
+<strong><a href="https://randomnerdtutorials.com/arduino-step-by-step-projects/">Arduino Step-by-Step Projects »</a><br />
+</strong>Build 25 cool Arduino projects with our course even with no prior experience!</p>
+</div>
+		</aside><aside id="elementor-library-2" class="widget inner-padding widget_elementor-library">		<div data-elementor-type="section" data-elementor-id="82648" class="elementor elementor-82648" data-elementor-settings="[]">
+			<div class="elementor-inner">
+				<div class="elementor-section-wrap">
+							<section class="elementor-element elementor-element-e5b3ca7 elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="e5b3ca7" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+				<div class="elementor-row">
+				<div class="elementor-element elementor-element-d913468 elementor-column elementor-col-100 elementor-top-column" data-id="d913468" data-element_type="column">
+			<div class="elementor-column-wrap  elementor-element-populated">
+					<div class="elementor-widget-wrap">
+				<div class="elementor-element elementor-element-a9017d2 elementor-grid-1 elementor-grid-tablet-1 elementor-posts--thumbnail-left elementor-posts--align-left elementor-hidden-phone elementor-grid-mobile-1 elementor-invisible elementor-widget elementor-widget-posts" data-id="a9017d2" data-element_type="widget" data-settings="{&quot;classic_columns&quot;:&quot;1&quot;,&quot;classic_columns_tablet&quot;:&quot;1&quot;,&quot;classic_row_gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:20,&quot;sizes&quot;:[]},&quot;_animation&quot;:&quot;none&quot;,&quot;classic_columns_mobile&quot;:&quot;1&quot;}" data-widget_type="posts.classic">
+				<div class="elementor-widget-container">
+					<div class="elementor-posts-container elementor-posts elementor-posts--skin-classic elementor-grid">
+				<article class="elementor-post elementor-grid-item post-81663 post type-post status-publish format-standard has-post-thumbnail hentry category-esp32 category-esp32-project category-esp32-arduino-ide category-0-esp32 category-project">
+				<a class="elementor-post__thumbnail__link" href="https://randomnerdtutorials.com/esp32-deep-sleep-arduino-ide-wake-up-sources/">
+			<div class="elementor-post__thumbnail"><img width="1280" height="720" src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/02/esp32-deep-sleep-arduino-ide.jpg?fit=1280%2C720&amp;ssl=1" class="attachment-full size-full" alt="" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/02/esp32-deep-sleep-arduino-ide.jpg?w=1280&amp;ssl=1 1280w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/02/esp32-deep-sleep-arduino-ide.jpg?resize=300%2C169&amp;ssl=1 300w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/02/esp32-deep-sleep-arduino-ide.jpg?resize=768%2C432&amp;ssl=1 768w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/02/esp32-deep-sleep-arduino-ide.jpg?resize=1024%2C576&amp;ssl=1 1024w" sizes="(max-width: 1280px) 100vw, 1280px" /></div>
+		</a>
+				<div class="elementor-post__text">
+				<h3 class="elementor-post__title">
+			<a href="https://randomnerdtutorials.com/esp32-deep-sleep-arduino-ide-wake-up-sources/">
+				ESP32 Deep Sleep with Arduino IDE and Wake Up Sources			</a>
+		</h3>
+				</div>
+				</article>
+				<article class="elementor-post elementor-grid-item post-17309 post type-post status-publish format-standard has-post-thumbnail hentry category-esp8266 category-esp8266-project category-esp8266-arduino-ide category-esp8266-projects category-0-esp8266 category-http-client category-project category-web-server">
+				<a class="elementor-post__thumbnail__link" href="https://randomnerdtutorials.com/esp8266-web-server-with-arduino-ide/">
+			<div class="elementor-post__thumbnail"><img width="1280" height="720" src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2016/02/esp8266-web-server-arduino-ide-thumbnail.jpg?fit=1280%2C720&amp;ssl=1" class="attachment-full size-full" alt="" srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2016/02/esp8266-web-server-arduino-ide-thumbnail.jpg?w=1280&amp;ssl=1 1280w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2016/02/esp8266-web-server-arduino-ide-thumbnail.jpg?resize=300%2C169&amp;ssl=1 300w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2016/02/esp8266-web-server-arduino-ide-thumbnail.jpg?resize=768%2C432&amp;ssl=1 768w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2016/02/esp8266-web-server-arduino-ide-thumbnail.jpg?resize=1024%2C576&amp;ssl=1 1024w" sizes="(max-width: 1280px) 100vw, 1280px" /></div>
+		</a>
+				<div class="elementor-post__text">
+				<h3 class="elementor-post__title">
+			<a href="https://randomnerdtutorials.com/esp8266-web-server-with-arduino-ide/">
+				ESP8266 Web Server with Arduino IDE			</a>
+		</h3>
+				</div>
+				</article>
+				<article class="elementor-post elementor-grid-item post-84166 post type-post status-publish format-standard has-post-thumbnail hentry category-esp32-project category-esp8266-project category-micropython category-0-esp32-micropython category-project">
+				<a class="elementor-post__thumbnail__link" href="https://randomnerdtutorials.com/esp32-esp8266-pwm-micropython/">
+			<div class="elementor-post__thumbnail"><img width="1280" height="720" src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/esp32-esp8266-pwm.jpg?fit=1280%2C720&amp;ssl=1" class="attachment-full size-full" alt="" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/esp32-esp8266-pwm.jpg?w=1280&amp;ssl=1 1280w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/esp32-esp8266-pwm.jpg?resize=300%2C169&amp;ssl=1 300w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/esp32-esp8266-pwm.jpg?resize=768%2C432&amp;ssl=1 768w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/esp32-esp8266-pwm.jpg?resize=1024%2C576&amp;ssl=1 1024w" sizes="(max-width: 1280px) 100vw, 1280px" /></div>
+		</a>
+				<div class="elementor-post__text">
+				<h3 class="elementor-post__title">
+			<a href="https://randomnerdtutorials.com/esp32-esp8266-pwm-micropython/">
+				ESP32/ESP8266 PWM with MicroPython &#8211; Dim LED			</a>
+		</h3>
+				</div>
+				</article>
+				<article class="elementor-post elementor-grid-item post-15496 post type-post status-publish format-standard has-post-thumbnail hentry category-adc-analog category-esp8266 category-esp8266-project category-esp8266-projects category-0-esp8266 category-http-client category-nodemcu category-project category-web-server">
+				<a class="elementor-post__thumbnail__link" href="https://randomnerdtutorials.com/esp8266-wireless-weather-station-with-data-logging-to-excel/">
+			<div class="elementor-post__thumbnail"><img width="1288" height="864" src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2015/12/Wireless-Weather-Station-with-Data-Logging-to-Excel-thumb.jpg?fit=1288%2C864&amp;ssl=1" class="attachment-full size-full" alt="" srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2015/12/Wireless-Weather-Station-with-Data-Logging-to-Excel-thumb.jpg?w=1288&amp;ssl=1 1288w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2015/12/Wireless-Weather-Station-with-Data-Logging-to-Excel-thumb.jpg?resize=300%2C201&amp;ssl=1 300w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2015/12/Wireless-Weather-Station-with-Data-Logging-to-Excel-thumb.jpg?resize=768%2C515&amp;ssl=1 768w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2015/12/Wireless-Weather-Station-with-Data-Logging-to-Excel-thumb.jpg?resize=1024%2C687&amp;ssl=1 1024w" sizes="(max-width: 1288px) 100vw, 1288px" /></div>
+		</a>
+				<div class="elementor-post__text">
+				<h3 class="elementor-post__title">
+			<a href="https://randomnerdtutorials.com/esp8266-wireless-weather-station-with-data-logging-to-excel/">
+				ESP8266 &#8211; Wireless Weather Station with Data Logging to Excel			</a>
+		</h3>
+				</div>
+				</article>
+				<article class="elementor-post elementor-grid-item post-68479 post type-post status-publish format-standard has-post-thumbnail hentry category-esp32 category-esp32-project category-esp32-arduino-ide category-0-esp32 category-project">
+				<a class="elementor-post__thumbnail__link" href="https://randomnerdtutorials.com/esp32-pir-motion-sensor-interrupts-timers/">
+			<div class="elementor-post__thumbnail"><img width="1280" height="720" src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/07/ESP32_PIR_featured.jpg?fit=1280%2C720&amp;ssl=1" class="attachment-full size-full" alt="" srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/07/ESP32_PIR_featured.jpg?w=1280&amp;ssl=1 1280w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/07/ESP32_PIR_featured.jpg?resize=300%2C169&amp;ssl=1 300w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/07/ESP32_PIR_featured.jpg?resize=768%2C432&amp;ssl=1 768w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/07/ESP32_PIR_featured.jpg?resize=1024%2C576&amp;ssl=1 1024w" sizes="(max-width: 1280px) 100vw, 1280px" /></div>
+		</a>
+				<div class="elementor-post__text">
+				<h3 class="elementor-post__title">
+			<a href="https://randomnerdtutorials.com/esp32-pir-motion-sensor-interrupts-timers/">
+				ESP32 with PIR Motion Sensor using Interrupts and Timers			</a>
+		</h3>
+				</div>
+				</article>
+				</div>
+				</div>
+				</div>
+						</div>
+			</div>
+		</div>
+						</div>
+			</div>
+		</section>
+						</div>
+			</div>
+		</div>
+		</aside><aside id="text-49" class="widget inner-padding widget_text">			<div class="textwidget"><p><a href="https://makeradvisor.com/?utm_source=rnt&amp;utm_medium=sb&amp;utm_campaign=sb" target="_blank" rel="noopener noreferrer"><img class="aligncenter" src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2017/10/lab-sb-img.jpg?w=813" data-recalc-dims="1" /></a><br />
+<strong><a href="https://makeradvisor.com/?utm_source=rnt&amp;utm_medium=sb&amp;utm_campaign=sb" target="_blank" rel="noopener noreferrer">Visit Maker Advisor &#8211; Tools and Gear for makers, hobbyists and DIYers »</a></strong></p>
+</div>
+		</aside><aside id="text-47" class="widget inner-padding widget_text">			<div class="textwidget"><p><a href="https://randomnerdtutorials.com/home-automation-using-esp8266/"><img class="aligncenter" src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2017/10/esp8266-sb-img.jpg?w=813" data-recalc-dims="1" /></a><br />
+<strong><a href="https://randomnerdtutorials.com/home-automation-using-esp8266/">Home Automation using ESP8266 eBook and video course »</a> </strong>Build IoT and home automation projects.</p>
+</div>
+		</aside><aside id="text-46" class="widget inner-padding widget_text">			<div class="textwidget"><p><a href="https://randomnerdtutorials.com/build-a-home-automation-system-for-100/"><img class="aligncenter" src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2017/10/home-automation-sb-img.jpg?w=813" data-recalc-dims="1" /></a><br />
+<strong><a href="https://randomnerdtutorials.com/build-a-home-automation-system-for-100/">Build a Home Automation System from Scratch »</a> </strong>With Raspberry Pi, ESP8266, Arduino, and Node-RED.</p>
+</div>
+		</aside>	</div><!-- .inside-right-sidebar -->
+</div><!-- #secondary -->
+
+	</div><!-- #content -->
+</div><!-- #page -->
+
+
+<div class="site-footer footer-bar-active footer-bar-align-center">
+			<footer class="site-info" itemtype="https://schema.org/WPFooter" itemscope>
+			<div class="inside-site-info grid-container grid-parent">
+						<div class="footer-bar">
+			<aside id="nav_menu-10" class="widget inner-padding widget_nav_menu"><div class="menu-footer-disclaimer-container"><ul id="menu-footer-disclaimer" class="menu"><li id="menu-item-82503" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82503"><a href="https://randomnerdtutorials.com/about/">About</a></li>
+<li id="menu-item-20492" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20492"><a href="https://randomnerdtutorials.com/support">Support</a></li>
+<li id="menu-item-20493" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20493"><a href="https://randomnerdtutorials.com/terms">Terms</a></li>
+<li id="menu-item-20495" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20495"><a href="https://randomnerdtutorials.com/privacy">Privacy</a></li>
+<li id="menu-item-20494" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20494"><a href="https://randomnerdtutorials.com/returns-and-refunds/">Refunds</a></li>
+<li id="menu-item-43625" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43625"><a target="_blank" rel="noopener noreferrer" href="https://makeradvisor.com/">MakerAdvisor.com</a></li>
+<li id="menu-item-20496" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20496"><a target="_blank" rel="noopener noreferrer" href="https://rntlab.com/">Join the Lab</a></li>
+</ul></div></aside>		</div>
+						<div class="copyright-bar">
+					Copyright © 2013-2020 · RandomNerdTutorials.com · All Rights Reserved				</div>
+			</div>
+		</footer><!-- .site-info -->
+		</div><!-- .site-footer -->
+
+		<div data-elementor-type="popup" data-elementor-id="83058" class="elementor elementor-83058 elementor-location-popup" data-elementor-settings="{&quot;entrance_animation&quot;:&quot;zoomIn&quot;,&quot;entrance_animation_duration&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:1.2,&quot;sizes&quot;:[]},&quot;close_button_position&quot;:&quot;outside&quot;,&quot;triggers&quot;:{&quot;scrolling&quot;:&quot;yes&quot;,&quot;exit_intent&quot;:&quot;yes&quot;,&quot;scrolling_direction&quot;:&quot;down&quot;,&quot;scrolling_offset&quot;:50},&quot;timing&quot;:{&quot;times_times&quot;:1,&quot;times&quot;:&quot;yes&quot;}}">
+			<div class="elementor-inner">
+				<div class="elementor-section-wrap">
+							<section class="elementor-element elementor-element-544e0740 elementor-section-content-bottom elementor-reverse-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="544e0740" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+				<div class="elementor-row">
+				<div class="elementor-element elementor-element-676b082e elementor-column elementor-col-100 elementor-top-column" data-id="676b082e" data-element_type="column">
+			<div class="elementor-column-wrap  elementor-element-populated">
+					<div class="elementor-widget-wrap">
+				<div class="elementor-element elementor-element-5eee063c elementor-widget elementor-widget-heading" data-id="5eee063c" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Download our Free eBooks and Resources</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-9bd904c elementor-hidden-phone elementor-widget elementor-widget-text-editor" data-id="9bd904c" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>Get instant access to our FREE eBooks, Resources, and Exclusive Electronics Projects by entering your email address below.</p></div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-2a77907 elementor-button-align-stretch elementor-widget elementor-widget-form" data-id="2a77907" data-element_type="widget" data-widget_type="form.default">
+				<div class="elementor-widget-container">
+					<form class="elementor-form" method="post" name="New Form">
+			<input type="hidden" name="post_id" value="83058"/>
+			<input type="hidden" name="form_id" value="2a77907"/>
+
+			<div class="elementor-form-fields-wrapper elementor-labels-">
+								<div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-100 elementor-field-required">
+					<label for="form-field-email" class="elementor-field-label elementor-screen-only">Email</label><input size="1" type="email" name="form_fields[email]" id="form-field-email" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Your Email Address" required="required" aria-required="true">				</div>
+								<div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100">
+					<button type="submit" class="elementor-button elementor-size-md">
+						<span >
+															<span class=" elementor-button-icon">
+									<i class="fa fa-cloud-download" aria-hidden="true"></i>																	</span>
+																						<span class="elementor-button-text">FREE DOWNLOAD</span>
+													</span>
+					</button>
+				</div>
+			</div>
+		</form>
+				</div>
+				</div>
+						</div>
+			</div>
+		</div>
+						</div>
+			</div>
+		</section>
+						</div>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/components/prism-c.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/components/prism-python.min.js"></script>
+<link rel='stylesheet' id='elementor-post-83032-css'  href='https://randomnerdtutorials.com/wp-content/uploads/elementor/css/post-83032.css?ver=1575977789' type='text/css' media='all' />
+<link rel='stylesheet' id='elementor-post-82533-css'  href='https://randomnerdtutorials.com/wp-content/uploads/elementor/css/post-82533.css?ver=1575977789' type='text/css' media='all' />
+<link rel='stylesheet' id='elementor-post-82829-css'  href='https://randomnerdtutorials.com/wp-content/uploads/elementor/css/post-82829.css?ver=1575977789' type='text/css' media='all' />
+<link rel='stylesheet' id='elementor-post-82648-css'  href='https://randomnerdtutorials.com/wp-content/uploads/elementor/css/post-82648.css?ver=1575977771' type='text/css' media='all' />
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-content/plugins/gp-premium/menu-plus/functions/js/sticky.min.js?ver=1.9.1'></script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-content/plugins/jetpack/_inc/build/photon/photon.min.js?ver=20191001'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=202003'></script>
+<!--[if lte IE 11]>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-content/themes/generatepress/js/classList.min.js?ver=2.4.1'></script>
+<![endif]-->
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-content/themes/generatepress/js/menu.min.js?ver=2.4.1'></script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-content/themes/generatepress/js/a11y.min.js?ver=2.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var generatepressNavSearch = {"open":"Open Search Bar","close":"Close Search Bar"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-content/themes/generatepress/js/navigation-search.min.js?ver=2.4.1'></script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-includes/js/comment-reply.min.js?ver=5.3.2'></script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-includes/js/wp-embed.min.js?ver=5.3.2'></script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
+<script async="async" type='text/javascript' src='https://randomnerdtutorials.com/wp-content/plugins/akismet/_inc/form.js?ver=4.1.3'></script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=2.8.0'></script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js?ver=2.7.3'></script>
+<script type='text/javascript'>
+var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/randomnerdtutorials.com\/wp-admin\/admin-ajax.php","nonce":"3c8d336ae2","shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"google":{"title":"Google+","has_counter":true},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"delicious":{"title":"Delicious"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"}},"facebook_sdk":{"lang":"en_US","app_id":""}};
+</script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=2.7.3'></script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-includes/js/jquery/ui/position.min.js?ver=1.11.4'></script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-content/plugins/elementor/assets/lib/dialog/dialog.min.js?ver=4.7.3'></script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2'></script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-content/plugins/elementor/assets/lib/swiper/swiper.min.js?ver=4.4.6'></script>
+<script type='text/javascript'>
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"version":"2.8.0","urls":{"assets":"https:\/\/randomnerdtutorials.com\/wp-content\/plugins\/elementor\/assets\/"},"settings":{"page":[],"general":[],"editorPreferences":[]},"post":{"id":92139,"title":"DIY Cloud Weather Station with ESP32\/ESP8266 (MySQL Database and PHP)","excerpt":""}};
+</script>
+<script type='text/javascript' src='https://randomnerdtutorials.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=2.8.0'></script>
+
+</body>
+</html>
+
+<!-- Dynamic page generated in 2.391 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2020-01-15 00:44:55 -->
+
+<!-- Compression = gzip -->
