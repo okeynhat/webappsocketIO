@@ -44,7 +44,7 @@
 <!DOCTYPE html>
 <html>
     <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+        <<title>Trạm Thời Tiết</title>
         <link rel="stylesheet" type="text/css" href="esp-style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -57,7 +57,7 @@
         </form>
     </header>
 <body>
-    <p>Last reading: <?php echo $last_reading_time; ?></p>
+    <p>Lần Nhận Giá Trị Gần Nhất: <?php echo $last_reading_time; ?></p>
     <section class="content">
 	    <div class="box gauge--1">
 	    <h3>NHIỆT ĐỘ</h3>
@@ -107,7 +107,7 @@
         </div>
     </section>
 <?php
-    echo   '<h2> View Latest ' . $readings_count . ' Readings</h2>
+    echo   '<h2> Bảng Dữ Liệu ' . $readings_count . ' Lần Đọc Gần Nhất</h2>
             <table cellspacing="5" cellpadding="5" id="tableReadings">
                 <tr>
                     <th>ID</th>
