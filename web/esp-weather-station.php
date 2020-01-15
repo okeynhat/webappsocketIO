@@ -52,8 +52,9 @@
     <header class="header">
         <h1>📊 Trạm Thời Tiết</h1>
         <form method="get">
-            <input type="number" name="readingsCount" min="1" placeholder="Number of readings (<?php echo $readings_count; ?>)">
-            <input type="submit" value="UPDATE">
+            <td>Chọn Số Giá Trị Lấy Gần Nhất</td>
+            <input type="number" name="readingsCount" min="1" placeholder="Giá trị lấy gần nhất (<?php echo $readings_count; ?>)">
+            <input type="submit" value="Cập Nhật">
         </form>
     </header>
 <body>
@@ -68,7 +69,7 @@
 		    <p style="font-size: 30px;" id="temp">--</p>
 		    <table cellspacing="5" cellpadding="5">
 		        <tr>
-		            <th colspan="3">Nhiệt Độ <?php echo $readings_count; ?> Đọc Gần Nhất</th>
+		            <th colspan="3">Nhiệt Độ <?php echo $readings_count; ?> Lần Đọc Gần Nhất</th>
 	            </tr>
 		        <tr>
 		            <td>Thấp Nhất</td>
@@ -91,7 +92,7 @@
             <p style="font-size: 30px;" id="humi">--</p>
             <table cellspacing="5" cellpadding="5">
                 <tr>
-                    <th colspan="3">Độ Ẩm <?php echo $readings_count; ?> Đọc Gần Nhất</th>
+                    <th colspan="3">Độ Ẩm <?php echo $readings_count; ?> Lần Đọc Gần Nhất</th>
                 </tr>
                 <tr>
                     <td>Thấp Nhất</td>
@@ -116,7 +117,7 @@
                     <th>Nhiệt Độ</th>
                     <th>Độ Ẩm</th>
                     <th>Value 3</th>
-                    <th>Thời Gian Lấy</th>
+                    <th>Thời Gian</th>
                 </tr>';
 
     $result = getAllReadings($readings_count);
@@ -158,7 +159,7 @@
     function setTemperature(curVal){
     	//set range for Temperature in Celsius -5 Celsius to 38 Celsius
     	var minTemp = -5.0;
-    	var maxTemp = 38.0;
+    	var maxTemp = 1000.0;
         //set range for Temperature in Fahrenheit 23 Fahrenheit to 100 Fahrenheit
     	//var minTemp = 23;
     	//var maxTemp = 100;
@@ -192,5 +193,9 @@
         return ~~(capped * scale + to[0]);
     }
 </script>
+
 </body>
+<footer>
+<h3> Xây Dựng Bởi Trần Minh Thức </h3>
+</footer>
 </html>
