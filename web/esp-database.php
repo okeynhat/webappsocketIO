@@ -18,24 +18,24 @@
   // REPLACE with Database user password
   $password = "ZVQMeUMsfJ";
 
-  function insertReading($sensor, $location, $value1, $value2, $value3, $cambienmua) {
+  function insertReading($sensor, $location, $value1, $value2, $value3) {
     global $servername, $username, $password, $dbname;
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
     if ($conn->connect_error) {
-      die("Kết nối thất bại: " . $conn->connect_error);
+      die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "INSERT INTO SensorData (sensor, location, value1, value2, value3, cambienmua)
-    VALUES ('" . $sensor . "', '" . $location . "', '" . $value1 . "', '" . $value2 . "', '" . $value3 . "', '" . $cambienmua ."')";
+    $sql = "INSERT INTO SensorData (sensor, location, value1, value2, value3)
+    VALUES ('" . $sensor . "', '" . $location . "', '" . $value1 . "', '" . $value2 . "', '" . $value3 . "')";
 
     if ($conn->query($sql) === TRUE) {
-      return "Tạo mới giá trị thành công";
+      return "New record created successfully";
     }
     else {
-      return "Lỗi:: " . $sql . "<br>" . $conn->error;
+      return "Error: " . $sql . "<br>" . $conn->error;
     }
     $conn->close();
   }
@@ -47,10 +47,10 @@
     $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
     if ($conn->connect_error) {
-      die("Kết Nối Thất Bại: " . $conn->connect_error);
+      die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT id, sensor, location, value1, value2, value3, reading_time, cambienmua FROM SensorData order by reading_time desc limit " . $limit;
+    $sql = "SELECT id, sensor, location, value1, value2, value3, reading_time FROM SensorData order by reading_time desc limit " . $limit;
     if ($result = $conn->query($sql)) {
       return $result;
     }
@@ -66,10 +66,10 @@
     $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
     if ($conn->connect_error) {
-      die("Kết nối thất bại: " . $conn->connect_error);
+      die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT id, sensor, location, value1, value2, value3, reading_time, cambienmua FROM SensorData order by reading_time desc limit 1" ;
+    $sql = "SELECT id, sensor, location, value1, value2, value3, reading_time FROM SensorData order by reading_time desc limit 1" ;
     if ($result = $conn->query($sql)) {
       return $result->fetch_assoc();
     }
@@ -86,7 +86,7 @@
     $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
     if ($conn->connect_error) {
-      die("Kết nối thất bại: " . $conn->connect_error);
+      die("Connection failed: " . $conn->connect_error);
     }
 
     $sql = "SELECT MIN(" . $value . ") AS min_amount FROM (SELECT " . $value . " FROM SensorData order by reading_time desc limit " . $limit . ") AS min";
@@ -106,7 +106,7 @@
     $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
     if ($conn->connect_error) {
-      die("Kết nối thất bại: " . $conn->connect_error);
+      die("Connection failed: " . $conn->connect_error);
     }
 
     $sql = "SELECT MAX(" . $value . ") AS max_amount FROM (SELECT " . $value . " FROM SensorData order by reading_time desc limit " . $limit . ") AS max";
@@ -126,7 +126,7 @@
     $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
     if ($conn->connect_error) {
-      die("Kết nối thất bại " . $conn->connect_error);
+      die("Connection failed: " . $conn->connect_error);
     }
 
     $sql = "SELECT AVG(" . $value . ") AS avg_amount FROM (SELECT " . $value . " FROM SensorData order by reading_time desc limit " . $limit . ") AS avg";
