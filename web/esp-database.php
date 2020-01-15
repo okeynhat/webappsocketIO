@@ -18,7 +18,7 @@
   // REPLACE with Database user password
   $password = "ZVQMeUMsfJ";
 
-  function insertReading($sensor, $location, $value1, $value2, $value3) {
+  function insertReading($sensor, $location, $value1, $value2, $value3, $value4) {
     global $servername, $username, $password, $dbname;
 
     // Create connection
@@ -28,8 +28,8 @@
       die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "INSERT INTO SensorData (sensor, location, value1, value2, value3)
-    VALUES ('" . $sensor . "', '" . $location . "', '" . $value1 . "', '" . $value2 . "', '" . $value3 . "')";
+    $sql = "INSERT INTO SensorData (sensor, location, value1, value2, value3, value4)
+    VALUES ('" . $sensor . "', '" . $location . "', '" . $value1 . "', '" . $value2 . "', '" . $value3 . "', '" . $value4 . "')";
 
     if ($conn->query($sql) === TRUE) {
       return "New record created successfully";
@@ -50,7 +50,7 @@
       die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT id, sensor, location, value1, value2, value3, reading_time FROM SensorData order by reading_time desc limit " . $limit;
+    $sql = "SELECT id, sensor, location, value1, value2, value3, value4, reading_time FROM SensorData order by reading_time desc limit " . $limit;
     if ($result = $conn->query($sql)) {
       return $result;
     }
@@ -69,7 +69,7 @@
       die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT id, sensor, location, value1, value2, value3, reading_time FROM SensorData order by reading_time desc limit 1" ;
+    $sql = "SELECT id, sensor, location, value1, value2, value3, value4, reading_time FROM SensorData order by reading_time desc limit 1" ;
     if ($result = $conn->query($sql)) {
       return $result->fetch_assoc();
     }
