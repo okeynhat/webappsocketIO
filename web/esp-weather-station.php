@@ -110,7 +110,7 @@
     </section>
     <h2>Trạng Thái Cảm Biến Mưa</h2>
 <?php
-    echo 'Giá Trị Cảm Biến:' .$last_reading_cbmua. ;
+    echo $last_reading_cbmua;
     echo   '<h2> Bảng Dữ Liệu ' . $readings_count . ' Lần Đọc Gần Nhất</h2>
             <table cellspacing="6" cellpadding="5" id="tableReadings">
                 <tr>

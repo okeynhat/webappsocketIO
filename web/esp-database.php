@@ -69,7 +69,7 @@
       die("Kết nối thất bại: " . $conn->connect_error);
     }
 
-    $sql = "SELECT id, sensor, location, value1, value2, value3, reading_time,cambienmua FROM SensorData order by reading_time desc limit 1" ;
+    $sql = "SELECT id, sensor, location, value1, value2, value3, reading_time, cambienmua FROM SensorData order by reading_time desc limit 1" ;
     if ($result = $conn->query($sql)) {
       return $result->fetch_assoc();
     }
