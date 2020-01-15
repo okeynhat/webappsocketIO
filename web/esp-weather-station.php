@@ -158,8 +158,8 @@
 
     function setTemperature(curVal){
     	//set range for Temperature in Celsius -5 Celsius to 38 Celsius
-    	var minTemp = -5.0;
-    	var maxTemp = 1000.0;
+    	var minTemp = -15.0;
+    	var maxTemp = 100.0;
         //set range for Temperature in Fahrenheit 23 Fahrenheit to 100 Fahrenheit
     	//var minTemp = 23;
     	//var maxTemp = 100;
