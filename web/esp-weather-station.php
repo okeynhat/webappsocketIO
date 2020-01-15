@@ -50,7 +50,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
     <header class="header">
-        <h1>📊 ESP Weather Station</h1>
+        <h1>📊 Trạm Thời Tiết</h1>
         <form method="get">
             <input type="number" name="readingsCount" min="1" placeholder="Number of readings (<?php echo $readings_count; ?>)">
             <input type="submit" value="UPDATE">
@@ -60,7 +60,7 @@
     <p>Last reading: <?php echo $last_reading_time; ?></p>
     <section class="content">
 	    <div class="box gauge--1">
-	    <h3>TEMPERATURE</h3>
+	    <h3>NHIỆT ĐỘ</h3>
               <div class="mask">
 			  <div class="semi-circle"></div>
 			  <div class="semi-circle--mask"></div>
@@ -68,12 +68,12 @@
 		    <p style="font-size: 30px;" id="temp">--</p>
 		    <table cellspacing="5" cellpadding="5">
 		        <tr>
-		            <th colspan="3">Temperature <?php echo $readings_count; ?> readings</th>
+		            <th colspan="3">Nhiệt Độ <?php echo $readings_count; ?> Đọc Gần Nhất</th>
 	            </tr>
 		        <tr>
-		            <td>Min</td>
-                    <td>Max</td>
-                    <td>Average</td>
+		            <td>Thấp Nhất</td>
+                    <td>Cao Nhất</td>
+                    <td>Trung Bình</td>
                 </tr>
                 <tr>
                     <td><?php echo $min_temp['min_amount']; ?> &deg;C</td>
@@ -83,7 +83,7 @@
             </table>
         </div>
         <div class="box gauge--2">
-            <h3>HUMIDITY</h3>
+            <h3>ĐỘ ẨM</h3>
             <div class="mask">
                 <div class="semi-circle"></div>
                 <div class="semi-circle--mask"></div>
@@ -91,12 +91,12 @@
             <p style="font-size: 30px;" id="humi">--</p>
             <table cellspacing="5" cellpadding="5">
                 <tr>
-                    <th colspan="3">Humidity <?php echo $readings_count; ?> readings</th>
+                    <th colspan="3">Độ Ẩm <?php echo $readings_count; ?> Đọc Gần Nhất</th>
                 </tr>
                 <tr>
-                    <td>Min</td>
-                    <td>Max</td>
-                    <td>Average</td>
+                    <td>Thấp Nhất</td>
+                    <td>Cao Nhất</td>
+                    <td>Trung Bình</td>
                 </tr>
                 <tr>
                     <td><?php echo $min_humi['min_amount']; ?> %</td>
