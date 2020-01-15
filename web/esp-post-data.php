@@ -2,7 +2,7 @@
 <?php
   include_once('esp-database.php');
   $api_key_value = "tPmAT5Ab3j7F9";
-  $api_key= $sensor = $location = $value1 = $value2 = $value3 = "";
+  $api_key= $sensor = $location = $value1 = $value2 = $value3 = $value4 = "";
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $api_key = test_input($_POST["api_key"]);
@@ -12,8 +12,9 @@
       $value1 = test_input($_POST["value1"]);
       $value2 = test_input($_POST["value2"]);
       $value3 = test_input($_POST["value3"]);
+      $value4 = test_input($_POST["value4"]);
 
-      $result = insertReading($sensor, $location, $value1, $value2, $value3);
+      $result = insertReading($sensor, $location, $value1, $value2, $value3, , $value4);
       echo $result;
     }
     else {
