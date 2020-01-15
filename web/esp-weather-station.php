@@ -25,6 +25,7 @@
     $last_reading = getLastReadings();
     $last_reading_temp = $last_reading["value1"];
     $last_reading_humi = $last_reading["value2"];
+    $last_reading_mua = $last_reading["value4"];
     $last_reading_time = $last_reading["reading_time"];
 
     // Uncomment to set timezone to - 1 hour (you can change 1 to any number)
@@ -59,6 +60,7 @@
     </header>
 <body>
     <p>Lần Nhận Giá Trị Gần Nhất: <?php echo $last_reading_time; ?></p>
+    <p>Trạng Thái Cảm Biến Mưa: <?php echo $last_reading_mua; ?></p>
     <section class="content">
 	    <div class="box gauge--1">
 	    <h3>NHIỆT ĐỘ</h3>
