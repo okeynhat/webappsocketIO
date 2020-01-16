@@ -8,13 +8,13 @@
 </head>
 <body>
 	<div class="container">
-		<h1></h1>";
+		<h1></h1>
 			<div class="row">
   				<div class="col-md-2"><input class="btn btn-block btn-lg btn-primary" type="button" value="On" onclick="on()"></div>
   				<div class="col-md-2"><input class="btn btn-block btn-lg btn-danger" type="button" value="Off" onclick="off()"></div>
  			</div>		
 	</div>
- <script>function on() {$.get(\"/on\");}</script>
-  <script>function off() {$.get(\"/off\");} </script>
+ <script>function on() {$.get("/on");} </script>
+  <script>function off() {$.get("/off");} </script>
 </body>
 </html>
