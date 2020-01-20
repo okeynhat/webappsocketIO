@@ -79,7 +79,28 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+	
+	var database = firebase.database();
+	function writeUserData(userId, name, email, imageUrl) {
+  firebase.database().ref('users/' + userId).set({
+    username: name,
+    email: email,
+    profile_picture : imageUrl
+  });
+}
 </script>
+	
+	<td>Nhập Email</td>
+            <input type="number" name="name" min="1" placeholder="Giá trị lấy gần nhất">
+            <input type="submit" value="Cập Nhật">
+	<td>Nhập Email</td>
+            <input type="number" name="email" min="1" placeholder="Giá trị lấy gần nhất">
+            <input type="submit" value="Cập Nhật">
+	<td>Nhập Email</td>
+            <input type="number" name="imageUrl" min="1" placeholder="Giá trị lấy gần nhất">
+            <input type="submit" value="Cập Nhật">
+	
+	
 	
     <p>Lần Nhận Giá Trị Gần Nhất: <?php echo $last_reading_time; ?></p>
     <p>Trạng Thái Cảm Biến Mưa: <?php echo $last_reading_mua; ?></p>
