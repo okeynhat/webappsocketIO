@@ -59,6 +59,28 @@
         </form>
     </header>
 <body>
+	<!-- Khúc này kết nối firebase -->
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDQeQ-Y2vo9VvcO5fQjLAJiywXS8M51qGM",
+    authDomain: "iotthuc.firebaseapp.com",
+    databaseURL: "https://iotthuc.firebaseio.com",
+    projectId: "iotthuc",
+    storageBucket: "iotthuc.appspot.com",
+    messagingSenderId: "1018859871923",
+    appId: "1:1018859871923:web:a6ddbc98dc1c5ebed29ac6"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+	
     <p>Lần Nhận Giá Trị Gần Nhất: <?php echo $last_reading_time; ?></p>
     <p>Trạng Thái Cảm Biến Mưa: <?php echo $last_reading_mua; ?></p>
     <section class="content">
