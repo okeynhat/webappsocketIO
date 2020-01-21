@@ -68,7 +68,7 @@
 
 <script>
   // Your web app's Firebase configuration
-  var firebaseConfig = {
+  var config = {
     apiKey: "AIzaSyDQeQ-Y2vo9VvcO5fQjLAJiywXS8M51qGM",
     authDomain: "iotthuc.firebaseapp.com",
     databaseURL: "https://iotthuc.firebaseio.com",
@@ -77,17 +77,25 @@
     messagingSenderId: "1018859871923",
     appId: "1:1018859871923:web:a6ddbc98dc1c5ebed29ac6"
   };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-	
-	var database = firebase.database();
-	function writeUserData(userId, name, email, imageUrl) {
-  firebase.database().ref('users/' + userId).set({
-    username: name,
-    email: email,
-    profile_picture : imageUrl
-  });
-}
+
+
+  firebase.initializeApp(config);
+
+// Reference to your entire Firebase database
+var myFirebase = firebase.database().ref();
+
+// Get a reference to the recommendations object of your Firebase.
+// Note: this doesn't exist yet. But when we write to our Firebase using
+// this reference, it will create this object for us!
+var recommendations = myFirebase.child("recommendations");
+
+// Push our first recommendation to the end of the list and assign it a
+// unique ID automatically.
+recommendations.push({
+    "title": "The danger of a single story",
+    "presenter": "Chimamanda Ngozi Adichie",
+    "link": "https://www.ted.com/talks/chimamanda_adichie_the_danger_of_a_single_story"
+});
 </script>
 	
 	<td>Nhập Email</td>
@@ -203,8 +211,10 @@
 
     function setTemperature(curVal){
     	//set range for Temperature in Celsius -5 Celsius to 38 Celsius
-    	var minTemp = -15.0;
+        //Cài nhiệt độ từ -2 độ đến 40 độ nhiệt độ Việt Nam như vậy
+    	var minTemp = -2.0;
     	var maxTemp = 40.0;
+        //Phần này cài thêm độ F
         //set range for Temperature in Fahrenheit 23 Fahrenheit to 100 Fahrenheit
     	//var minTemp = 23;
     	//var maxTemp = 100;
@@ -220,6 +230,7 @@
 
     function setHumidity(curVal){
     	//set range for Humidity percentage 0 % to 100 %
+        //Cài giá trị độ ẩm từ 0% - 100%
     	var minHumi = 0;
     	var maxHumi = 100;
 
@@ -241,6 +252,6 @@
 
 </body>
 <footer>
-<h3> Xây Dựng Bởi Trần Minh Thức </h3>
+<h1> Xây Dựng Bởi Trần Minh Thức </h1>
 </footer>
 </html>
