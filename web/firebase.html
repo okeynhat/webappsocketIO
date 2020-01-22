@@ -101,7 +101,7 @@
 				number: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
 				age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
 			};
-			johnRef.update ();
+			johnRef.update (capnhatdt);
 		};
 		//create a variable to hold our orders list from firebase
 		var firebaseOrdersCollection = database.ref().child('orders');
@@ -153,7 +153,7 @@
 		//mote
 var playersRef = firebase.database().ref("players/");
 playersRef.set ({
-   John2: {
+   John: {
       number: 1,
       age: 30
    },
