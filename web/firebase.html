@@ -122,34 +122,7 @@
 			
 		};
 		//Đọc Ngược dữ liệu từ Firebase
-		johnRef.on('value',function(ttb1){
-			//Tạo một cái chuỗi trống chứa HTML
-			var alltb1Html = "";
-			//Forech thằng ttb1.
-			ttb1.forEach(function(firebasetb1Reference){
-				
-				//this gets the actual data (JSON) for the order.
-				var ttb1 = firebasetb1Reference.val();
-				console.log(ttb1); //check your console to see it!
-				
-				//create html for the individual order
-				//note: this is hard to make look pretty! Be sure to keep your indents nice :-)
-				//IMPORTANT: we use ` here instead of ' (notice the difference?) That allows us to use enters
-				var individialtb1Html =	`<div class='item'>
-												<p>Name: `+ttb1.Name+`</p>
-												<p>Notes: `+ttb1.Age+`</p>
-											</div>`;
-				
-				//add the individual order html to the end of the allOrdersHtml list
-				alltb1Html = alltb1Html + individialtb1Html;
-			});
-			
-			//actaull put the html on the page inside the element with the id PreviousOrders
-			$('#giatritb1').html(alltb1Html);
-			
-			//note: an alternative approach would be to create a hidden html element for one order on the page, duplicate it in the forEach loop, unhide it, and replace the information, and add it back. 
-		});
-
+		
 		//create a 'listener' which waits for changes to the values inside the firebaseOrdersCollection 
 		firebaseOrdersCollection.on('value',function(orders){
 			
