@@ -132,7 +132,7 @@
 		//Đọc Ngược dữ liệu từ Firebase
 		
 		//create a 'listener' which waits for changes to the values inside the firebaseOrdersCollection 
-		firebaseOrdersCollection.on('value',function(orders){
+		johnRef.on('value',function(orders){
 			
 			//create an empty string that will hold our new HTML
 			var allOrdersHtml = "";
