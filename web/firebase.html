@@ -42,6 +42,15 @@
 			</form>
 		</div>
 		
+		<h1>Điều Khiển Thiết Bị</h1>
+		<form>
+			<div class="form-group">
+					<label for="tb1">Thiết bị 1: </label>
+					<input type="text" class="form-control" id="tb1">
+			</div>
+
+				<a class="btn btn-default" onclick="capnhat()">Cập Nhật</a>
+		</form>
 		<div>
 			<h1>Previous Orders</h1>
 			<div id="previousOrders">
@@ -69,7 +78,7 @@
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 		var config = {
-			apiKey: "AIzaSyDQeQ-Y2vo9VvcO5fQjLAJiywXS8M51qGM",
+	apiKey: "AIzaSyDQeQ-Y2vo9VvcO5fQjLAJiywXS8M51qGM",
     authDomain: "iotthuc.firebaseapp.com",
     databaseURL: "https://iotthuc.firebaseio.com",
     projectId: "iotthuc",
@@ -85,7 +94,15 @@
 		//initialize your firebase
 		firebase.initializeApp(config);
 		var database = firebase.database();
-		
+		function submitOrder() {
+		//Cập nhật giá trị lên Database
+		var johnRef = firebase.database().ref("players/John");
+		var capnhatdt = {
+				number: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
+				age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
+			};
+			johnRef.update ();
+		};
 		//create a variable to hold our orders list from firebase
 		var firebaseOrdersCollection = database.ref().child('orders');
 
@@ -134,15 +151,14 @@
 			//note: an alternative approach would be to create a hidden html element for one order on the page, duplicate it in the forEach loop, unhide it, and replace the information, and add it back. 
 		});
 		//mote
-		var playersRef = firebase.database().ref("players/");
-
+var playersRef = firebase.database().ref("players/");
 playersRef.set ({
-   John: {
+   John2: {
       number: 1,
       age: 30
    },
 	
-   Amanda: {
+   Amanda2: {
       number: 2,
       age: 20
    }
