@@ -52,6 +52,7 @@
 			</div>
 
 				<a class="btn btn-default" onclick="capnhat()">Cập Nhật</a>
+				<a class="btn btn-default" id="tb1_load">Load</a>
 
 		</form>
 		<div>
@@ -100,6 +101,7 @@
 		function capnhat() {
 		//Cập nhật giá trị lên Database
 		var johnRef = firebase.database().ref("players/John");
+		var firebaseRef = firebase.database().ref().child('players/John');
 		var capnhatdt = {
 				number: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
 				age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
@@ -123,12 +125,14 @@
 			
 		};
 		//Đọc Ngược dữ liệu từ Firebase
-		
-		var johnRef2 = firebase.database().ref("players/John/age");
+		$('#tb1_load').click(function() {
+			firebaseRef.on('value', function(snapshot) {
+				$('#tb1').val(snapshot.child('age').val());
+		});
+		});
 		johnRef2.on('value', function(snapshot) {
   		updateStarCount(postElement, snapshot.val());
 		});
-		document.write("aaaaaaaaaaaaa" + postElement + updateStarCount);
 		//create a 'listener' which waits for changes to the values inside the firebaseOrdersCollection 
 		firebaseOrdersCollection.on('value',function(orders){
 			
