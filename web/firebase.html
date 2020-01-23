@@ -123,12 +123,12 @@
 			
 		};
 		//Đọc Ngược dữ liệu từ Firebase
-		document.write("aaaaaaaaaaaaa");
-		var johnRef2 = firebase.database().ref("players/John/Name");
+		
+		var johnRef2 = firebase.database().ref("players/John/age");
 		johnRef2.on('value', function(snapshot) {
   		updateStarCount(postElement, snapshot.val());
 		});
-  		document.write("hien ơ day" + postElement);
+		document.write("aaaaaaaaaaaaa");
 		//create a 'listener' which waits for changes to the values inside the firebaseOrdersCollection 
 		firebaseOrdersCollection.on('value',function(orders){
 			
