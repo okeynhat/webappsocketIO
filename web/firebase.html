@@ -127,11 +127,8 @@
 		//Đọc Ngược dữ liệu từ Firebase
 		$('#tb1_load').click(function() {
 			firebaseRef.on('value', function(snapshot) {
-				$('#tb1').val(snapshot.child('age').val());
+			$('#tb1').val(snapshot.child('age').val());
 		});
-		});
-		johnRef2.on('value', function(snapshot) {
-  		updateStarCount(postElement, snapshot.val());
 		});
 		//create a 'listener' which waits for changes to the values inside the firebaseOrdersCollection 
 		firebaseOrdersCollection.on('value',function(orders){
@@ -164,18 +161,6 @@
 			//note: an alternative approach would be to create a hidden html element for one order on the page, duplicate it in the forEach loop, unhide it, and replace the information, and add it back. 
 		});
 		//mote
-var playersRef = firebase.database().ref("players/");
-playersRef.set ({
-   John: {
-      number: 1,
-      age: 30
-   },
-	
-   Amanda2: {
-      number: 2,
-      age: 20
-   }
-});
 		
 		
 	</script>
