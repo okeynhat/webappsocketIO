@@ -128,9 +128,7 @@
 		johnRef2.on('value', function(snapshot) {
   		updateStarCount(postElement, snapshot.val());
 		});
-
-		 var a = snapshot.val();
-  		document.write("hien ơ day" + a);
+  		document.write("hien ơ day" + postElement);
 		//create a 'listener' which waits for changes to the values inside the firebaseOrdersCollection 
 		firebaseOrdersCollection.on('value',function(orders){
 			
