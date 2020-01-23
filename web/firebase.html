@@ -15,13 +15,6 @@
 </head>
 
 <body>
-<h1>Firebase example</h1>
-    <pre id='data'></pre>
-    <script>
-    	var ref = firebase.database().ref("players/John/age");
-    	ref.on("value", function(snapshot){
-    output.innerHTML = JSON.stringify(snapshot.val(), null, 2);
-});</script>
 
 	<div class="container">
 
@@ -130,9 +123,9 @@
 			
 		};
 		//Đọc Ngược dữ liệu từ Firebase
-		
+		document.write("aaaaaaaaaaaaa");
 		//create a 'listener' which waits for changes to the values inside the firebaseOrdersCollection 
-		johnRef.on('value',function(orders){
+		firebaseOrdersCollection.on('value',function(orders){
 			
 			//create an empty string that will hold our new HTML
 			var allOrdersHtml = "";
