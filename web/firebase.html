@@ -98,10 +98,10 @@
 		//initialize your firebase
 		firebase.initializeApp(config);
 		var database = firebase.database();
+		var firebaseRef = firebase.database().ref().child('test');
 		function capnhat() {
 		//Cập nhật giá trị lên Database
 		var johnRef = firebase.database().ref("players/John");
-		var firebaseRef = firebase.database().ref().child('test');
 		var capnhatdt = {
 				number: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
 				age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
@@ -126,7 +126,8 @@
 		};
 		//Đọc Ngược dữ liệu từ Firebase
 		$('#tb1_load').click(function() {
-			$('#tb1').val(' ');
+			firebaseRef.on('value', function(snapshot) {
+			$('#tb1').val(snapshot.child('thu').val())
 		});
 		//create a 'listener' which waits for changes to the values inside the firebaseOrdersCollection 
 		firebaseOrdersCollection.on('value',function(orders){
