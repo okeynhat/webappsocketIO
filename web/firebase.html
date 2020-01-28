@@ -134,15 +134,10 @@
 		var OFF = "OFF";
 			//Khi nhấn nút
 		$('#tb1_load').click(function() {
-
-			var capnhatdt = {
-				number: "ON", //another way you could write is $('#myForm [name="fullname"]').
-				age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
-			};
-			johnRef.update (capnhatdt);
-			firebaseRef.on('value', function(snapshot) 
+		firebaseRef.on('value', function(snapshot) 
 		{
 		var thuthoi2 = snapshot.child('thu').val();
+		});
 			if (thuthoi2=="ON") //nếu dữ liệu đang là ON
 			{
 				alert("Đã Tắt");
@@ -151,14 +146,8 @@
 			if(thuthoi2=="OFF")//ngược lại
 			{
 				alert("Còn Bật");
-				var capnhatdt = {
-				number: "ON", //another way you could write is $('#myForm [name="fullname"]').
-				age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
-			};
-			johnRef.update (capnhatdt);
 			}
 		
-		});
 		});
 
 			firebaseRef.on('value', function(snapshot) 
