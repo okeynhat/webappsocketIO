@@ -101,6 +101,7 @@
 		var database = firebase.database();
 		var firebaseRef = firebase.database().ref().child('test');
 		var firebaseRef2 = firebase.database().ref().child('test/thu');
+		var thuthoi2 = "";
 		function capnhat() {
 		//Cập nhật giá trị lên Database
 		var johnRef = firebase.database().ref("players/John");
@@ -129,16 +130,18 @@
 		//Đọc Ngược dữ liệu từ Firebase
 			//lệnh lấy dữ liệu
 		
-		
+		firebaseRef.on('value', function(snapshot) 
+		{
+			thuthoi2 = snapshot.child('thu').val();
+		});
 		var ON = "ON";
 		var OFF = "OFF";
 			//Khi nhấn nút
 		$('#tb1_load').click(function() {
-		firebaseRef.on('value', function(snapshot) 
-		{
-		var thuthoi2 = snapshot.child('thu').val();
-		});
-			if (thuthoi2=="ON") //nếu dữ liệu đang là ON
+
+		
+			
+		if (thuthoi2=="ON") //nếu dữ liệu đang là ON
 			{
 				alert("Đã Tắt");
 					
