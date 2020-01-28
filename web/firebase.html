@@ -36,16 +36,13 @@
 	<!-- Bootstrap JS -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+	<!-- FireBase Lib -->
 	<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase.js"></script>
 
 	<script>
-
-		//Store information about your firebase so we can connect
-		
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//IMPORTANT: REPLACE THESE WITH YOUR VALUES (these ones won't work)
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//Khúc này khai báo cấu hình Firebase
+	//In ra màn hình tên thằng viết cái này
+		alert("Được tạo bởi: Trần Minh Thức - Phiên bản: BETA V1.0.3a")
+	//Khúc này khai báo cấu hình Firebase
 		var config = {
 			apiKey: "AIzaSyDQeQ-Y2vo9VvcO5fQjLAJiywXS8M51qGM",
     		authDomain: "iotthuc.firebaseapp.com",
@@ -55,29 +52,29 @@
    			messagingSenderId: "1018859871923",
     		appId: "1:1018859871923:web:a6ddbc98dc1c5ebed29ac6"
 		};
-		
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-		
-		//initialize your firebase
+	//Gọi ra để dùng 
 		firebase.initializeApp(config);
-		var database = firebase.database();
-		var firebaseRef = firebase.database().ref().child('test'); //Tạo Ref dữ liệu
-		var tbi1_status = ""; //Biến trạng thái Thiết bị số 1
-		var johnRef = firebase.database().ref("players/John");
-	//lệnh lấy dữ liệu: dùng để đọc thông tin từ Firebase
+		var firebaseRef = firebase.database().ref().child('test');
+
+	//Khai báo biến toàn cục (Xài cho cả chương trình)
+		var tbi1_status = "";
+		var tbi2_status = "";
+
+	//Đoạn này dùng để READ (đọc) dữ liệu từ database sau đó bỏ vào biến xài
 		firebaseRef.on('value', function(snapshot) 
 		{
 			tbi1_status = snapshot.child('thu').val();
 		});
-	//Khi nhấn nút
+
+	//Đoạn chương trình xảy ra khi nhấn vào cái button
 		$('#tb1_load').click(function() {
 			if (tbi1_status=="ON") //nếu dữ liệu đang là ON
 			{
-				alert("Đã Tắt");//Đang on bấm vào sẽ là tắt
+				alert("Đã Tắt");//Thông báo ra màn hình
 				var capnhatdt = {
-					thu: "OFF", //another way you could write is $('#myForm [name="fullname"]').
+					thu: "OFF",
 				};
 				firebaseRef.update (capnhatdt);	//Cập nhật lại
 			}
@@ -85,25 +82,22 @@
 			{
 				alert("Còn Bật");
 			}
-		
 		});
 
-			firebaseRef.on('value', function(snapshot) 
-		{
-		var thuthoi = snapshot.child('thu').val();
-			if(thuthoi=="ON"){
-				var button_tb1_off = document.getElementById('tb1_load');
-    			button_tb1_off.innerHTML = "Tắt Đèn";
-				alert("Đèn Đang Bật");}
-			else {
-				var button_tb1 = document.getElementById('tb1_load');
+	//Đoạn này dùng để thay đổi trạng thái cái nút nhấn (Viết vầy cho nó dài thôi :)))
+		if(tbi1_status=="ON"){
+			var button_tbi1_off = document.getElementById('tb1_load');
+    		button_tbi1_off.innerHTML = "Tắt Đèn";
+		;}
+		else {
+			var button_tb1 = document.getElementById('tb1_load');
     			button_tb1.innerHTML = "Bật Lại";
-				alert("Tắt Mẹ Rồi");}
-			 var element = document.getElementById('giatri_tbi1');
-    			element.innerHTML = thuthoi;
-		});		
+		;}
+
+		//Này là đoạn Text
+		var element = document.getElementById('giatri_tbi1');
+    			element.innerHTML = thuthoi;	
 </script>
 
 </body>
-
 </html>
