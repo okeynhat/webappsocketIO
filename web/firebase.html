@@ -101,6 +101,9 @@
 		var database = firebase.database();
 		var firebaseRef = firebase.database().ref().child('test');
 		var firebaseRef2 = firebase.database().ref().child('test/thu');
+
+		firebaseRef.on('value', function(snapshot) {
+		var thuthoi = snapshot.child('thu').val();
 		function capnhat() {
 		//Cập nhật giá trị lên Database
 		var johnRef = firebase.database().ref("players/John");
@@ -141,8 +144,7 @@
 		};
 		//Đọc Ngược dữ liệu từ Firebase
 			//lệnh lấy dữ liệu
-		firebaseRef.on('value', function(snapshot) {
-		var thuthoi = snapshot.child('thu').val();
+		
 		var ON = "ON";
 		var OFF = "OFF";
 			//Khi nhấn nút
