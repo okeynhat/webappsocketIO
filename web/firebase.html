@@ -19,17 +19,12 @@
 				<h3 style="text-align:center;">Được Xây Dựng Và Phát Triển Bởi MDTGr</h3>
 			</form>
 		</div>
-		</div>
+	</div>
 		<h1 style="text-align:center;">Điều Khiển Thiết Bị</h1>
 		<form>
 			<div class="form-group">
-					<label for="thietbi1">Thiết bị 1 </label>
+					<h3>Thiết bị 1 </h3>
 					<p id="giatri_tbi1"> Đang cập nhật</p>
-					<div>
-					<input type="text" class="form-control" id="tb1">
-			</div>
-
-				<a class="btn btn-default" onclick="capnhat()">Cập Nhật</a>
 				<a class="btn btn-default" id="tb1_load" onclick="tb1_click()">Load</a>
 
 		</form>
@@ -50,15 +45,15 @@
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		//IMPORTANT: REPLACE THESE WITH YOUR VALUES (these ones won't work)
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+		//Khúc này khai báo cấu hình Firebase
 		var config = {
-	apiKey: "AIzaSyDQeQ-Y2vo9VvcO5fQjLAJiywXS8M51qGM",
-    authDomain: "iotthuc.firebaseapp.com",
-    databaseURL: "https://iotthuc.firebaseio.com",
-    projectId: "iotthuc",
-    storageBucket: "iotthuc.appspot.com",
-    messagingSenderId: "1018859871923",
-    appId: "1:1018859871923:web:a6ddbc98dc1c5ebed29ac6"
+			apiKey: "AIzaSyDQeQ-Y2vo9VvcO5fQjLAJiywXS8M51qGM",
+    		authDomain: "iotthuc.firebaseapp.com",
+    		databaseURL: "https://iotthuc.firebaseio.com",
+    		projectId: "iotthuc",
+    		storageBucket: "iotthuc.appspot.com",
+   			messagingSenderId: "1018859871923",
+    		appId: "1:1018859871923:web:a6ddbc98dc1c5ebed29ac6"
 		};
 		
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -68,43 +63,24 @@
 		//initialize your firebase
 		firebase.initializeApp(config);
 		var database = firebase.database();
-		var firebaseRef = firebase.database().ref().child('test');
-		var firebaseRef2 = firebase.database().ref().child('test/thu');
-		var thuthoi2 = "";
+		var firebaseRef = firebase.database().ref().child('test'); //Tạo Ref dữ liệu
+		var tbi1_status = ""; //Biến trạng thái Thiết bị số 1
 		var johnRef = firebase.database().ref("players/John");
-		function capnhat() {
-		//Cập nhật giá trị lên Database
-		
-		
-		};
-		//create a variable to hold our orders list from firebase
-		
-
-		//this function is called when the submit button is clicked
-		
-		//Đọc Ngược dữ liệu từ Firebase
-			//lệnh lấy dữ liệu
-		
+	//lệnh lấy dữ liệu: dùng để đọc thông tin từ Firebase
 		firebaseRef.on('value', function(snapshot) 
 		{
-			thuthoi2 = snapshot.child('thu').val();
+			tbi1_status = snapshot.child('thu').val();
 		});
-		var ON = "ON";
-		var OFF = "OFF";
-			//Khi nhấn nút
+	//Khi nhấn nút
 		$('#tb1_load').click(function() {
-
-		
-			
-		if (thuthoi2=="ON") //nếu dữ liệu đang là ON
+			if (tbi1_status=="ON") //nếu dữ liệu đang là ON
 			{
-				alert("Đã Tắt");
+				alert("Đã Tắt");//Đang on bấm vào sẽ là tắt
 				var capnhatdt = {
-				number: "ON", //another way you could write is $('#myForm [name="fullname"]').
-				age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
-			};
-			johnRef.update (capnhatdt);
-					
+					thu: "ON", //another way you could write is $('#myForm [name="fullname"]').
+					age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
+				};
+				firebaseRef.update (capnhatdt);	//Cập nhật lại
 			}
 			if(thuthoi2=="OFF")//ngược lại
 			{
