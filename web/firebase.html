@@ -104,6 +104,19 @@
 		function capnhat() {
 		//Cập nhật giá trị lên Database
 		var johnRef = firebase.database().ref("players/John");
+		if (thuthoi=="ON") //nếu dữ liệu đang là ON
+			{
+				alert("Đã Tắt");	
+				var capnhatdt2 = {
+				number: "ON", //another way you could write is $('#myForm [name="fullname"]').
+				age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
+				};
+				johnRef.push(capnhatdt2);	
+			}
+			if(thuthoi=="OFF")//ngược lại
+			{
+				alert("Còn Bật");
+			}
 		var capnhatdt = {
 				number: "ON", //another way you could write is $('#myForm [name="fullname"]').
 				age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
