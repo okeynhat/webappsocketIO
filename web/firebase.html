@@ -53,7 +53,7 @@
 			</div>
 
 				<a class="btn btn-default" onclick="capnhat()">Cập Nhật</a>
-				<a class="btn btn-default" id="tb1_load">Load</a>
+				<a class="btn btn-default" id="tb1_load" onclick="tb1_click()">Load</a>
 
 		</form>
 		<div>
@@ -136,13 +136,17 @@
 		$('#tb1_load').click(function() {
 			if (thuthoi=="ON") //nếu dữ liệu đang là ON
 			{
-				var trangthai_tb1 = OFF;			}
+				alert("Đã Tắt");		
+			}
 			else if(thuthoi=="OFF")//ngược lại
 			{
-				var trangthai_tb1 = ON;
+				alert("Còn Bật");
 			}
-
-			firebaseRef2.update("FFFFFF");
+			var capnhatdt2 = {
+				number: "ON", //another way you could write is $('#myForm [name="fullname"]').
+				age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
+			};
+			johnRef.update (capnhatdt2);
 		});
 			
 			if(thuthoi=="ON"){
