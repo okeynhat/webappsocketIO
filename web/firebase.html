@@ -105,7 +105,7 @@
 		//Cập nhật giá trị lên Database
 		var johnRef = firebase.database().ref("players/John");
 		var capnhatdt = {
-				number: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
+				number: "ON", //another way you could write is $('#myForm [name="fullname"]').
 				age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
 			};
 			johnRef.update (capnhatdt);
