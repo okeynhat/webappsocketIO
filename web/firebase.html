@@ -134,8 +134,7 @@
 
 		firebaseRef.on('value', function(snapshot) {
 			var thuthoi = snapshot.child('thu').val();
-			alert(thuthoi);
-			if(thuthoi==ON){
+			if(thuthoi=="ON"){
 			alert("Đèn Đang Bật");}
 			else {alert("Tắt Mẹ Rồi");}
 			 var element = document.getElementById('giatri_tbi1');
