@@ -128,15 +128,16 @@
 		};
 		//Đọc Ngược dữ liệu từ Firebase
 			//lệnh lấy dữ liệu
-		firebaseRef.on('value', function(snapshot) 
-		{
-		var thuthoi = snapshot.child('thu').val();
+		
 		
 		var ON = "ON";
 		var OFF = "OFF";
 			//Khi nhấn nút
 		$('#tb1_load').click(function() {
-			if (thuthoi=="ON") //nếu dữ liệu đang là ON
+			firebaseRef.on('value', function(snapshot) 
+		{
+		var thuthoi2 = snapshot.child('thu').val();
+			if (thuthoi2=="ON") //nếu dữ liệu đang là ON
 			{
 				alert("Đã Tắt");
 				var capnhatdt = {
@@ -145,7 +146,7 @@
 			};
 			johnRef.update (capnhatdt);	
 			}
-			if(thuthoi=="OFF")//ngược lại
+			if(thuthoi2=="OFF")//ngược lại
 			{
 				alert("Còn Bật");
 				var capnhatdt = {
@@ -154,9 +155,13 @@
 			};
 			johnRef.update (capnhatdt);
 			}
-		});	
+		
 		});
-			
+		});
+
+			firebaseRef.on('value', function(snapshot) 
+		{
+		var thuthoi = snapshot.child('thu').val();
 			if(thuthoi=="ON"){
 				var button_tb1_off = document.getElementById('tb1_load');
     			button_tb1_off.innerHTML = "Tắt Đèn";
@@ -167,7 +172,7 @@
 				alert("Tắt Mẹ Rồi");}
 			 var element = document.getElementById('giatri_tbi1');
     			element.innerHTML = thuthoi;
-			
+		});		
 		
 		//create a 'listener' which waits for changes to the values inside the firebaseOrdersCollection 
 		firebaseOrdersCollection.on('value',function(orders){
