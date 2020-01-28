@@ -101,25 +101,9 @@
 		var database = firebase.database();
 		var firebaseRef = firebase.database().ref().child('test');
 		var firebaseRef2 = firebase.database().ref().child('test/thu');
-
-		firebaseRef.on('value', function(snapshot) {
-		var thuthoi = snapshot.child('thu').val();
 		function capnhat() {
 		//Cập nhật giá trị lên Database
 		var johnRef = firebase.database().ref("players/John");
-		if (thuthoi=="ON") //nếu dữ liệu đang là ON
-			{
-				alert("Đã Tắt");	
-				var capnhatdt2 = {
-				number: "ON", //another way you could write is $('#myForm [name="fullname"]').
-				age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
-				};
-				johnRef.push(capnhatdt2);	
-			}
-			if(thuthoi=="OFF")//ngược lại
-			{
-				alert("Còn Bật");
-			}
 		var capnhatdt = {
 				number: "ON", //another way you could write is $('#myForm [name="fullname"]').
 				age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
@@ -144,23 +128,31 @@
 		};
 		//Đọc Ngược dữ liệu từ Firebase
 			//lệnh lấy dữ liệu
-		
+		firebaseRef.on('value', function(snapshot) 
+		{
+		var thuthoi = snapshot.child('thu').val();
+		});
 		var ON = "ON";
 		var OFF = "OFF";
 			//Khi nhấn nút
 		$('#tb1_load').click(function() {
 			if (thuthoi=="ON") //nếu dữ liệu đang là ON
 			{
-				alert("Đã Tắt");	
-				var capnhatdt2 = {
+				alert("Đã Tắt");
+				var capnhatdt = {
 				number: "ON", //another way you could write is $('#myForm [name="fullname"]').
 				age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
-				};
-				johnRef.push(capnhatdt2);	
+			};
+			johnRef.update (capnhatdt);	
 			}
 			if(thuthoi=="OFF")//ngược lại
 			{
 				alert("Còn Bật");
+				var capnhatdt = {
+				number: "ON", //another way you could write is $('#myForm [name="fullname"]').
+				age: $('#tb1').val(), //another way you could write is $('#myForm [name="fullname"]').
+			};
+			johnRef.update (capnhatdt);
 			}
 			
 		});
@@ -176,7 +168,7 @@
 			 var element = document.getElementById('giatri_tbi1');
     			element.innerHTML = thuthoi;
 			
-		});
+		
 		//create a 'listener' which waits for changes to the values inside the firebaseOrdersCollection 
 		firebaseOrdersCollection.on('value',function(orders){
 			
