@@ -131,7 +131,7 @@
 		firebaseRef.on('value', function(snapshot) 
 		{
 		var thuthoi = snapshot.child('thu').val();
-		});
+		
 		var ON = "ON";
 		var OFF = "OFF";
 			//Khi nhấn nút
@@ -154,7 +154,7 @@
 			};
 			johnRef.update (capnhatdt);
 			}
-			
+		});	
 		});
 			
 			if(thuthoi=="ON"){
