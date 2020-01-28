@@ -129,20 +129,20 @@
 			//lệnh lấy dữ liệu
 		firebaseRef.on('value', function(snapshot) {
 		var thuthoi = snapshot.child('thu').val();
-		var trangthai_tb1 = "LOAD";
-		
+		var ON = "ON";
+		var OFF = "OFF";
 			//Khi nhấn nút
 		$('#tb1_load').click(function() {
 			if (thuthoi=="ON") //nếu dữ liệu đang là ON
 			{
-				trangthai_tb1 = {
-					thu= "OFF",
+				var trangthai_tb1 = {
+					thu= OFF,
 				};
 			}
 			else if(thuthoi=="OFF")//ngược lại
 			{
-				trangthai_tb1 ={
-					thu="ON",
+				var trangthai_tb1 ={
+					thu=ON,
 				};
 			}
 
