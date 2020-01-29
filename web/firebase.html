@@ -56,7 +56,7 @@
 
 	//Gọi ra để dùng 
 		firebase.initializeApp(config);
-		var firebaseRef = firebase.database().ref().child('thietbi/phongkhach');
+		var firebaseRef = firebase.database().ref('thietbi').child('phongkhach');
 
 	//Khai báo biến toàn cục (Xài cho cả chương trình)
 		var tbi1_status = "";
