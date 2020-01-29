@@ -132,7 +132,9 @@
 		{
 			nhietdo_living = snapshot.child('nhietdo').val();
 		
-			var temp_living = 30;
+			
+    	});
+    	var temp_living = 30;
 			setTemperature(temp_living);
 			function setTemperature(curVal)
 			{
@@ -140,8 +142,6 @@
 		    	var minTemp = -2.0;
 		    	var maxTemp = 40.0;
 		        //Phần này cài thêm độ F không xài độ F bỏ nha :)))
-		    	//var minTemp = 23;
-		    	//var maxTemp = 100;
 		    	//Khúc này là giải thuật nhiệt độ chạy theo cái hình cung từ 0-180 độ
 		    	var newVal = scaleValue(curVal, [minTemp, maxTemp], [0, 180]);
 		    	$('.gauge--1 .semi-circle--mask').attr({
@@ -151,7 +151,6 @@
 		    	});
 		    	$("#temp").text(curVal + ' ºC');
 	    	}
-    	});
 </script>
 
 </body>
