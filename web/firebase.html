@@ -98,7 +98,7 @@
 				};
 				firebaseRef.update (capnhatdt);	//Cập nhật lại
 			}
-			if(tbi1_status=="0")//ngược lại
+			else if (tbi1_status=="0")//ngược lại
 			{
 				alert("Đã Bật Đèn 1");
 				var capnhat = {
@@ -132,9 +132,6 @@
 		firebaseSesor.on('value' , function(snapshot)
 		{
 			nhietdo_living = snapshot.child('nhietdo').val();
-			const nhietdo_living_number  = + nhietdo_living;
-			const nt = nhietdo_living_number + 1;
-			alert(nt);
 		});
 </script>
 
