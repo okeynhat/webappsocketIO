@@ -132,9 +132,7 @@
 		{
 			nhietdo_living = snapshot.child('nhietdo').val();
 		
-			
-    	});
-    	var temp_living = 30;
+			var temp_living = + nhietdo_living;
 			setTemperature(temp_living);
 			function setTemperature(curVal)
 			{
@@ -151,6 +149,15 @@
 		    	});
 		    	$("#temp").text(curVal + ' ºC');
 	    	}
+		    function scaleValue(value, from, to) 
+		    {
+		        var scale = (to[1] - to[0]) / (from[1] - from[0]);
+		        var capped = Math.min(from[1], Math.max(from[0], value)) - from[0];
+		        return ~~(capped * scale + to[0]);
+	    	}
+    	});
+
+    
 </script>
 
 </body>
