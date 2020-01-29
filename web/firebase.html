@@ -130,28 +130,29 @@
 	//Đoạn này dùng để hiện nhiệt độ và độ ẩm lên
 		firebaseSesor.on('value' , function(snapshot)
 		{
-				nhietdo_living = snapshot.child('nhietdo').val();
-		});
-		var temp_living = + nhietdo_living;
-		setTemperature(temp_living);
-		alert(temp_living);
-		function setTemperature(curVal)
-		{
-	        //Cài nhiệt độ từ -2 độ đến 40 độ nhiệt độ Việt Nam như vậy
-	    	var minTemp = -2.0;
-	    	var maxTemp = 40.0;
-	        //Phần này cài thêm độ F không xài độ F bỏ nha :)))
-	    	//var minTemp = 23;
-	    	//var maxTemp = 100;
-	    	//Khúc này là giải thuật nhiệt độ chạy theo cái hình cung từ 0-180 độ
-	    	var newVal = scaleValue(curVal, [minTemp, maxTemp], [0, 180]);
-	    	$('.gauge--1 .semi-circle--mask').attr({
-	    		style: '-webkit-transform: rotate(' + newVal + 'deg);' +
-	    		'-moz-transform: rotate(' + newVal + 'deg);' +
-	    		'transform: rotate(' + newVal + 'deg);'
-	    	});
-	    	$("#temp").text(curVal + ' ºC');
-    	}
+			nhietdo_living = snapshot.child('nhietdo').val();
+		
+			var temp_living = + nhietdo_living;
+			setTemperature(temp_living);
+			alert(temp_living);
+			function setTemperature(curVal)
+			{
+		        //Cài nhiệt độ từ -2 độ đến 40 độ nhiệt độ Việt Nam như vậy
+		    	var minTemp = -2.0;
+		    	var maxTemp = 40.0;
+		        //Phần này cài thêm độ F không xài độ F bỏ nha :)))
+		    	//var minTemp = 23;
+		    	//var maxTemp = 100;
+		    	//Khúc này là giải thuật nhiệt độ chạy theo cái hình cung từ 0-180 độ
+		    	var newVal = scaleValue(curVal, [minTemp, maxTemp], [0, 180]);
+		    	$('.gauge--1 .semi-circle--mask').attr({
+		    		style: '-webkit-transform: rotate(' + newVal + 'deg);' +
+		    		'-moz-transform: rotate(' + newVal + 'deg);' +
+		    		'transform: rotate(' + newVal + 'deg);'
+		    	});
+		    	$("#temp").text(curVal + ' ºC');
+	    	}
+    	});
 </script>
 
 </body>
