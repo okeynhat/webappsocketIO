@@ -90,22 +90,21 @@
 
 	//Đoạn chương trình xảy ra khi nhấn vào cái button
 		$('#tb1_load').click(function() {
+			var capnhatdt = "";
 			if (tbi1_status=="1") //nếu dữ liệu đang là ON
 			{
-				alert("Đã Tắt Đèn 1");//Thông báo ra màn hình
-				var capnhatdt = {
+				capnhatdt = {
 					den1: "0",
 				};
-				firebaseRef.update (capnhatdt);	//Cập nhật lại
+				
 			}
 			else if (tbi1_status=="0")//ngược lại
 			{
-				alert("Đã Bật Đèn 1");
-				var capnhat = {
+				apnhatdt = {
 					den1: "1",
 				};
-				firebaseRef.update (capnhat);	//Cập nhật lại
 			}
+			firebaseRef.update (capnhatdt);	//Cập nhật lại
 		});
 
 	//Đoạn này dùng để thay đổi trạng thái cái nút nhấn
