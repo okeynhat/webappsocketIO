@@ -26,15 +26,15 @@
 
 	<h1 style="text-align:center;">Thông Số Nhiệt Độ Và Độ Ẩm</h1>
 		<section class="content">
-	    <div class="box gauge--1">
-	    <h3>NHIỆT ĐỘ</h3>
-              <div class="mask">
-			  <div class="semi-circle"></div>
-			  <div class="semi-circle--mask"></div>
-			</div>
-		    <p style="font-size: 30px;" id="temp">--</p>
-            </table>
-        </div>
+	    	<div class="box gauge--1">
+	    		<h3>NHIỆT ĐỘ</h3>
+              	<div class="mask">
+			  		<div class="semi-circle"></div>
+			  		<div class="semi-circle--mask"></div>
+				</div>
+		    	<p style="font-size: 30px;" id="temp">--</p>
+        	</div>
+        </section>
 
 
 	<h1 >Điều Khiển Thiết Bị</h1>
@@ -130,8 +130,26 @@
 	//Đoạn này dùng để hiện nhiệt độ và độ ẩm lên
 		firebaseSesor.on('value' , function(snapshot)
 		{
-			nhietdo_living = snapshot.child('nhietdo').val();
+				nhietdo_living = snapshot.child('nhietdo').val();
 		});
+		setTemperature(nhietdo_living);
+		function setTemperature(curVal)
+		{
+	        //Cài nhiệt độ từ -2 độ đến 40 độ nhiệt độ Việt Nam như vậy
+	    	var minTemp = -2.0;
+	    	var maxTemp = 40.0;
+	        //Phần này cài thêm độ F không xài độ F bỏ nha :)))
+	    	//var minTemp = 23;
+	    	//var maxTemp = 100;
+	    	//Khúc này là giải thuật nhiệt độ chạy theo cái hình cung từ 0-180 độ
+	    	var newVal = scaleValue(curVal, [minTemp, maxTemp], [0, 180]);
+	    	$('.gauge--1 .semi-circle--mask').attr({
+	    		style: '-webkit-transform: rotate(' + newVal + 'deg);' +
+	    		'-moz-transform: rotate(' + newVal + 'deg);' +
+	    		'transform: rotate(' + newVal + 'deg);'
+	    	});
+	    	$("#temp").text(curVal + ' ºC');
+    	}
 </script>
 
 </body>
