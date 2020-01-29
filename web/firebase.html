@@ -56,7 +56,7 @@
 
 	//Gọi ra để dùng 
 		firebase.initializeApp(config);
-		var firebaseRef = firebase.database().ref().child('test');
+		var firebaseRef = firebase.database().ref().child('thietbi/phongkhach');
 
 	//Khai báo biến toàn cục (Xài cho cả chương trình)
 		var tbi1_status = "";
@@ -65,40 +65,47 @@
 	//Đoạn này dùng để READ (đọc) dữ liệu từ database sau đó bỏ vào biến xài
 		firebaseRef.on('value', function(snapshot) 
 		{
-			tbi1_status = snapshot.child('thu').val();
+			tbi1_status = snapshot.child('den1').val();
 		});
 
 	//Đoạn chương trình xảy ra khi nhấn vào cái button
 		$('#tb1_load').click(function() {
 			if (tbi1_status=="ON") //nếu dữ liệu đang là ON
 			{
-				alert("Đã Tắt");//Thông báo ra màn hình
+				alert("Đã Tắt Đèn 1");//Thông báo ra màn hình
 				var capnhatdt = {
-					thu: "OFF",
+					den1: "OFF",
 				};
 				firebaseRef.update (capnhatdt);	//Cập nhật lại
 			}
-			if(thuthoi2=="OFF")//ngược lại
+			if(tbi1_status=="OFF")//ngược lại
 			{
-				alert("Còn Bật");
+				alert("Đã Bật Đèn 1");
+				var capnhat = {
+					den1: "OFF",
+				};
+				firebaseRef.update (capnhat);	//Cập nhật lại
 			}
 		});
 
 		//Đoạn này dùng để thay đổi trạng thái cái nút nhấn
 		firebaseRef.on('value', function(snapshot) 
 		{
-			var thuthoi = snapshot.child('thu').val();
-				if(thuthoi=="ON"){
+			var trangthai_tbi1 = snapshot.child('den1').val();
+				if(trangthai_tbi1=="ON"){
 					var button_tb1_off = document.getElementById('tb1_load');
     				button_tb1_off.innerHTML = "Tắt Đèn";
+    				var element_on = document.getElementById('giatri_tbi1');
+    					element_on.innerHTML = "Đèn 1 Đang Bật";
 					;}
-				else {
+				else if(trangthai_tbi1 == "OFF")
+				{
 					var button_tb1 = document.getElementById('tb1_load');
     				button_tb1.innerHTML = "Bật Lại";
-				;}
-
-		var element = document.getElementById('giatri_tbi1');
-    			element.innerHTML = thuthoi;
+    				var element_off = document.getElementById('giatri_tbi1');
+    					element_off.innerHTML = "Đèn 1 Đang Tắt";
+				;}		
+			
 		});		
 </script>
 
