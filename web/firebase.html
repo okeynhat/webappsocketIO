@@ -132,7 +132,7 @@
 		{
 			nhietdo_living = snapshot.child('nhietdo').val();
 		
-			var temp_living = + nhietdo_living;
+			var temp_living = 30;
 			setTemperature(temp_living);
 			function setTemperature(curVal)
 			{
@@ -143,13 +143,13 @@
 		    	//var minTemp = 23;
 		    	//var maxTemp = 100;
 		    	//Khúc này là giải thuật nhiệt độ chạy theo cái hình cung từ 0-180 độ
-		    	var newVal = scaleValue(temp_living, [minTemp, maxTemp], [0, 180]);
+		    	var newVal = scaleValue(curVal, [minTemp, maxTemp], [0, 180]);
 		    	$('.gauge--1 .semi-circle--mask').attr({
 		    		style: '-webkit-transform: rotate(' + newVal + 'deg);' +
 		    		'-moz-transform: rotate(' + newVal + 'deg);' +
 		    		'transform: rotate(' + newVal + 'deg);'
 		    	});
-		    	$("#temp").text(temp_living + ' ºC');
+		    	$("#temp").text(curVal + ' ºC');
 	    	}
     	});
 </script>
