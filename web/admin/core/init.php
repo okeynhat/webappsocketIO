@@ -4,9 +4,9 @@
 <?php
  
 // Require các thư viện PHP
-require_once 'admin/classes/DB.php';
-require_once 'admin/classes/Session.php';
-require_once 'admin/classes/Functions.php';
+require_once 'https://mdtiot.herokuapp.com/admin/classes/DB.php';
+require_once 'https://mdtiot.herokuapp.com/admin/classes/Session.php';
+require_once 'https://mdtiot.herokuapp.com/admin/classes/Functions.php';
  
 // Kết nối database
 $db = new DB();
