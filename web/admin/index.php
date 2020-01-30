@@ -1,12 +1,12 @@
 <?php
  
 // Require database & thông tin chung
-require_once 'core/init.php';
+require_once 'admin/core/init.php';
  
 // Require header
-require_once 'includes/header.php';
+require_once 'admin/includes/header.php';
  
 // Require footer
-require_once 'includes/footer.php';
+require_once 'admin/includes/footer.php';
  
 ?>
