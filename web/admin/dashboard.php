@@ -5,7 +5,7 @@ include("auth.php");?>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Bảng điều khiển - Sharescript.net</title>
+<title>Bảng điều khiển </title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>

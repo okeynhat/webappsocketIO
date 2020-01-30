@@ -2,7 +2,7 @@
 //Kiểm tra đăng nhập hay chưa
 require('db.php');
 session_start();
-if(isset($_SESSION["username"]) && $_SESSION["level"] == 0)
+if(isset($_SESSION["username"]) && $_SESSION["capbac"] == 0)
 {
 ?>
 
@@ -24,7 +24,7 @@ if(isset($_SESSION["username"]) && $_SESSION["level"] == 0)
 </html>
 <?php
 }
-else if(isset($_SESSION["username"]) && $_SESSION["level"] == 1)
+else if(isset($_SESSION["username"]) && $_SESSION["capbac"] == 1)
 {
 	 echo "Không Phải Admin Không Có Quyền Vào Trang Này!!!!";
 }
