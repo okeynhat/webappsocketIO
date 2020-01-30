@@ -14,7 +14,7 @@ $db->connect();
 $db->set_char('utf8');
  
 // Thông tin chung
-$_DOMAIN = 'https://mdtiot.herokuapp.com/admin/index.php;
+$_DOMAIN = 'https://mdtiot.herokuapp.com/admin/index.php';
  
 date_default_timezone_set('Asia/Ho_Chi_Minh'); 
 $date_current = '';
