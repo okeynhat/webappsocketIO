@@ -2,6 +2,7 @@
 //Kiểm tra đăng nhập hay chưa
 require('db.php');
 session_start();
+session_register("capbac");
 if(isset($_SESSION["username"]) && $_SESSION["capbac"] == 0)
 {
 ?>
