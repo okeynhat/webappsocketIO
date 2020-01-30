@@ -1,5 +1,6 @@
 <?php
 //Kiểm tra đăng nhập hay chưa
+require('db.php');
 session_start();
 if(isset($_SESSION["username"]) && $_SESSION["level"] == 0)
 {
@@ -14,7 +15,7 @@ if(isset($_SESSION["username"]) && $_SESSION["level"] == 0)
 </head>
 <body>
 <div class="form">
-<p>Xin chào <?php echo $_SESSION['email']; ?>!</p>
+<p>Xin chào <?php echo $_SESSION['username']; ?>!</p>
 <p>Đây là trang chủ</p>
 <p><a href="dashboard.php">Bảng điều khiển</a></p>
 <a href="logout.php">Đăng xuất</a>
