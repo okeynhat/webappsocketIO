@@ -25,3 +25,7 @@
 
 - Thêm bộ đọc cảm biến
 - Sửa lỗi Js
+
+### Beta V1.0.4a
+- Thêm tính năng quản trị viên
+- Thêm đăng ký đăng nhập
