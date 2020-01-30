@@ -14,7 +14,7 @@ if(isset($_SESSION["username"]) && $_SESSION["level"] == 0)
 </head>
 <body>
 <div class="form">
-<p>Xin chào <?php echo $_SESSION['username']; ?>!</p>
+<p>Xin chào <?php echo $_SESSION['level']; ?>!</p>
 <p>Đây là trang chủ</p>
 <p><a href="dashboard.php">Bảng điều khiển</a></p>
 <a href="logout.php">Đăng xuất</a>
