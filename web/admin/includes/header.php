@@ -20,7 +20,7 @@
 <body>
 
 <?php
-    <!-- Nếu chưa login-->
+    //<!-- Nếu chưa login-->
     if (!$user)
     {
         echo
@@ -32,7 +32,7 @@
             </div><!-- div.container -->
         ';
     }
-   <!--nếu đăng nhập rồi -->
+  // <!--nếu đăng nhập rồi -->
     else
     {
         echo
