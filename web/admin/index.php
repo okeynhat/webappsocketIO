@@ -7,6 +7,6 @@
 require_once 'https://mdtiot.herokuapp.com/admin/includes/header.php';
  
 // Require footer
-require_once 'https://mdtiot.herokuapp.com/admin/includes/footer.php';
+//require_once 'https://mdtiot.herokuapp.com/admin/includes/footer.php';
  
 ?>
