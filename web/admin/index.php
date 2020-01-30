@@ -1,10 +1,15 @@
 <?php
-include("auth.php"); ?>
+//Kiểm tra đăng nhập hay chưa
+session_start();
+if(isset($_SESSION["username"]) && $_SESSION["level"] == 1)
+{
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Sharescript.net</title>
+<title>Trang Quản Lý</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -16,3 +21,16 @@ include("auth.php"); ?>
 </div>
 </body>
 </html>
+<?php
+}
+else if(isset($_SESSION["username"]) && $_SESSION["level"] == 0)
+{
+	 echo "Không Phải Admin Không Có Quyền Vào Trang Này!!!!";
+}
+else if(!isset($_SESSION["username"]))
+{
+header("Location: login.php");
+exit();
+}
+	
+?>
