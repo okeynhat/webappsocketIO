@@ -23,7 +23,7 @@ if(isset($_POST['ok']))
   if($u && $p)
   {
     $conn=mysql_connect("remotemysql.com","6USK3AZfQS","ZVQMeUMsfJ") or die("Không thể kết nối CSDL");
-    mysql_select_db("6USK3AZfQS",$conn);
+    mysql_select_db("USK3AZfQS",$conn);
     $sql="select * from user where username='".$u."' and password='".$p."'";
     $query=mysql_query($sql);
   if(mysql_num_rows($query) == 0)
