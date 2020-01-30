@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Đăng nhập - sharescript.net</title>
+<title>Đăng nhập</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -35,11 +35,14 @@
 <input type="password" name="password" placeholder="Mật khẩu" required />
 <input name="submit" type="submit" value="Đăng nhập" />
 </form>
-<p>Bạn chưa có tài khoản? <a href='registration.php'>Đăng ký ngay</a></p><br/>
-Test ngay:<br/>
-Tên đăng nhập: sharescript.net<br/>
-Mật khẩu: sharescript.net
-</div>
+<p>Bạn chưa có tài khoản? <a id="dangky" onclick="dangky_click()">Đăng ký ngay</a></p><br/>
 <?php } ?>
 </body>
 </html>
+
+<script>
+	function dangky_click()
+	{
+		alert("Tạm khóa tính năng đăng ký - Vui lòng liên hệ Admin để được cấp tài khoản")
+	};
+</script>

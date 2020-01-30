@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Đăng ký - Sharescript.net</title>
+<title>Đăng ký</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
