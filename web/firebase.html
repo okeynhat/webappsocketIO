@@ -144,14 +144,17 @@
 		{
 			tbi2_status = snapshot.child('den2').val();
 
-			var image = document.getElementById('tbi2_img');   
+			var image = document.getElementById('tbi2_img');
+			var tbi2_laber = document.getElementById('giatri_tbi2');
 	 		if (tbi2_status == "1") 
 	 		{
 	 			image.src = "http://www.webre24h.com/uploads/0815/pic_bulbon.gif";
+	 			tbi2_laber.innerHTML = "Trạng Thái : Đang Bật";
 	 		}
 	 		else if(tbi2_status=="0")
 	 		{
-	 			image.src = "http://www.webre24h.com/uploads/0815/pic_bulboff.gif";    
+	 			image.src = "http://www.webre24h.com/uploads/0815/pic_bulboff.gif";   
+	 			tbi2_laber.innerHTML = "Trạng Thái : Đang Tắt"; 
 	 		}
 		});
 
