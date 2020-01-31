@@ -3,6 +3,6 @@
 <?php
 session_start();
 if(!isset($_SESSION["username"])){
-header("Location: admin/login.php");
+header("Location: /stylesheets/style.css");
 exit(); }
 ?>
