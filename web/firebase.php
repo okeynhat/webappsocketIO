@@ -28,10 +28,10 @@ include("admin/auth.php"); ?>
 <div class="container" style="background-color: grey; margin-bottom: 50px;">
    <div class="row">
       <div class="col-md-4 col-sm-6 col-xs-12">
-         <div class="khoi"></div>
+         <div class="khoi">dsgggggggggggg</div>
       </div>
       <div class="col-md-8 col-sm-6 col-xs-12">
-         <div class="khoi"></div>
+         <div class="khoi">dgsssssssssssss</div>
       </div>
    </div>
 </div>
