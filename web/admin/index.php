@@ -4,14 +4,14 @@ include("auth.php"); ?>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Sharescript.net</title>
-<link rel="stylesheet" href="css/style.css" />
+<title>Trang Đăng Nhập</title>
+<link rel="stylesheet" href="https://mdtiot.herokuapp.com/stylesheets/style.css" />
 </head>
 <body>
 <div class="form">
 <p>Xin chào <?php echo $_SESSION['username']; ?>!</p>
-<p>Đây là trang chủ</p>
-<p><a href="dashboard.php">Bảng điều khiển</a></p>
+<p>Vừa Đăng Nhập Thành Công!!!</p>
+<p><a href="https://mdtiot.herokuapp.com/">Nhấn Vào Đây Để Mở Trang Điều Khiển</a></p>
 <a href="logout.php">Đăng xuất</a>
 </div>
 </body>
