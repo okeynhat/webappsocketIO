@@ -23,6 +23,23 @@ include("admin/auth.php"); ?>
 		</div>
 	</div>
 
+<!-- Kẻ lưới giao diện -->
+
+<div class="container" style="background-color: grey; margin-bottom: 50px;">
+   <div class="row">
+      <div class="col-md-4 col-sm-6 col-xs-12">
+         <div class="khoi"></div>
+      </div>
+      <div class="col-md-8 col-sm-6 col-xs-12">
+         <div class="khoi"></div>
+      </div>
+   </div>
+</div>
+
+<!----------------------------------------------------------------->
+
+
+
 	<h1 style="text-align:center;">Thông Số Nhiệt Độ Và Độ Ẩm</h1>
 		<section class="content">
 	    	<div class="box gauge--1">
