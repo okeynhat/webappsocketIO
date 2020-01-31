@@ -80,13 +80,13 @@
 	 		if (tbi2_status == "1") 
 	 		{
 	 			image.src = "http://www.webre24h.com/uploads/0815/pic_bulbon.gif";
-	 			button.class = "btn btn-success"
+	 			button.class = "btn btn-success";
 	 			tbi2_laber.innerHTML = "Trạng Thái : Đang Bật";
 	 		}
 	 		else if(tbi2_status=="0")
 	 		{
 	 			image.src = "http://www.webre24h.com/uploads/0815/pic_bulboff.gif";
-	 			button.class = "btn btn-danger" 
+	 			button.class = "btn btn-danger";
 	 			tbi2_laber.innerHTML = "Trạng Thái : Đang Tắt"; 
 	 		}
 		});
