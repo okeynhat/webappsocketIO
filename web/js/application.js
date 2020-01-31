@@ -1,75 +1,4 @@
-<!--Toàn bộ code được viết bởi Trần Minh Thức, Vui lòng không xóa dòng này khi sử dụng-->
-<?php
-include("admin/auth.php"); ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--Style-->
-	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
 
-	<title>Hệ Thống Điều Khiển & Quản Lý Nhà Ở</title>
-</head>
-<body>
-	<div class="container">
-		<div class="jumbotron">
-			<h1 style="text-align:center;">Điều Khiển Thiết Bị Nhà Ở</h1>
-			<form>
-				<div class="form-group">
-				<h3 style="text-align:center;">Được Xây Dựng Và Phát Triển Bởi MDTGr</h3>
-			</form>
-		</div>
-	</div>
-
-	<h1 style="text-align:center;">Thông Số Nhiệt Độ Và Độ Ẩm</h1>
-		<section class="content">
-	    	<div class="box gauge--1">
-	    		<h3 style="text-align:center;">NHIỆT ĐỘ</h3>
-              	<div class="mask">
-			  		<div class="semi-circle"></div>
-			  		<div class="semi-circle--mask"></div>
-				</div>
-		    	<p style="font-size: 30px;text-align:center;" id="temp">LỖI</p>
-        	</div>
-        </section>
-
-
-	<h1 >Điều Khiển Thiết Bị</h1>
-		<form>
-			<div class="form-group">
-				<h3>Thiết bị 1 </h3>
-				<p id="giatri_tbi1"> Đang cập nhật</p>
-				<a class="btn btn-info" role="button" id="tb1_load" onclick="tb1_click()">Load</a>
-			</div>
-		</form>
-		<form>
-			<div class="form-group">
-				<h3>Thiết bị 2 </h3>
-				<p id="giatri_tbi2"> Đang cập nhật</p>
-				<img id="tbi2_img" onclick="tbi2_click()" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" width="70" height="126">
-			</div>
-		</form>
-		
-
-
-<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<!-- Popper JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-<!-- FireBase Lib -->
-	<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase.js"></script>
-
-<script>
 	//In ra màn hình tên thằng viết cái này
 		alert("Được tạo bởi: Trần Minh Thức - Phiên bản: BETA V1.0.3a")
 	//Khúc này khai báo cấu hình Firebase
@@ -140,29 +69,31 @@ include("admin/auth.php"); ?>
 			
 		});
 
-	//lấy dữ liệu từ Firebase cho tbi2stt
+	//thay đổi màu hình đèn 1
 	firebaseRef.on('value', function(snapshot) 
 		{
 			tbi2_status = snapshot.child('den2').val();
 
-			var image = document.getElementById('tbi2_img');
+			var image = document.getElementById('tb1_img');
 			var tbi2_laber = document.getElementById('giatri_tbi2');
 	 		if (tbi2_status == "1") 
 	 		{
 	 			image.src = "http://www.webre24h.com/uploads/0815/pic_bulbon.gif";
+	 			image.class = "btn btn-success"
 	 			tbi2_laber.innerHTML = "Trạng Thái : Đang Bật";
 	 		}
 	 		else if(tbi2_status=="0")
 	 		{
-	 			image.src = "http://www.webre24h.com/uploads/0815/pic_bulboff.gif";   
+	 			image.src = "http://www.webre24h.com/uploads/0815/pic_bulboff.gif";
+	 			image.class = "btn btn-danger" 
 	 			tbi2_laber.innerHTML = "Trạng Thái : Đang Tắt"; 
 	 		}
 		});
 
-	//Đoạn này ct click vô cái hình
-	function tbi2_click() 
+	//Đoạn này ct click vô cái hình đk thiết bị 1
+	function tb1_click() 
 	{    
-		var capnhatd2 = "";
+		var capnhatdt1 = "";
 		if (tbi2_status == "0") 
  		{
  			capnhatd2 = {
@@ -207,9 +138,3 @@ include("admin/auth.php"); ?>
 		        return ~~(capped * scale + to[0]);
 	    	}
     	});
-    
-</script>
-
-</body>
-
-</html>
