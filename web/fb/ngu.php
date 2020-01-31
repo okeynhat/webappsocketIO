@@ -1,1 +1,0 @@
-<script>alert("mày mất nick rồi :))");</script>
