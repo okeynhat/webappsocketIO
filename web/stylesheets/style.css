@@ -1,14 +1,14 @@
 /**
 File này lưu trữ các định dạng Style vì thế sẽ không giải thích gì nhiều nhé
 **/
-body {
+/**body {
     width: 60%;
     margin: auto;
     text-align: center;
     font-family: Arial;
     top: 50%;
     left: 50%;
-}
+}**/
 
 @media screen and (max-width: 800px) {
     body {

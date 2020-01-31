@@ -8,7 +8,7 @@ include("admin/auth.php"); ?>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--Style-->
-	<!--<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
 
 	<title>Hệ Thống Điều Khiển & Quản Lý Nhà Ở</title>
 </head>
