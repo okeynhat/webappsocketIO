@@ -21,7 +21,8 @@ include("admin/auth.php"); ?>
 				<h3 style="text-align:center;">Được Xây Dựng Và Phát Triển Bởi MDTGr</h3>
 			</form>
 		</div>
-	</div>
+	</div></div>
+
 
 <!-- Kẻ lưới giao diện -->
 
