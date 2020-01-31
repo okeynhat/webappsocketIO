@@ -29,19 +29,16 @@ include("admin/auth.php"); ?>
 <!-- list product -->
 <div class="container">
 	<div class="row mt-5">
-		<h2 class="list-product-title">New product</h2>
-		<div class="list-product-subtitle">
-			<p>List product description</p>
-		</div>
+		<h2 class="list-product-title">Bảng Quản Lý</h2>
 		<div class="product-group">
 			<div class="row">
 				<div class="col-md-3 col-sm-6 col-12">
 					<div class="card card-product mb-3">
-					  <img class="card-img-top" src="http://via.placeholder.com/280x280" alt="Card image cap">
+					  <img class="card-img-top" src="http://via.placeholder.com/280x280" alt="Card image cap" id = "tb1-img">
 					  <div class="card-body">
-					    <h5 class="card-title">Product</h5>
-					    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					    <a href="#" class="btn btn-primary">Go somewhere</a>
+					    <h5 class="card-title">Thiết Bị 1</h5>
+					    <h6 class="card-text" id = "tb1-stt">Trạng thái</h6>
+					    <a href="#" class="btn btn-primary" id = "tb1-btn">Load</a>
 					  </div>
 					</div>
 				</div>
