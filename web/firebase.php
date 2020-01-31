@@ -34,7 +34,7 @@ include("admin/auth.php"); ?>
 			<div class="row">
 				<div class="col-md-3 col-sm-6 col-12">
 					<div class="card card-product mb-3">
-					  <img class="card-img-top" src="http://via.placeholder.com/280x280" alt="Card image cap" id = "tb1-img">
+					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" alt="Card image cap" id = "tb1-img">
 					  <div class="card-body">
 					    <h5 class="card-title">Thiết Bị 1</h5>
 					    <h6 class="card-text" id = "tb1-stt">Trạng thái</h6>
@@ -203,7 +203,7 @@ include("admin/auth.php"); ?>
 		{
 			tbi2_status = snapshot.child('den2').val();
 
-			var image = document.getElementById('tbi2_img');
+			var image = document.getElementById('tb1-img');
 			var tbi2_laber = document.getElementById('giatri_tbi2');
 	 		if (tbi2_status == "1") 
 	 		{
