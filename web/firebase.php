@@ -33,24 +33,24 @@
 				<!-- thiết bị số 1-->
 				<div class="col-md-3 col-sm-6 col-12">
 					<div class="card card-product mb-3">
-					  <img class="card-img-top" src="/images/light_off.png" id = "tb1_img" width="180" height="180" onclick="tb1img_click()">
+					  <img class="card-img-top" src="/images/light_load.png" id = "tb1_img" width="180" height="180" onclick="tb1img_click()">
 					  <div class="card-body">
 					    <h5 class="card-title" id="tb1_title" style="text-align:center;" >Đèn 1</h5>
-					    <p class="card-text" id="tb1_label">Nhấn vô cái bóng đèn hoặc cái nút phía dưới để thay đổi trạng thái!</p>
+					    <p class="card-text" id="tb1_label">Nhấn vô cái bóng đèn để thay đổi trạng thái!</p>
 					    <center><a class="btn btn-secondary" id = "tb1_btn" onclick="tb1btn_click()" style="text-align:center;">Không Có Dữ Liệu</a></center> <!-- Tạm thời khóa thẻ center-->
 					  </div>
 					</div>
 				</div>
 				<!---->
 
-				<!-- thiết bị số 1-->
+				<!-- thiết bị số 2-->
 				<div class="col-md-3 col-sm-6 col-12">
 					<div class="card card-product mb-3">
-					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" id = "tb1_img" width="150" height="180" onclick="tb1img_click()">
+					  <img class="card-img-top" src="/images/light_load.png" id = "tb2_img" width="180" height="180" onclick="tb2img_click()">
 					  <div class="card-body">
-					    <h5 class="card-title" id="tb1_title" style="text-align:center;" >Đèn 1</h5>
-					    <p class="card-text" id="tb1_label">Nhấn vô cái bóng đèn hoặc cái nút phía dưới để thay đổi trạng thái!</p>
-					    <center><a class="btn btn-secondary" id = "tb1_btn" onclick="tb1btn_click()" style="text-align:center;">Không Có Dữ Liệu</a></center> <!-- Tạm thời khóa thẻ center-->
+					    <h5 class="card-title" id="tb2_title" style="text-align:center;" >Đèn 2</h5>
+					    <p class="card-text" id="tb2_label">Nhấn vô cái bóng đèn để thay đổi trạng thái!</p>
+					    <center><a class="btn btn-secondary" id = "tb2_btn" onclick="tb2btn_click()" style="text-align:center;">Không Có Dữ Liệu</a></center> <!-- Tạm thời khóa thẻ center-->
 					  </div>
 					</div>
 				</div>
@@ -62,7 +62,7 @@
 					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" id = "tb1_img" width="180" height="180" onclick="tb1img_click()">
 					  <div class="card-body">
 					    <h5 class="card-title" id="tb1_title" style="text-align:center;" >Đèn 1</h5>
-					    <p class="card-text" id="tb1_label">Nhấn vô cái bóng đèn hoặc cái nút phía dưới để thay đổi trạng thái!</p>
+					    <p class="card-text" id="tb1_label">Nhấn vô cái bóng đèn để thay đổi trạng thái!</p>
 					    <center><a class="btn btn-secondary" id = "tb1_btn" onclick="tb1btn_click()" style="text-align:center;">Không Có Dữ Liệu</a></center> <!-- Tạm thời khóa thẻ center-->
 					  </div>
 					</div>

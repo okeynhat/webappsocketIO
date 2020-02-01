@@ -22,12 +22,17 @@
 		var nhietdo_living = "";
 		var doam_living = "";
 		var tb1_status = "";
-		var tbi2_status = "";
+		var tb2_status = "";
 
 	//Đoạn này dùng để READ (đọc) dữ liệu từ database sau đó bỏ vào biến xài
 		firebaseRef.on('value', function(snapshot) 
 		{
 			tb1_status = snapshot.child('den1').val();
+		});
+	//Thiết bị 2
+		firebaseRef.on('value', function(snapshot) 
+		{
+			tb2_status = snapshot.child('den2').val();
 		});
 
 	//Đoạn chương trình xảy ra khi nhấn vào cái hình của tb1
@@ -69,6 +74,45 @@
 	 		firebaseRef.update(tb1data_send);
 	 	};
 
+	///thiết bị 2
+		function tb2img_click() 
+		{    
+			var tb2data_send = "";
+			if (tb2_status == "0") 
+	 		{
+	 			tb2data_send = {
+						den2: "1",
+					};
+	 		}
+	 		else if(tb2_status=="1")
+	 		{
+	 			tb2data_send = {
+						den2: "0",
+					};   
+	 		}
+	 		firebaseRef.update(tb2data_send);
+	 	};
+
+	 	function tb2btn_click()
+	 	{
+	 		var tb2data_send = "";
+	 		if (tb2_status = "0") 
+	 		{
+	 			tb2data_send = {
+	 				den2: "1",
+	 			};
+	 		} 
+
+	 		else if (tb2_status = "1")
+	 		{
+	 			tb2data_send = {
+	 				den2: "0",
+	 			};
+	 		}
+
+	 		firebaseRef.update(tb2data_send);
+	 	};
+
 	//Đoạn này dùng để thay đổi trạng thái các cái hình tb1
 		firebaseRef.on('value', function(snapshot) 
 		{
@@ -92,9 +136,28 @@
 			
 		});
 
-	
-
-	//Đoạn này ct click vô cái hình đk thiết bị 1
+	//Thay đổi trạng thái tb2
+		firebaseRef.on('value', function(snapshot) 
+		{
+			var tb2_stt = snapshot.child('den2').val(); // gọi dữ liệu về bằng cấu trúc .on và val()
+			const tb2btn_stt = document.getElementById('tb2_btn');
+			var imgelement = document.getElementById('tb2_img');
+				if(tb2_stt=="1")
+				{
+					imgelement.src = "images/light_on.png";
+					tb2btn_stt.innerHTML = "Đang Bật";
+					tb2btn_stt.className = "btn btn-success";
+					tb2btn_stt.style.color = 'white';
+				}
+				else if(tb2_stt == "0")
+				{
+					imgelement.src = "images/light_off.png";
+					tb2btn_stt.innerHTML = "Đang Tắt";
+					tb2btn_stt.className = "btn btn-danger";
+					tb2btn_stt.style.color = 'white';
+				}	
+			
+		});
 	
 	//Đoạn này dùng để hiện nhiệt độ và độ ẩm lên
 		firebaseSesor.on('value' , function(snapshot)
