@@ -31,55 +31,39 @@
 		});
 
 	//Đoạn chương trình xảy ra khi nhấn vào cái button của tb1
-		function tb1_click() 
+		function tb1img_click() 
 		{    
-			var capnhatdt1 = "";
+			var tb1data_send = "";
 			if (tb1_status == "0") 
 	 		{
-	 			capnhatdt1 = {
+	 			tb1data_send = {
 						den1: "1",
 					};
 	 		}
 	 		else if(tb1_status=="1")
 	 		{
-	 			capnhatdt1 = {
+	 			tb1data_send = {
 						den1: "0",
 					};   
 	 		}
-	 		firebaseRef.update(capnhatdt1);
+	 		firebaseRef.update(tb1data_send);
 	 	};
 
-
-	 	function btntb1_click() 
-		{    
-			var capnhatdt2 = "";
-			if (tb1_status == "0") 
-	 		{
-	 			capnhatdt2 = {
-						den1: "1",
-					};
-	 		}
-	 		else if(tb1_status=="1")
-	 		{
-	 			capnhatdt2 = {
-						den1: "0",
-					};   
-	 		}
-	 		firebaseRef.update(capnhatdt1);
-	 	};
 	//Đoạn này dùng để thay đổi trạng thái các cái hình tb1
 		firebaseRef.on('value', function(snapshot) 
 		{
-			var stt_tb1 = snapshot.child('den1').val(); // gọi dữ liệu về bằng cấu trúc .on và val()
-			//const btn_tb1 = document.querySelector('tb1_btn');
+			var tb1_stt = snapshot.child('den1').val(); // gọi dữ liệu về bằng cấu trúc .on và val()
+			const tb1btn_stt = document.querySelector('tb1_btn');
 			var imgelement = document.getElementById('tb1_img');
-				if(stt_tb1=="1")
+				if(tb1_stt=="1")
 				{
 					imgelement.src = "http://www.webre24h.com/uploads/0815/pic_bulbon.gif";
+					tb1btn_stt.class = "btn btn-success";
 				}
-				else if(stt_tb1 == "0")
+				else if(tb1_stt == "0")
 				{
 					imgelement.src = "http://www.webre24h.com/uploads/0815/pic_bulboff.gif";
+					tb1btn_stt = "btn btn-danger";
 					
 				}	
 			

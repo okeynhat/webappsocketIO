@@ -33,10 +33,11 @@
 				<!-- thiết bị số 1-->
 				<div class="col-md-3 col-sm-6 col-12">
 					<div class="card card-product mb-3">
-					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" id = "tb1_img" width="220" height="220" onclick="tb1_click()">
+					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" id = "tb1_img" width="220" height="220" onclick="tb1img_click()">
 					  <div class="card-body">
-					    <h5 class="card-title">Đèn 1</h5>
-					    <a class="btn btn-secondary" id = "tb1_btn" onclick="btntb1_click()">Load</a>
+					    <h5 class="card-title" id="tb1_title">Đèn 1</h5>
+					    <p class="card-text" id="tb1_label">Nhấn vô cái bóng đèn hoặc cái nút phía dưới để thay đổi trạng thái!</p>
+					    <a class="btn btn-secondary" id = "tb1_btn" onclick="tb1btn_click()">Load</a>
 					  </div>
 					</div>
 				</div>
