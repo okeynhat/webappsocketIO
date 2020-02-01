@@ -57,14 +57,14 @@
 	 	function tb1btn_click()
 	 	{
 	 		var tb1data_send = "";
-	 		if (tb1_status = "0") 
+	 		if (tb1_status == "0") 
 	 		{
 	 			tb1data_send = {
 	 				den1: "1",
 	 			};
 	 		} 
 
-	 		else if (tb1_status = "1")
+	 		else if (tb1_status == "1")
 	 		{
 	 			tb1data_send = {
 	 				den1: "0",
@@ -96,14 +96,15 @@
 	 	function tb2btn_click()
 	 	{
 	 		var tb2data_send = "";
-	 		if (tb2_status = "0") 
+
+	 		if (tb2_status == "0") 
 	 		{
 	 			tb2data_send = {
 	 				den2: "1",
 	 			};
 	 		} 
 
-	 		else if (tb2_status = "1")
+	 		else if (tb2_status == "1")
 	 		{
 	 			tb2data_send = {
 	 				den2: "0",
