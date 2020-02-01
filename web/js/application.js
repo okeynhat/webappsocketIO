@@ -36,17 +36,17 @@
 			var capnhatdt1 = "";
 			if (tb1_status == "0") 
 	 		{
-	 			capnhatd2 = {
+	 			capnhatdt1 = {
 						den1: "1",
 					};
 	 		}
 	 		else if(tb1_status=="1")
 	 		{
-	 			capnhatd2 = {
+	 			capnhatdt1 = {
 						den1: "0",
 					};   
 	 		}
-	 		firebaseRef.update(capnhatd2);
+	 		firebaseRef.update(capnhatdt1);
 	 	};
 
 	//Đoạn này dùng để thay đổi trạng thái các cái hình tb1
@@ -67,27 +67,7 @@
 			
 		});
 
-	//thay đổi màu hình đèn 1
-	firebaseRef.on('value', function(snapshot) 
-		{
-			tbi2_status = snapshot.child('den2').val();
-
-			var image = document.getElementById('tb1_img');
-			
-			var tbi2_laber = document.getElementById('giatri_tbi2');
-	 		if (tbi2_status == "1") 
-	 		{
-	 			image.src = "http://www.webre24h.com/uploads/0815/pic_bulbon.gif";
-	 			//btn_tb1.class = "btn btn-success";
-	 			tbi2_laber.innerHTML = "Trạng Thái : Đang Bật";
-	 		}
-	 		else if(tbi2_status == "0")
-	 		{
-	 			image.src = "http://www.webre24h.com/uploads/0815/pic_bulboff.gif";
-	 			//btn_tb1.class = "btn btn-danger";
-	 			tbi2_laber.innerHTML = "Trạng Thái : Đang Tắt"; 
-	 		}
-		});
+	
 
 	//Đoạn này ct click vô cái hình đk thiết bị 1
 	
