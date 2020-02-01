@@ -77,14 +77,14 @@
 			var imgelement = document.getElementById('tb1_img');
 				if(tb1_stt=="1")
 				{
-					imgelement.src = "/images/light_on.png";
+					imgelement.src = "images/light_on.png";
 					tb1btn_stt.innerHTML = "Đang Bật";
 					tb1btn_stt.className = "btn btn-success";
 					tb1btn_stt.style.color = 'white';
 				}
 				else if(tb1_stt == "0")
 				{
-					imgelement.src = "/images/light_off.png";
+					imgelement.src = "images/light_off.png";
 					tb1btn_stt.innerHTML = "Đang Tắt";
 					tb1btn_stt.className = "btn btn-danger";
 					tb1btn_stt.style.color = 'white';
