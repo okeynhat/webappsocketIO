@@ -54,18 +54,16 @@
 		{
 			var tb1_stt = snapshot.child('den1').val(); // gọi dữ liệu về bằng cấu trúc .on và val()
 			const tb1btn_stt = document.querySelector('tb1_btn');
-			var imgelement = document.getElementById('tb1_img');
+			var imgelement = document.querySelector('tb1_img');
 				if(tb1_stt=="1")
 				{
 					imgelement.src = "http://www.webre24h.com/uploads/0815/pic_bulbon.gif";
 					tb1btn_stt.className = "btn btn-success";
-					document.getElementById('tb1_btn').innerHTML = "Đang Bật";
 				}
 				else if(tb1_stt == "0")
 				{
 					imgelement.src = "http://www.webre24h.com/uploads/0815/pic_bulboff.gif";
 					tb1btn_stt.className = "btn btn-danger";
-					document.getElementById('tb1_btn').innerHTML = "Đang Tắt";
 					
 				}	
 			
