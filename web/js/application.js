@@ -52,17 +52,17 @@
 	 	function tb1btn_click()
 	 	{
 	 		var tb1data_send = "";
-	 		if (tb1_status = "1") 
-	 		{
-	 			tb1data_send = {
-	 				den1: "0",
-	 			};
-	 		} 
-
-	 		else if (tb1_status = "0")
+	 		if (tb1_status = "0") 
 	 		{
 	 			tb1data_send = {
 	 				den1: "1",
+	 			};
+	 		} 
+
+	 		else if (tb1_status = "1")
+	 		{
+	 			tb1data_send = {
+	 				den1: "0",
 	 			};
 	 		}
 
