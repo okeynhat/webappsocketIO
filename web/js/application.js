@@ -63,7 +63,7 @@
 				else if(tb1_stt == "0")
 				{
 					imgelement.src = "http://www.webre24h.com/uploads/0815/pic_bulboff.gif";
-					tb1btn_stt = "btn btn-danger";
+					tb1btn_stt.class = "btn btn-danger";
 					
 				}	
 			
