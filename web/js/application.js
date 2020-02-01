@@ -21,13 +21,13 @@
 	//Khai báo biến toàn cục (Xài cho cả chương trình)
 		var nhietdo_living = "";
 		var doam_living = "";
-		var tbi1_status = "";
+		var tb1_status = "";
 		var tbi2_status = "";
 
 	//Đoạn này dùng để READ (đọc) dữ liệu từ database sau đó bỏ vào biến xài
 		firebaseRef.on('value', function(snapshot) 
 		{
-			tbi1_status = snapshot.child('den1').val();
+			tb1_status = snapshot.child('den1').val();
 		});
 
 	//Đoạn chương trình xảy ra khi nhấn vào cái button của tb1
@@ -49,6 +49,24 @@
 	 		firebaseRef.update(capnhatdt1);
 	 	};
 
+
+	 	function btntb1_click() 
+		{    
+			var capnhatdt2 = "";
+			if (tb1_status == "0") 
+	 		{
+	 			capnhatdt2 = {
+						den1: "1",
+					};
+	 		}
+	 		else if(tb1_status=="1")
+	 		{
+	 			capnhatdt2 = {
+						den1: "0",
+					};   
+	 		}
+	 		firebaseRef.update(capnhatdt1);
+	 	};
 	//Đoạn này dùng để thay đổi trạng thái các cái hình tb1
 		firebaseRef.on('value', function(snapshot) 
 		{

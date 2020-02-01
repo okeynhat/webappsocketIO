@@ -36,7 +36,7 @@
 					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" id = "tb1_img" width="220" height="220" onclick="tb1_click()">
 					  <div class="card-body">
 					    <h5 class="card-title">Đèn 1</h5>
-					    <a class="btn btn-secondary" id = "tb1_btn">Load</a>
+					    <a class="btn btn-secondary" id = "tb1_btn" onclick="btntb1_click()">Load</a>
 					  </div>
 					</div>
 				</div>
