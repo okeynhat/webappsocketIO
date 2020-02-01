@@ -30,46 +30,40 @@
 			tbi1_status = snapshot.child('den1').val();
 		});
 
-	//Đoạn chương trình xảy ra khi nhấn vào cái button
-		$('#tb1_load').click(function() {
-			var capnhatdt = "";
-			if (tbi1_status=="1") //nếu dữ liệu đang là ON
-			{
-				capnhatdt = {
-					den1: "0",
-				};
-				
-			}
-			else if (tbi1_status=="0")//ngược lại
-			{
-				capnhatdt = {
-					den1: "1",
-				};
-			}
-			firebaseRef.update (capnhatdt);	//Cập nhật lại
-		});
+	//Đoạn chương trình xảy ra khi nhấn vào cái button của tb1
+		function tb1_click() 
+		{    
+			var capnhatdt1 = "";
+			if (tb1_status == "0") 
+	 		{
+	 			capnhatd2 = {
+						den1: "1",
+					};
+	 		}
+	 		else if(tb1_status=="1")
+	 		{
+	 			capnhatd2 = {
+						den1: "0",
+					};   
+	 		}
+	 		firebaseRef.update(capnhatd2);
+	 	};
 
-	//Đoạn này dùng để thay đổi trạng thái cái nút nhấn
+	//Đoạn này dùng để thay đổi trạng thái các cái hình tb1
 		firebaseRef.on('value', function(snapshot) 
 		{
-			var trangthai_tbi1 = snapshot.child('den1').val();
-				if(trangthai_tbi1=="1"){
-					var imgelement = document.getElementById('tb1_img');
-					imgelement.src = "http://www.webre24h.com/uploads/0815/pic_bulbon.gif";
-					var button_tb1_off = document.getElementById('tb1_load');
-    				button_tb1_off.innerHTML = "Tắt Đèn";
-    				var element_on = document.getElementById('giatri_tbi1');
-    					element_on.innerHTML = "Đèn 1 Đang Bật";
-					;}
-				else if(trangthai_tbi1 == "0")
+			var stt_tb1 = snapshot.child('den1').val(); // gọi dữ liệu về bằng cấu trúc .on và val()
+			//const btn_tb1 = document.querySelector('tb1_btn');
+			var imgelement = document.getElementById('tb1_img');
+				if(stt_tb1=="1")
 				{
-					var imgelement_off = document.getElementById('tb1_img');
+					imgelement.src = "http://www.webre24h.com/uploads/0815/pic_bulbon.gif";
+				}
+				else if(stt_tb1 == "0")
+				{
 					imgelement.src = "http://www.webre24h.com/uploads/0815/pic_bulboff.gif";
-					var button_tb1 = document.getElementById('tb1_load');
-    				button_tb1.innerHTML = "Bật Lại";
-    				var element_off = document.getElementById('giatri_tbi1');
-    					element_off.innerHTML = "Đèn 1 Đang Tắt";
-				;}		
+					
+				}	
 			
 		});
 
@@ -79,7 +73,7 @@
 			tbi2_status = snapshot.child('den2').val();
 
 			var image = document.getElementById('tb1_img');
-			//const btn_tb1 = document.querySelector('tb1_btn');
+			
 			var tbi2_laber = document.getElementById('giatri_tbi2');
 	 		if (tbi2_status == "1") 
 	 		{
@@ -96,24 +90,7 @@
 		});
 
 	//Đoạn này ct click vô cái hình đk thiết bị 1
-	function tb1_click() 
-	{    
-		var capnhatdt1 = "";
-		if (tbi2_status == "0") 
- 		{
- 			capnhatd2 = {
-					den2: "1",
-				};
- 		}
- 		else if(tbi2_status=="1")
- 		{
- 			capnhatd2 = {
-					den2: "0",
-				};   
- 		}
- 		firebaseRef.update(capnhatd2);
- 	};
-
+	
 	//Đoạn này dùng để hiện nhiệt độ và độ ẩm lên
 		firebaseSesor.on('value' , function(snapshot)
 		{

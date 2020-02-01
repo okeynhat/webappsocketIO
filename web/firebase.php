@@ -30,7 +30,7 @@
 		<h2 class="list-product-title">Bảng Quản Lý</h2>
 		<div class="product-group">
 			<div class="row">
-				<!---->
+				<!-- thiết bị số 1-->
 				<div class="col-md-3 col-sm-6 col-12">
 					<div class="card card-product mb-3">
 					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" id = "tb1_img" width="220" height="220" onclick="tb1_click()">
@@ -41,7 +41,6 @@
 					</div>
 				</div>
 
-				<div class="row">
 				<div class="col-md-3 col-sm-6 col-12">
 					<div class="card card-product mb-3">
 					  <img class="card-img-top" src="http://via.placeholder.com/280x280" alt="Card image cap">
@@ -103,23 +102,6 @@
 		    	<p style="font-size: 30px;text-align:center;" id="temp">LỖI</p>
         	</div>
         </section>
-
-
-	<h1 >Điều Khiển Thiết Bị</h1>
-		<form>
-			<div class="form-group">
-				<h3>Thiết bị 1 </h3>
-				<p id="giatri_tbi1"> Đang cập nhật</p>
-				<a class="btn btn-info" role="button" id="tb1_load" onclick="tb1_click()">Load</a>
-			</div>
-		</form>
-		<form>
-			<div class="form-group">
-				<h3>Thiết bị 2 </h3>
-				<p id="giatri_tbi2"> Đang cập nhật</p>
-				<img id="tbi2_img" onclick="tbi2_click()" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" width="70" height="126">
-			</div>
-		</form>
 		
 
 
