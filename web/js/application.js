@@ -30,7 +30,7 @@
 			tb1_status = snapshot.child('den1').val();
 		});
 
-	//Đoạn chương trình xảy ra khi nhấn vào cái button của tb1
+	//Đoạn chương trình xảy ra khi nhấn vào cái hình của tb1
 		function tb1img_click() 
 		{    
 			var tb1data_send = "";
@@ -48,6 +48,26 @@
 	 		}
 	 		firebaseRef.update(tb1data_send);
 	 	};
+
+	 	function tb1btn_click()
+	 	{
+	 		var tb1data_send = "";
+	 		if (tb1_status = "1") 
+	 		{
+	 			tb1data_send = {
+	 				den1: "1",
+	 			};
+	 		} 
+
+	 		else if (tb1_status = "0")
+	 		{
+	 			tb1data_send = {
+	 				den1: "0",
+	 			};
+	 		}
+
+	 		firebaseRef.update(tb1data_send);
+	 	}
 
 	//Đoạn này dùng để thay đổi trạng thái các cái hình tb1
 		firebaseRef.on('value', function(snapshot) 
