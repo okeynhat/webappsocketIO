@@ -33,7 +33,7 @@
 				<!---->
 				<div class="col-md-3 col-sm-6 col-12">
 					<div class="card card-product mb-3">
-					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" alt="Card image cap" id = "tb1_img" width="280" height="280" onclick="tb1_click()">
+					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" id = "tb1_img" width="220" height="220" onclick="tb1_click()">
 					  <div class="card-body">
 					    <h5 class="card-title">Đèn 1</h5>
 					    <a class="btn btn-secondary" id = "tb1_btn">Load</a>

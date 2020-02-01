@@ -54,6 +54,8 @@
 		{
 			var trangthai_tbi1 = snapshot.child('den1').val();
 				if(trangthai_tbi1=="1"){
+					var imgelement = document.getElementById('tb1_img');
+					imgelement.src = "http://www.webre24h.com/uploads/0815/pic_bulbon.gif";
 					var button_tb1_off = document.getElementById('tb1_load');
     				button_tb1_off.innerHTML = "Tắt Đèn";
     				var element_on = document.getElementById('giatri_tbi1');
@@ -61,6 +63,8 @@
 					;}
 				else if(trangthai_tbi1 == "0")
 				{
+					var imgelement_off = document.getElementById('tb1_img');
+					imgelement.src = "http://www.webre24h.com/uploads/0815/pic_bulboff.gif";
 					var button_tb1 = document.getElementById('tb1_load');
     				button_tb1.innerHTML = "Bật Lại";
     				var element_off = document.getElementById('giatri_tbi1');
