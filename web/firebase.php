@@ -1,6 +1,4 @@
 <!--Toàn bộ code được viết bởi Trần Minh Thức, Vui lòng không xóa dòng này khi sử dụng-->
-<?php
-include("admin/auth.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
