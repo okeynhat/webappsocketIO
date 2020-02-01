@@ -59,7 +59,7 @@
 				<!-- thiết bị số 1-->
 				<div class="col-md-3 col-sm-6 col-12">
 					<div class="card card-product mb-3">
-					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" id = "tb1_img" width="150" height="180" onclick="tb1img_click()">
+					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" id = "tb1_img" width="180" height="180" onclick="tb1img_click()">
 					  <div class="card-body">
 					    <h5 class="card-title" id="tb1_title" style="text-align:center;" >Đèn 1</h5>
 					    <p class="card-text" id="tb1_label">Nhấn vô cái bóng đèn hoặc cái nút phía dưới để thay đổi trạng thái!</p>
