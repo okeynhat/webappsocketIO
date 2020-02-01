@@ -55,14 +55,14 @@
 	 		if (tb1_status = "1") 
 	 		{
 	 			tb1data_send = {
-	 				den1: "1",
+	 				den1: "0",
 	 			};
 	 		} 
 
 	 		else if (tb1_status = "0")
 	 		{
 	 			tb1data_send = {
-	 				den1: "0",
+	 				den1: "1",
 	 			};
 	 		}
 

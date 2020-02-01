@@ -33,7 +33,7 @@
 				<!-- thiết bị số 1-->
 				<div class="col-md-3 col-sm-6 col-12">
 					<div class="card card-product mb-3">
-					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" id = "tb1_img" width="220" height="220" onclick="tb1img_click()">
+					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" id = "tb1_img" width="150" height="180" onclick="tb1img_click()">
 					  <div class="card-body">
 					    <h5 class="card-title" id="tb1_title" style="text-align:center;" >Đèn 1</h5>
 					    <p class="card-text" id="tb1_label">Nhấn vô cái bóng đèn hoặc cái nút phía dưới để thay đổi trạng thái!</p>
@@ -41,38 +41,47 @@
 					  </div>
 					</div>
 				</div>
+				<!---->
 
+				<!-- thiết bị số 1-->
 				<div class="col-md-3 col-sm-6 col-12">
 					<div class="card card-product mb-3">
-					  <img class="card-img-top" src="http://via.placeholder.com/280x280" alt="Card image cap">
+					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" id = "tb1_img" width="150" height="180" onclick="tb1img_click()">
 					  <div class="card-body">
-					    <h5 class="card-title">Product</h5>
-					    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					    <a href="#" class="btn btn-primary">Go somewhere</a>
-					  </div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-12">
-					<div class="card card-product mb-3">
-					  <img class="card-img-top" src="http://via.placeholder.com/280x280" alt="Card image cap">
-					  <div class="card-body">
-					    <h5 class="card-title">Product</h5>
-					    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					    <a href="#" class="btn btn-primary">Go somewhere</a>
-					  </div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-12">
-					<div class="card card-product mb-3">
-					  <img class="card-img-top" src="http://via.placeholder.com/280x280" alt="Card image cap">
-					  <div class="card-body">
-					    <h5 class="card-title">Product</h5>
-					    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					    <a href="#" class="btn btn-primary">Go somewhere</a>
+					    <h5 class="card-title" id="tb1_title" style="text-align:center;" >Đèn 1</h5>
+					    <p class="card-text" id="tb1_label">Nhấn vô cái bóng đèn hoặc cái nút phía dưới để thay đổi trạng thái!</p>
+					    <center><a class="btn btn-secondary" id = "tb1_btn" onclick="tb1btn_click()" style="text-align:center;">Không Có Dữ Liệu</a></center> <!-- Tạm thời khóa thẻ center-->
 					  </div>
 					</div>
 				</div>
 				<!---->
+
+				<!-- thiết bị số 1-->
+				<div class="col-md-3 col-sm-6 col-12">
+					<div class="card card-product mb-3">
+					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" id = "tb1_img" width="150" height="180" onclick="tb1img_click()">
+					  <div class="card-body">
+					    <h5 class="card-title" id="tb1_title" style="text-align:center;" >Đèn 1</h5>
+					    <p class="card-text" id="tb1_label">Nhấn vô cái bóng đèn hoặc cái nút phía dưới để thay đổi trạng thái!</p>
+					    <center><a class="btn btn-secondary" id = "tb1_btn" onclick="tb1btn_click()" style="text-align:center;">Không Có Dữ Liệu</a></center> <!-- Tạm thời khóa thẻ center-->
+					  </div>
+					</div>
+				</div>
+				<!---->
+
+				<!-- thiết bị số 1-->
+				<div class="col-md-3 col-sm-6 col-12">
+					<div class="card card-product mb-3">
+					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" id = "tb1_img" width="150" height="180" onclick="tb1img_click()">
+					  <div class="card-body">
+					    <h5 class="card-title" id="tb1_title" style="text-align:center;" >Đèn 1</h5>
+					    <p class="card-text" id="tb1_label">Nhấn vô cái bóng đèn hoặc cái nút phía dưới để thay đổi trạng thái!</p>
+					    <center><a class="btn btn-secondary" id = "tb1_btn" onclick="tb1btn_click()" style="text-align:center;">Không Có Dữ Liệu</a></center> <!-- Tạm thời khóa thẻ center-->
+					  </div>
+					</div>
+				</div>
+				<!---->
+
 			</div>
 		</div>
 	</div>
