@@ -59,13 +59,13 @@
 				{
 					imgelement.src = "http://www.webre24h.com/uploads/0815/pic_bulbon.gif";
 					tb1btn_stt.className = "btn btn-success";
-					document.getElementById("tb1_btn").innerHTML = "Đang Bật";
+					document.getElementById('tb1_btn').innerHTML = "Đang Bật";
 				}
 				else if(tb1_stt == "0")
 				{
 					imgelement.src = "http://www.webre24h.com/uploads/0815/pic_bulboff.gif";
 					tb1btn_stt.className = "btn btn-danger";
-					document.getElementById("tb1_btn").innerHTML = "Đang Tắt";
+					document.getElementById('tb1_btn').innerHTML = "Đang Tắt";
 					
 				}	
 			
