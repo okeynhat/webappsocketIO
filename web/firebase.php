@@ -37,7 +37,7 @@
 					  <div class="card-body">
 					    <h5 class="card-title" id="tb1_title" style="text-align:center;" >Đèn 1</h5>
 					    <p class="card-text" id="tb1_label">Nhấn vô cái bóng đèn hoặc cái nút phía dưới để thay đổi trạng thái!</p>
-					    <a class="btn btn-secondary" id = "tb1_btn" onclick="tb1btn_click()" style="text-align:center;">Không Có Dữ Liệu</a>
+					    <center><a class="btn btn-secondary" id = "tb1_btn" onclick="tb1btn_click()" style="text-align:center;">Không Có Dữ Liệu</a></center> <!-- Tạm thời khóa thẻ center-->
 					  </div>
 					</div>
 				</div>
