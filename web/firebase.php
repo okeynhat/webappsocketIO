@@ -38,7 +38,7 @@ include("admin/auth.php"); ?>
 					  <img class="card-img-top" src="http://www.webre24h.com/uploads/0815/pic_bulboff.gif" alt="Card image cap" id = "tb1-img" width="280" height="280" onclick="tb1_click()">
 					  <div class="card-body">
 					    <h5 class="card-title">Đèn 1</h5>
-					    <a href="#" class="btn btn-secondary" id = "tb1_btn">Load</a>
+					    <a class="btn btn-secondary" id = "tb1_btn">Load</a>
 					  </div>
 					</div>
 				</div>
@@ -141,7 +141,7 @@ include("admin/auth.php"); ?>
 	<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase.js"></script>
 
 <!-- js chính -->
-	<<script src="/js/application.js"></script>
+	<script src="/js/application.js"></script>
 
 </body>
 
