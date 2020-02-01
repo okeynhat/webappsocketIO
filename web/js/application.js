@@ -67,7 +67,7 @@
 	 		}
 
 	 		firebaseRef.update(tb1data_send);
-	 	}
+	 	};
 
 	//Đoạn này dùng để thay đổi trạng thái các cái hình tb1
 		firebaseRef.on('value', function(snapshot) 
@@ -84,7 +84,7 @@
 				}
 				else if(tb1_stt == "0")
 				{
-					imgelement.src = "ht/images/light_on.pn";
+					imgelement.src = "/images/light_off.png";
 					tb1btn_stt.innerHTML = "Đang Tắt";
 					tb1btn_stt.className = "btn btn-danger";
 					tb1btn_stt.style.color = 'white';
