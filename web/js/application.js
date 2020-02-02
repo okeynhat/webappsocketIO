@@ -137,7 +137,7 @@
 	 		}
 	 		else if(tb3_status=="1")
 	 		{
-	 			tb2data_send = {
+	 			tb3data_send = {
 						quat1: "0",
 					};   
 	 		}
