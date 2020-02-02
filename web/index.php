@@ -19,7 +19,7 @@ include("admin/auth.php"); ?>
 			<h1 style="text-align:center;">Điều Khiển Thiết Bị Nhà Ở</h1>
 			<form>
 				<div class="form-group">
-				<h3 style="text-align:center;">Được Xây Dựng Và Phát Triển Bởi MDTGr</h3>
+				<h3 style="text-align:center;">Được Xây Dựng Và Phát Triển Bởi Trần Minh Thức</h3>
 			</form>
 		</div>
 	</div></div>
