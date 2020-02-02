@@ -110,7 +110,7 @@ include("admin/auth.php"); ?>
 			  		<div class="semi-circle"></div>
 			  		<div class="semi-circle--mask"></div>
 				</div>
-		    	<p style="font-size: 30px;text-align:center;" id="humd">LỖI</p>
+		    	<p style="font-size: 30px;text-align:center;" id="humd">LOAD</p>
         	</div>
         </section>
 		
