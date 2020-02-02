@@ -55,6 +55,7 @@
      <div class="form-group"> 
       <div class="col-md-12"> 
        <button type="submit" class="btn btn-md btn-danger pull-right">Đăng nhập </button> 
+       <p>Bạn chưa có tài khoản? <a id="dangky" onclick="dangky_click()">Đăng ký ngay</a></p><br/>
       </div> 
      </div> 
     </fieldset> 
@@ -63,7 +64,7 @@
  </div>
 </div>
 
-<p>Bạn chưa có tài khoản? <a id="dangky" onclick="dangky_click()">Đăng ký ngay</a></p><br/>
+
 <?php } ?>
 </body>
 </html>
