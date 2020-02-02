@@ -167,6 +167,46 @@
 	 		firebaseRef.update(tb3data_send);
 	 	};
 
+	///thiết bị 4
+		function tb4img_click() 
+		{    
+			var tb4data_send = "";
+			if (tb4_status == "0") 
+	 		{
+	 			tb4data_send = {
+						quat2: "1",
+					};
+	 		}
+	 		else if(tb4_status=="1")
+	 		{
+	 			tb4data_send = {
+						quat2: "0",
+					};   
+	 		}
+	 		firebaseRef.update(tb4data_send);
+	 	};
+
+	 	function tb4btn_click()
+	 	{
+	 		var tb4data_send = "";
+
+	 		if (tb4_status == "0") 
+	 		{
+	 			tb4data_send = {
+	 				quat2: "1",
+	 			};
+	 		} 
+
+	 		else if (tb4_status == "1")
+	 		{
+	 			tb4data_send = {
+	 				quat2: "0",
+	 			};
+	 		}
+
+	 		firebaseRef.update(tb4data_send);
+	 	};
+
 	//Đoạn này dùng để thay đổi trạng thái các cái hình tb1
 		firebaseRef.on('value', function(snapshot) 
 		{
@@ -234,14 +274,39 @@
 				}
 			
 		});
+	//Thay đổi trạng thái tb4
+		firebaseRef.on('value', function(snapshot) 
+		{
+			var tb4_stt = snapshot.child('quat2').val(); // gọi dữ liệu về bằng cấu trúc .on và val()
+			const tb4btn_stt = document.getElementById('tb4_btn');//lấy giá trị thẻ html
+			var imgelement = document.getElementById('tb4_img');
+				if(tb4_stt=="1")
+				{
+					imgelement.src = "images/fan_on.png";
+					tb4btn_stt.innerHTML = "Đang Bật";
+					tb4btn_stt.className = "btn btn-success";
+					tb4btn_stt.style.color = 'white';
+				}
+				else if(tb4_stt == "0")
+				{
+					imgelement.src = "images/fan_off.png";
+					tb4btn_stt.innerHTML = "Đang Tắt";
+					tb4btn_stt.className = "btn btn-danger";
+					tb4btn_stt.style.color = 'white';
+				}
+			
+		});
+	
 	
 	//Đoạn này dùng để hiện nhiệt độ và độ ẩm lên
 		firebaseSesor.on('value' , function(snapshot)
 		{
 			nhietdo_living = snapshot.child('nhietdo').val();
-		
+			doam_living = snapshot.child('doam').val();
+			var humd_living = + doam_living;
 			var temp_living = + nhietdo_living;
 			setTemperature(temp_living);
+			setHumidity(humd_living);
 			function setTemperature(curVal)
 			{
 		        //Cài nhiệt độ từ -2 độ đến 40 độ nhiệt độ Việt Nam như vậy
@@ -257,6 +322,20 @@
 		    	});
 		    	$("#temp").text(curVal + ' ºC');
 	    	}
+
+	    	function setHumidity(curVal)
+	    	{
+	    		var minHumd = 0;
+	    		var maxHumd = 100;
+	    		var newVal = scaleValue(curVal, [minHumd, maxHumd], [0, 180]);
+	    		$('.gauge--2 .semi-circle--mask').attr({
+	    			style: '-webkit-transform: rotate(' + newVal + 'deg);' + 
+	    			'-moz-transform: rotate(' +newVal + 'deg);' + 
+	    			'transform: rotate(' + newVal + 'deg);'
+	    		});
+	    		$("#humd").text(curVal + '%');
+	    	}
+
 		    function scaleValue(value, from, to) 
 		    {
 		        var scale = (to[1] - to[0]) / (from[1] - from[0]);
