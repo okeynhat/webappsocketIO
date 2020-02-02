@@ -231,7 +231,8 @@
 					tb3btn_stt.innerHTML = "Đang Tắt";
 					tb3btn_stt.className = "btn btn-danger";
 					tb3btn_stt.style.color = 'white';
-				}	
+				}
+				alert(tb3_stt);	
 			
 		});
 	
