@@ -7,6 +7,10 @@
 <meta name="viewport" content="width=device-width"> 
 <title>Đăng nhập</title>
 <link rel="stylesheet" href="https://mdtiot.herokuapp.com/admin/css/style.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet"> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body>
 <?php
