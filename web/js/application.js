@@ -1,6 +1,6 @@
 
 	//In ra màn hình tên thằng viết cái này
-		alert("Được tạo bởi: Trần Minh Thức - Phiên bản: BETA V1.0.3a")
+		alert("Được tạo bởi: Trần Minh Thức - Phiên bản: BETA V1.0.5a")
 	//Khúc này khai báo cấu hình Firebase
 		var config = {
 			apiKey: "AIzaSyDQeQ-Y2vo9VvcO5fQjLAJiywXS8M51qGM",
@@ -34,6 +34,17 @@
 		{
 			tb2_status = snapshot.child('den2').val();
 		});
+	//Thiết bị 3
+		firebaseRef.on('value', function(snapshot) 
+		{
+			tb3_status = snapshot.child('quat1').val();
+		});
+	//Thiết bị 4
+		firebaseRef.on('value', function(snapshot) 
+		{
+			tb4_status = snapshot.child('quat2').val();
+		});
+
 
 	//Đoạn chương trình xảy ra khi nhấn vào cái hình của tb1
 		function tb1img_click() 
@@ -114,6 +125,46 @@
 	 		firebaseRef.update(tb2data_send);
 	 	};
 
+	 ///thiết bị 3
+		function tb3img_click() 
+		{    
+			var tb3data_send = "";
+			if (tb3_status == "0") 
+	 		{
+	 			tb3data_send = {
+						quat1: "1",
+					};
+	 		}
+	 		else if(tb3_status=="1")
+	 		{
+	 			tb2data_send = {
+						quat1: "0",
+					};   
+	 		}
+	 		firebaseRef.update(tb3data_send);
+	 	};
+
+	 	function tb3btn_click()
+	 	{
+	 		var tb3data_send = "";
+
+	 		if (tb3_status == "0") 
+	 		{
+	 			tb3data_send = {
+	 				quat1: "1",
+	 			};
+	 		} 
+
+	 		else if (tb3_status == "1")
+	 		{
+	 			tb3data_send = {
+	 				quat1: "0",
+	 			};
+	 		}
+
+	 		firebaseRef.update(tb3data_send);
+	 	};
+
 	//Đoạn này dùng để thay đổi trạng thái các cái hình tb1
 		firebaseRef.on('value', function(snapshot) 
 		{
@@ -156,6 +207,28 @@
 					tb2btn_stt.innerHTML = "Đang Tắt";
 					tb2btn_stt.className = "btn btn-danger";
 					tb2btn_stt.style.color = 'white';
+				}	
+			
+		});
+	//Thay đổi trạng thái tb3
+		firebaseRef.on('value', function(snapshot) 
+		{
+			var tb3_stt = snapshot.child('quat1').val(); // gọi dữ liệu về bằng cấu trúc .on và val()
+			const tb3btn_stt = document.getElementById('tb3_btn');//lấy giá trị thẻ html
+			var imgelement = document.getElementById('tb3_img');
+				if(tb3_stt=="1")
+				{
+					imgelement.src = "images/fan_on.png";
+					tb3btn_stt.innerHTML = "Đang Bật";
+					tb3btn_stt.className = "btn btn-success";
+					tb3btn_stt.style.color = 'white';
+				}
+				else if(tb3_stt == "0")
+				{
+					imgelement.src = "images/fan_off.png";
+					tb3btn_stt.innerHTML = "Đang Tắt";
+					tb3btn_stt.className = "btn btn-danger";
+					tb3btn_stt.style.color = 'white';
 				}	
 			
 		});
