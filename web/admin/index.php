@@ -11,7 +11,7 @@ include("auth.php"); ?>
 <div class="form">
 <p>Xin chào <?php echo $_SESSION['username']; ?>!</p>
 <p>Vừa Đăng Nhập Thành Công!!!</p>
-<p><a href="https://mdtiot.herokuapp.com/">Nhấn Vào Đây Để Mở Trang Điều Khiển</a></p>
+<p><a href="https://patviet.club">Nhấn Vào Đây Để Mở Trang Điều Khiển</a></p>
 <a href="logout.php">Đăng xuất</a>
 </div>
 </body>
