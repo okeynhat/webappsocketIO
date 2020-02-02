@@ -23,6 +23,8 @@
 		var doam_living = "";
 		var tb1_status = "";
 		var tb2_status = "";
+		var tb4_status = "";
+		var tb3_status = "";
 
 	//Đoạn này dùng để READ (đọc) dữ liệu từ database sau đó bỏ vào biến xài
 		firebaseRef.on('value', function(snapshot) 
