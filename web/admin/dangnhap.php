@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width"> 
 <title>Đăng nhập</title>
-<link rel="stylesheet" href="https://mdtiot.herokuapp.com/stylesheets/style.css" />
+<link rel="stylesheet" href="https://mdtiot.herokuapp.com/admin/css/style.css" />
 </head>
 <body>
 <?php
