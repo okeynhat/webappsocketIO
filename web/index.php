@@ -10,6 +10,8 @@ include("admin/auth.php"); ?>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--Style-->
 	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	<link rel="shortcut icon" type="image/png" href="/images/icon.ico"/>
+
 
 	<title>Hệ Thống Điều Khiển & Quản Lý Nhà Ở</title>
 </head>
