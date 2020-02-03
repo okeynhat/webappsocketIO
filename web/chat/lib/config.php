@@ -22,13 +22,13 @@ $config = array();
 // Database connection values:
 $config['dbConnection'] = array();
 // Database hostname:
-$config['dbConnection']['host'] = 'localhost';
+$config['dbConnection']['host'] = 'remotemysql.com';
 // Database username:
-$config['dbConnection']['user'] = 'root';
+$config['dbConnection']['user'] = '6USK3AZfQS';
 // Database password:
-$config['dbConnection']['pass'] = '';
+$config['dbConnection']['pass'] = 'ZVQMeUMsfJ';
 // Database name:
-$config['dbConnection']['name'] = 'chat';
+$config['dbConnection']['name'] = '6USK3AZfQS';
 // Database type:
 $config['dbConnection']['type'] = null;
 // Database link:
