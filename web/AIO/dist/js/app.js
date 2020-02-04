@@ -26,6 +26,7 @@
 		FirebaseLivingroomDecive.on('value', function(snapshot) 
 		{
 			Lvrden1stt = snapshot.child('den1').val();
+			alert(Lvrden1stt);
 		});
 	//Đoạn chương trình xảy ra khi nhấn vào cái hình của thiết bị
 	//có nhiều cách để thực hiện cái này :)))
@@ -40,7 +41,7 @@
 						den1: "1",
 				};
 	 		}
-	 		else if(Lvrden1stt=="1")
+	 		else if(Lvrden1stt =="1")
 	 		{
 	 			datasend = {
 						den1: "0",
