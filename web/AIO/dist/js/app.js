@@ -17,8 +17,6 @@
 		var FirebaseLivingroomDecive = firebase.database().ref().child('thietbi/phongkhach'); //gọi firebase
 
 	//Khai báo biến toàn cục (Xài cho cả chương trình)
-		var nhietdo_living = "";
-		var doam_living = "";
 	//Biến lưu dữ liệu thiết bị chỉ gọi 1 lần xài luôn
 		var Lvrden1stt = ""; //cái đèn 1 Livingroom
 
@@ -26,13 +24,13 @@
 		FirebaseLivingroomDecive.on('value', function(snapshot) 
 		{
 			Lvrden1stt = snapshot.child('den1').val();
-			alert(Lvrden1stt);
 		});
 	//Đoạn chương trình xảy ra khi nhấn vào cái hình của thiết bị
 	//có nhiều cách để thực hiện cái này :)))
 		function lvrden1imgclick() 
 		{    
 			var datasend = ""; //biến này chỉ dùng 1 lần => dùng chung đc
+			alert("clickr");
 			if (Lvrden1stt == "0")//nếu value đang bằng 0 tức đang off
 	 		{
 	 			//gửi dữ liệu ngược lại vào biến data
@@ -54,7 +52,7 @@
 		FirebaseLivingroomDecive.on('value', function(snapshot) 
 		{
 			var stt = snapshot.child('den1').val(); // tạo cái mới để k lộn nhé
-			var btnstt = document.getElementById('lvrbtnden1');
+			var btnstt = document.getElementById('lvrden1btn');
 			var imgelement = document.getElementById('lvrden1img');
 				if(stt=="1")
 				{
