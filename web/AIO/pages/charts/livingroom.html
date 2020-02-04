@@ -106,7 +106,14 @@
                 <span class="right badge badge-danger">Beta</span>
               </p>
             </a>
-
+            <li class="nav-item">
+            <a href="../../index.html" class="nav-link">
+              <i class="nav-icon fas fa-wrench"></i>
+              <p>
+                Quản Lý Vườn Cây
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
            <span class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -117,19 +124,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="chartjs.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Phòng Ngủ</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="flot.html" class="nav-link">
+                <a href="livingroom.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Phòng Khách</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="inline.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Nhà Bếp</p>
                 </a>
@@ -200,12 +207,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Flot Charts</h1>
+            <h1>Biểu Đồ</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Flot</li>
+              <li class="breadcrumb-item"><a href="../../index.html">Trang Chủ</a></li>
+              <li class="breadcrumb-item active">Biểu Đồ</li>
             </ol>
           </div>
         </div>
@@ -226,15 +233,15 @@
                 </h3>
 
                 <div class="card-tools">
-                  Real time
+                  Thời Gian Thực
                   <div class="btn-group" id="realtime" data-toggle="btn-toggle">
-                    <button type="button" class="btn btn-default btn-sm active" data-toggle="on">On</button>
-                    <button type="button" class="btn btn-default btn-sm" data-toggle="off">Off</button>
+                    <button type="button" class="btn btn-default btn-sm active" data-toggle="on">Bật</button>
+                    <button type="button" class="btn btn-default btn-sm" data-toggle="off">Tắt</button>
                   </div>
                 </div>
               </div>
               <div class="card-body">
-                <div id="interactive" style="height: 300px;"></div>
+                <div id="chart-temp" style="height: 300px;"></div>
               </div>
               <!-- /.card-body-->
             </div>
@@ -252,7 +259,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="far fa-chart-bar"></i>
-                  Line Chart
+                  Biểu Đồ Độ Ẩm
                 </h3>
 
                 <div class="card-tools">
@@ -324,7 +331,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="far fa-chart-bar"></i>
-                  Donut Chart
+                  Tiêu Tốn Điện Năng
                 </h3>
 
                 <div class="card-tools">
@@ -350,12 +357,12 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.3-pre
+   <footer class="main-footer">
+    <strong>Copyright &copy; 2020 <a href="https://patviet.club/admininfo">Trần Minh Thức</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> Beta 1.0.6a
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
   </footer>
 
   <!-- Control Sidebar -->
@@ -392,7 +399,7 @@
     // We use an inline data source in the example, usually data would
     // be fetched from a server
     var data        = [],
-        totalPoints = 100
+        totalPoints = 90
 
     function getRandomData() {
 
@@ -424,7 +431,7 @@
       return res
     }
 
-    var interactive_plot = $.plot('#interactive', [
+    var interactive_plot = $.plot('#chart-temp', [
         {
           data: getRandomData(),
         }
@@ -445,7 +452,7 @@
         },
         yaxis: {
           min: 0,
-          max: 100,
+          max: 90,
           show: true
         },
         xaxis: {
@@ -494,19 +501,19 @@
 
     var sin = [],
         cos = []
-    for (var i = 0; i < 14; i += 0.5) {
-      sin.push([i, Math.sin(i)])
-      cos.push([i, Math.cos(i)])
+    for (var i = 0; i < 140; i += 5) {
+      //sin.push([i, Math.sin(i)])
+      cos.push([i, Math.cos(i)*100])
     }
     var line_data1 = {
-      data : sin,
+      data : cos,
       color: '#3c8dbc'
     }
     var line_data2 = {
       data : cos,
       color: '#00c0ef'
     }
-    $.plot('#line-chart', [line_data1, line_data2], {
+    $.plot('#line-chart', [line_data1], {
       grid  : {
         hoverable  : true,
         borderColor: '#f3f3f3',
@@ -527,10 +534,12 @@
         color: ['#3c8dbc', '#f56954']
       },
       yaxis : {
-        show: true
+        show: true,
+        min : 0,
+        max : 100,
       },
       xaxis : {
-        show: true
+        show: true,
       }
     })
     //Initialize tooltip on hover
@@ -620,18 +629,28 @@
 
     var donutData = [
       {
-        label: 'Series2',
-        data : 30,
+        label: 'Đèn',
+        data : 5,
         color: '#3c8dbc'
       },
       {
-        label: 'Series3',
+        label: 'Quạt',
+        data : 10,
+        color: '#0073b7'
+      },
+      {
+        label: 'Máy lạnh',
+        data : 50,
+        color: '#0073b7'
+      },
+      {
+        label: 'Khác',
         data : 20,
         color: '#0073b7'
       },
       {
-        label: 'Series4',
-        data : 50,
+        label: 'Tivi',
+        data : 15,
         color: '#00c0ef'
       }
     ]
