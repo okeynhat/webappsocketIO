@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,394 +13,445 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-
+  <link rel="stylesheet" href="../../dist/css/style.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index.html" class="nav-link">Trang Chủ</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="https://fb.com/mthuc9x" class="nav-link">Liên Hệ</a>
-      </li>
-    </ul>
-
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-     
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Thông Báo Mới</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 Thông Báo Bảo Mật
-            <span class="float-right text-muted text-sm">3 mins</span>
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="../../index.html" class="nav-link">Trang Chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="https://fb.com/mthuc9x" class="nav-link">Liên Hệ</a>
+        </li>
+      </ul>
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <!-- Notifications Dropdown Menu -->
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#">
+            <i class="far fa-bell"></i>
+            <span class="badge badge-warning navbar-badge">15</span>
           </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-exclamation-triangle"></i> 8 Nhiệt Độ Vượt Ngưỡng
-            <span class="float-right text-muted text-sm">15 mins</span>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <span class="dropdown-item dropdown-header">15 Thông Báo Mới</span>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-envelope mr-2"></i> 4 Thông Báo Bảo Mật
+              <span class="float-right text-muted text-sm">3 mins</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-exclamation-triangle"></i> 8 Nhiệt Độ Vượt Ngưỡng
+              <span class="float-right text-muted text-sm">15 mins</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-file mr-2"></i> 3 Thông Báo Quản Lý
+              <span class="float-right text-muted text-sm">1 mins</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item dropdown-footer">Xem Tất Cả Cảnh Báo</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
+            <i class="fas fa-th-large"></i>
           </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 Thông Báo Quản Lý
-            <span class="float-right text-muted text-sm">1 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">Xem Tất Cả Cảnh Báo</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="../../index.html" class="brand-link">
+        <img src="../../dist/img/AdminLTELogo.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">PATIO HOME</span>
+      </a>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="https://fb.com/mthuc9x" class="d-block">Trần Minh Thức</a>
+          </div>
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
-
-   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="../../index.html" class="brand-link">
-      <img src="../../dist/img/AdminLTELogo.png" alt="Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">PATIO HOME</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="https://fb.com/mthuc9x" class="d-block">Trần Minh Thức</a>
-        </div>
-      </div>
-
-      <!-- thanh trượt bên trái -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
+        <!-- thanh trượt bên trái -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="../../index.html" class="nav-link">
-              <i class="nav-icon fas fa-wrench"></i>
-              <p>
-                Quản Lý Thiết Bị
-                <span class="right badge badge-danger">Beta</span>
-              </p>
-            </a>
             <li class="nav-item">
-            <a href="../../index.html" class="nav-link">
-              <i class="nav-icon fas fa-wrench"></i>
-              <p>
-                Quản Lý Vườn Cây
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-           <span class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Biểu Đồ
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <a href="../../index.html" class="nav-link">
+                <i class="nav-icon fas fa-wrench"></i>
+                <p>
+                  Quản Lý Thiết Bị
+                  <span class="right badge badge-danger">Beta</span>
+                </p>
+              </a>
+            <li class="nav-item">
+              <a href="../../index.html" class="nav-link">
+                <i class="nav-icon fas fa-wrench"></i>
+                <p>
+                  Quản Lý Vườn Cây
+                  <span class="right badge badge-danger">New</span>
+                </p>
+              </a>
+              <span class="nav-item has-treeview">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Phòng Ngủ</p>
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Biểu Đồ
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="livingroom.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Phòng Khách</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Nhà Bếp</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-header">CÔNG CỤ</li>
-          <li class="nav-item">
-            <a href="../calendar.html" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                Hẹn Lịch Bật Tắt
-                <span class="badge badge-info right">New</span>
-              </p>
-            </a>
-          </li>
-           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-cogs"></i>
-              <p>
-                Cài Đặt
-                <span class="badge badge-danger right">Admin</span>
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-plus-square"></i>
-              <p>
-                Thêm & Xóa Thiết Bị
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Thêm Thiết Bị</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Thêm Admin</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-header">KHÁC</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
-              <p>Logs</p>
-            </a>
-          </li>
-          
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Biểu Đồ</h1>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Phòng Ngủ</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="livingroom.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Phòng Khách</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Nhà Bếp</p>
+                    </a>
+                  </li>
+                </ul>
+            </li>
+            <li class="nav-header">CÔNG CỤ</li>
+            <li class="nav-item">
+              <a href="../calendar.html" class="nav-link">
+                <i class="nav-icon far fa-calendar-alt"></i>
+                <p>
+                  Hẹn Lịch Bật Tắt
+                  <span class="badge badge-info right">New</span>
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-cogs"></i>
+                <p>
+                  Cài Đặt
+                  <span class="badge badge-danger right">Admin</span>
+                </p>
+              </a>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon far fa-plus-square"></i>
+                <p>
+                  Thêm & Xóa Thiết Bị
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Thêm Thiết Bị</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Thêm Admin</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-header">KHÁC</li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-file"></i>
+                <p>Logs</p>
+              </a>
+            </li>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Biểu Đồ</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="../../index.html">Trang Chủ</a></li>
+                <li class="breadcrumb-item active">Biểu Đồ</li>
+              </ol>
+            </div>
           </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="../../index.html">Trang Chủ</a></li>
-              <li class="breadcrumb-item active">Biểu Đồ</li>
-            </ol>
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card card-danger">
+                <div class="card-header">
+                  <h3 class="card-title"><i class="icon fas fa-temperature-low"></i>NHIỆT ĐỘ</h3>
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                  <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <!-- body card -->
+                  <div class="box gauge--1">
+                    <center>
+                      <div class="mask">
+                        <div class="semi-circle"></div>
+                        <div class="semi-circle--mask"></div>
+                      </div>
+                      <p style="font-size: 30px;text-align:center;" id="temp">LỖI</p>
+                  </div>
+                  </center>
+                  <!-- /end body-->
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-6">
+              <div class="card card-success">
+                <div class="card-header">
+                  
+                  <h3 class="card-title"><i class="fas fa-tint"></i>   ĐỘ ẨM</h3>
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                  </div>
+                  <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <center>
+                    <div class="box gauge--2">
+                      <div class="mask">
+                        <div class="semi-circle"></div>
+                        <div class="semi-circle--mask"></div>
+                      </div>
+                      <p style="font-size: 30px;text-align:center;" id="humd">LOAD</p>
+                      <!--/box-->
+                    </div>
+                  </center>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
           </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <!-- interactive chart -->
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-temperature-high"></i>
-                  Biểu Đồ Nhiệt Độ
-                </h3>
-
-                <div class="card-tools">
-                  Thời Gian Thực
-                  <div class="btn-group" id="realtime" data-toggle="btn-toggle">
-                    <button type="button" class="btn btn-default btn-sm active" data-toggle="on">Bật</button>
-                    <button type="button" class="btn btn-default btn-sm" data-toggle="off">Tắt</button>
+          <!--/row-->
+          <div class="row">
+            <div class="col-12">
+              <!-- interactive chart -->
+              <div class="card card-primary card-outline">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="fas fa-temperature-high"></i>
+                    Biểu Đồ Nhiệt Độ
+                  </h3>
+                  <div class="card-tools">
+                    Thời Gian Thực
+                    <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                      <button type="button" class="btn btn-default btn-sm active" data-toggle="on">Bật</button>
+                      <button type="button" class="btn btn-default btn-sm" data-toggle="off">Tắt</button>
+                    </div>
                   </div>
                 </div>
+                <div class="card-body">
+                  <div id="chart-temp" style="height: 300px;"></div>
+                </div>
+                <!-- /.card-body-->
               </div>
-              <div class="card-body">
-                <div id="chart-temp" style="height: 300px;"></div>
-              </div>
-              <!-- /.card-body-->
+              <!-- /.card -->
             </div>
-            <!-- /.card -->
-
+            <!-- /.col -->
           </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-
-        <div class="row">
-          <div class="col-md-6">
-            <!-- Line chart -->
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="far fa-chart-bar"></i>
-                  Biểu Đồ Độ Ẩm
-                </h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-                  </button>
+          <!-- /.row -->
+          <div class="row">
+            <div class="col-md-6">
+              <!-- Line chart -->
+              <div class="card card-primary card-outline">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="far fa-chart-bar"></i>
+                    Biểu Đồ Độ Ẩm
+                  </h3>
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div class="card-body">
-                <div id="line-chart" style="height: 300px;"></div>
-              </div>
-              <!-- /.card-body-->
-            </div>
-            <!-- /.card -->
-
-            <!-- Area chart -->
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="far fa-chart-bar"></i>
-                  Area Chart
-                </h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-                  </button>
+                <div class="card-body">
+                  <div id="line-chart" style="height: 300px;"></div>
                 </div>
+                <!-- /.card-body-->
               </div>
-              <div class="card-body">
-                <div id="area-chart" style="height: 338px;" class="full-width-chart"></div>
+              <!-- /.card -->
+              <!-- Area chart -->
+              <div class="card card-primary card-outline">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="far fa-chart-bar"></i>
+                    Area Chart
+                  </h3>
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div id="area-chart" style="height: 338px;" class="full-width-chart"></div>
+                </div>
+                <!-- /.card-body-->
               </div>
-              <!-- /.card-body-->
+              <!-- /.card -->
             </div>
-            <!-- /.card -->
-
+            <!-- /.col -->
+            <div class="col-md-6">
+              <!-- Bar chart -->
+              <div class="card card-primary card-outline">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="far fa-chart-bar"></i>
+                    Bar Chart
+                  </h3>
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div id="bar-chart" style="height: 300px;"></div>
+                </div>
+                <!-- /.card-body-->
+              </div>
+              <!-- /.card -->
+              <!-- Donut chart -->
+              <div class="card card-primary card-outline">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="far fa-chart-bar"></i>
+                    Tiêu Tốn Điện Năng
+                  </h3>
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div id="donut-chart" style="height: 300px;"></div>
+                </div>
+                <!-- /.card-body-->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
           </div>
-          <!-- /.col -->
-
-          <div class="col-md-6">
-            <!-- Bar chart -->
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="far fa-chart-bar"></i>
-                  Bar Chart
-                </h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div id="bar-chart" style="height: 300px;"></div>
-              </div>
-              <!-- /.card-body-->
-            </div>
-            <!-- /.card -->
-
-            <!-- Donut chart -->
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="far fa-chart-bar"></i>
-                  Tiêu Tốn Điện Năng
-                </h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div id="donut-chart" style="height: 300px;"></div>
-              </div>
-              <!-- /.card-body-->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="https://patviet.club/admininfo">Trần Minh Thức</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> Beta 1.0.6a
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
     </div>
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI -->
-<script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
-<!-- FLOT CHARTS -->
-<script src="../../plugins/flot/jquery.flot.js"></script>
-<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
-<script src="../../plugins/flot-old/jquery.flot.resize.min.js"></script>
-<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
-<script src="../../plugins/flot-old/jquery.flot.pie.min.js"></script>
-<!-- Page script -->
-<script>
-  $(function () {
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <strong>Copyright &copy; 2020 <a href="https://patviet.club/admininfo">Trần Minh Thức</a>.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> Beta 1.0.6a
+      </div>
+    </footer>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery UI -->
+  <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../../dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../../dist/js/demo.js"></script>
+  <!-- FLOT CHARTS -->
+  <script src="../../plugins/flot/jquery.flot.js"></script>
+  <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+  <script src="../../plugins/flot-old/jquery.flot.resize.min.js"></script>
+  <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+  <script src="../../plugins/flot-old/jquery.flot.pie.min.js"></script>
+  <!-- Page script -->
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase.js"></script>
+  <!-- FireBase Lib -->
+  <script>
+  //Khúc này khai báo cấu hình Firebase
+  var config = {
+    apiKey: "AIzaSyDQeQ-Y2vo9VvcO5fQjLAJiywXS8M51qGM",
+    authDomain: "iotthuc.firebaseapp.com",
+    databaseURL: "https://iotthuc.firebaseio.com",
+    projectId: "iotthuc",
+    storageBucket: "iotthuc.appspot.com",
+    messagingSenderId: "1018859871923",
+    appId: "1:1018859871923:web:a6ddbc98dc1c5ebed29ac6"
+  };
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  $(function() {
     /*
      * Flot Interactive Chart
      * -----------------------
      */
     // We use an inline data source in the example, usually data would
     // be fetched from a server
-    var data        = [],
-        totalPoints = 90
+    var data = [],
+      totalPoints = 90
 
     function getRandomData() {
 
@@ -411,7 +463,7 @@
       while (data.length < totalPoints) {
 
         var prev = data.length > 0 ? data[data.length - 1] : 50,
-            y    = prev + Math.random() * 10 - 5
+          y = prev + Math.random() * 10 - 5
 
         if (y < 0) {
           y = 0
@@ -431,38 +483,34 @@
       return res
     }
 
-    var interactive_plot = $.plot('#chart-temp', [
-        {
-          data: getRandomData(),
-        }
-      ],
-      {
-        grid: {
-          borderColor: '#f3f3f3',
-          borderWidth: 1,
-          tickColor: '#f3f3f3'
+    var interactive_plot = $.plot('#chart-temp', [{
+      data: getRandomData(),
+    }], {
+      grid: {
+        borderColor: '#f3f3f3',
+        borderWidth: 1,
+        tickColor: '#f3f3f3'
+      },
+      series: {
+        color: '#3c8dbc',
+        lines: {
+          lineWidth: 2,
+          show: true,
+          fill: true,
         },
-        series: {
-          color: '#3c8dbc',
-          lines: {
-            lineWidth: 2,
-            show: true,
-            fill: true,
-          },
-        },
-        yaxis: {
-          min: 0,
-          max: 90,
-          show: true
-        },
-        xaxis: {
-          show: true
-        }
+      },
+      yaxis: {
+        min: 0,
+        max: 90,
+        show: true
+      },
+      xaxis: {
+        show: true
       }
-    )
+    })
 
     var updateInterval = 500 //Fetch data ever x milliseconds
-    var realtime       = 'on' //If == to on then fetch data every x seconds. else stop fetching
+    var realtime = 'on' //If == to on then fetch data every x seconds. else stop fetching
     function update() {
 
       interactive_plot.setData([getRandomData()])
@@ -479,11 +527,10 @@
       update()
     }
     //REALTIME TOGGLE
-    $('#realtime .btn').click(function () {
+    $('#realtime .btn').click(function() {
       if ($(this).data('toggle') === 'on') {
         realtime = 'on'
-      }
-      else {
+      } else {
         realtime = 'off'
       }
       update()
@@ -500,63 +547,63 @@
     //LINE randomly generated data
 
     var sin = [],
-        cos = []
+      cos = []
     for (var i = 0; i < 140; i += 5) {
       //sin.push([i, Math.sin(i)])
-      cos.push([i, Math.cos(i)*100])
+      cos.push([i, Math.cos(i) * 100])
     }
     var line_data1 = {
-      data : cos,
+      data: cos,
       color: '#3c8dbc'
     }
     var line_data2 = {
-      data : cos,
+      data: cos,
       color: '#00c0ef'
     }
     $.plot('#line-chart', [line_data1], {
-      grid  : {
-        hoverable  : true,
+      grid: {
+        hoverable: true,
         borderColor: '#f3f3f3',
         borderWidth: 1,
-        tickColor  : '#f3f3f3'
+        tickColor: '#f3f3f3'
       },
       series: {
         shadowSize: 0,
-        lines     : {
+        lines: {
           show: true
         },
-        points    : {
+        points: {
           show: true
         }
       },
-      lines : {
-        fill : false,
+      lines: {
+        fill: false,
         color: ['#3c8dbc', '#f56954']
       },
-      yaxis : {
+      yaxis: {
         show: true,
-        min : 0,
-        max : 100,
+        min: 0,
+        max: 100,
       },
-      xaxis : {
+      xaxis: {
         show: true,
       }
     })
     //Initialize tooltip on hover
     $('<div class="tooltip-inner" id="line-chart-tooltip"></div>').css({
       position: 'absolute',
-      display : 'none',
-      opacity : 0.8
+      display: 'none',
+      opacity: 0.8
     }).appendTo('body')
-    $('#line-chart').bind('plothover', function (event, pos, item) {
+    $('#line-chart').bind('plothover', function(event, pos, item) {
 
       if (item) {
         var x = item.datapoint[0].toFixed(2),
-            y = item.datapoint[1].toFixed(2)
+          y = item.datapoint[1].toFixed(2)
 
         $('#line-chart-tooltip').html(item.series.label + ' of ' + x + ' = ' + y)
           .css({
-            top : item.pageY + 5,
+            top: item.pageY + 5,
             left: item.pageX + 5
           })
           .fadeIn(200)
@@ -571,24 +618,41 @@
      * FULL WIDTH STATIC AREA CHART
      * -----------------
      */
-    var areaData = [[2, 88.0], [3, 93.3], [4, 102.0], [5, 108.5], [6, 115.7], [7, 115.6],
-      [8, 124.6], [9, 130.3], [10, 134.3], [11, 141.4], [12, 146.5], [13, 151.7], [14, 159.9],
-      [15, 165.4], [16, 167.8], [17, 168.7], [18, 169.5], [19, 168.0]]
+    var areaData = [
+      [2, 88.0],
+      [3, 93.3],
+      [4, 102.0],
+      [5, 108.5],
+      [6, 115.7],
+      [7, 115.6],
+      [8, 124.6],
+      [9, 130.3],
+      [10, 134.3],
+      [11, 141.4],
+      [12, 146.5],
+      [13, 151.7],
+      [14, 159.9],
+      [15, 165.4],
+      [16, 167.8],
+      [17, 168.7],
+      [18, 169.5],
+      [19, 168.0]
+    ]
     $.plot('#area-chart', [areaData], {
-      grid  : {
+      grid: {
         borderWidth: 0
       },
       series: {
         shadowSize: 0, // Drawing is faster without shadows
-        color     : '#00c0ef',
-        lines : {
+        color: '#00c0ef',
+        lines: {
           fill: true //Converts the line chart to area chart
         },
       },
-      yaxis : {
+      yaxis: {
         show: false
       },
-      xaxis : {
+      xaxis: {
         show: false
       }
     })
@@ -601,23 +665,39 @@
      */
 
     var bar_data = {
-      data : [[1,10], [2,8], [3,4], [4,13], [5,17], [6,9]],
+      data: [
+        [1, 10],
+        [2, 8],
+        [3, 4],
+        [4, 13],
+        [5, 17],
+        [6, 9]
+      ],
       bars: { show: true }
     }
     $.plot('#bar-chart', [bar_data], {
-      grid  : {
+      grid: {
         borderWidth: 1,
         borderColor: '#f3f3f3',
-        tickColor  : '#f3f3f3'
+        tickColor: '#f3f3f3'
       },
       series: {
-         bars: {
-          show: true, barWidth: 0.5, align: 'center',
+        bars: {
+          show: true,
+          barWidth: 0.5,
+          align: 'center',
         },
       },
       colors: ['#3c8dbc'],
-      xaxis : {
-        ticks: [[1,'January'], [2,'February'], [3,'March'], [4,'April'], [5,'May'], [6,'June']]
+      xaxis: {
+        ticks: [
+          [1, 'January'],
+          [2, 'February'],
+          [3, 'March'],
+          [4, 'April'],
+          [5, 'May'],
+          [6, 'June']
+        ]
       }
     })
     /* END BAR CHART */
@@ -627,42 +707,41 @@
      * -----------
      */
 
-    var donutData = [
-      {
+    var donutData = [{
         label: 'Đèn',
-        data : 5,
+        data: 5,
         color: '#3c8dbc'
       },
       {
         label: 'Quạt',
-        data : 10,
+        data: 10,
         color: '#0073b7'
       },
       {
         label: 'Máy lạnh',
-        data : 50,
+        data: 50,
         color: '#0073b7'
       },
       {
         label: 'Khác',
-        data : 20,
+        data: 20,
         color: '#0073b7'
       },
       {
         label: 'Tivi',
-        data : 15,
+        data: 15,
         color: '#00c0ef'
       }
     ]
     $.plot('#donut-chart', donutData, {
       series: {
         pie: {
-          show       : true,
-          radius     : 1,
+          show: true,
+          radius: 1,
           innerRadius: 0.5,
-          label      : {
-            show     : true,
-            radius   : 2 / 3,
+          label: {
+            show: true,
+            radius: 2 / 3,
             formatter: labelFormatter,
             threshold: 0.1
           }
@@ -684,11 +763,62 @@
    * ----------------------
    */
   function labelFormatter(label, series) {
-    return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">'
-      + label
-      + '<br>'
-      + Math.round(series.percent) + '%</div>'
+    return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">' +
+      label +
+      '<br>' +
+      Math.round(series.percent) + '%</div>'
   }
-</script>
+  /**
+   * Đoạn chương trình update giá trị nhiệt độ yaij thời điểm
+   */
+  //Đoạn này dùng để hiện nhiệt độ và độ ẩm lên
+  firebase.initializeApp(config);
+  var firebaseSesor = firebase.database().ref().child('cambien/phongkhach');
+  var nhietdo_living = "";
+  var doam_living = "";
+  firebaseSesor.on('value', function(snapshot) {
+    nhietdo_living = snapshot.child('nhietdo').val();
+    doam_living = snapshot.child('doam').val();
+    var humd_living = +doam_living;
+    var temp_living = +nhietdo_living;
+    setTemperature(temp_living);
+    setHumidity(humd_living);
+
+    function setTemperature(curVal) {
+      //Cài nhiệt độ từ -2 độ đến 40 độ nhiệt độ Việt Nam như vậy
+      var minTemp = -2.0;
+      var maxTemp = 40.0;
+      //Phần này cài thêm độ F không xài độ F bỏ nha :)))
+      //Khúc này là giải thuật nhiệt độ chạy theo cái hình cung từ 0-180 độ
+      var newVal = scaleValue(curVal, [minTemp, maxTemp], [0, 180]);
+      $('.gauge--1 .semi-circle--mask').attr({
+        style: '-webkit-transform: rotate(' + newVal + 'deg);' +
+          '-moz-transform: rotate(' + newVal + 'deg);' +
+          'transform: rotate(' + newVal + 'deg);'
+      });
+      $("#temp").text(curVal + ' ºC');
+    }
+
+    function setHumidity(curVal) {
+      var minHumd = 0;
+      var maxHumd = 100;
+      var newVal = scaleValue(curVal, [minHumd, maxHumd], [0, 180]);
+      $('.gauge--2 .semi-circle--mask').attr({
+        style: '-webkit-transform: rotate(' + newVal + 'deg);' +
+          '-moz-transform: rotate(' + newVal + 'deg);' +
+          'transform: rotate(' + newVal + 'deg);'
+      });
+      $("#humd").text(curVal + '%');
+    }
+
+    function scaleValue(value, from, to) {
+      var scale = (to[1] - to[0]) / (from[1] - from[0]);
+      var capped = Math.min(from[1], Math.max(from[0], value)) - from[0];
+      return ~~(capped * scale + to[0]);
+    }
+  });
+
+  </script>
 </body>
+
 </html>

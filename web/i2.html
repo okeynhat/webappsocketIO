@@ -1,0 +1,119 @@
+<!--Toàn bộ code được viết bởi Trần Minh Thức, Vui lòng không xóa dòng này khi sử dụng-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Style-->
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="shortcut icon" type="image/png" href="images/icon.ico" />
+    <title>Hệ Thống Điều Khiển & Quản Lý Nhà Ở</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 style="text-align:center;">Điều Khiển Thiết Bị Nhà Ở</h1>
+            <form>
+                <div class="form-group">
+                    <h3 style="text-align:center;">Được Xây Dựng Và Phát Triển Bởi Trần Minh Thức</h3>
+            </form>
+        </div>
+    </div>
+    </div>
+    <!-- Kẻ lưới giao diện -->
+    <!-- list product -->
+    <div class="container" id="contain_light">
+        <div class="row mt-5">
+            <h2 class="list-product-title" style="text-align:center;">Bảng Quản Lý</h2>
+            <div class="product-group">
+                <div class="row" id="row_cr">
+                    <!--Nội dung sẽ tạo ở đây-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <button onclick="append_jquery()" id = "123">Nhấn Vào Đây Để Hiện Lên</button>
+    <!-- end list product -->
+    <!----------------------------------------------------------------->
+    <h1 style="text-align:center;">Thông Số Nhiệt Độ Và Độ Ẩm</h1>
+    <section class="content">
+        <div class="box gauge--1">
+            <h3 style="text-align:center;">NHIỆT ĐỘ</h3>
+            <div class="mask">
+                <div class="semi-circle"></div>
+                <div class="semi-circle--mask"></div>
+            </div>
+            <p style="font-size: 30px;text-align:center;" id="temp">LỖI</p>
+        </div>
+        <div class="box gauge--2">
+            <h3 style="text-align:center;">ĐỘ ẨM</h3>
+            <div class="mask">
+                <div class="semi-circle"></div>
+                <div class="semi-circle--mask"></div>
+            </div>
+            <p style="font-size: 30px;text-align:center;" id="humd">LOAD</p>
+        </div>
+    </section>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- FireBase Lib -->
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase.js"></script>
+    <!-- js chính -->
+    <script>
+    //Khúc này khai báo cấu hình Firebase
+        var config = {
+            apiKey: "AIzaSyDQeQ-Y2vo9VvcO5fQjLAJiywXS8M51qGM",
+            authDomain: "iotthuc.firebaseapp.com",
+            databaseURL: "https://iotthuc.firebaseio.com",
+            projectId: "iotthuc",
+            storageBucket: "iotthuc.appspot.com",
+            messagingSenderId: "1018859871923",
+            appId: "1:1018859871923:web:a6ddbc98dc1c5ebed29ac6"
+        };
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!      
+        firebase.initializeApp(config);
+        var firebaseSoluong = firebase.database().ref().child('thietbi/phongkhach/decive');
+        var soluong =0;
+        var i = 1;
+var is = " ";
+        firebaseSoluong.on('value', function(snapshot) 
+        {
+            soluong = snapshot.child('soluong').val();
+        
+
+        if(soluong>0){
+        alert("Đã Hoàn Tất Lấy Dữ Liệu!!- Bạn Có: "+soluong+" Thiết bị");
+        var phantuchon = $("#row_cr");
+        for ( i; i <= soluong; i++) {
+            var id = i;
+            var btnid = "btn_"+i;
+              is = btnid.toString();
+            var code = '<div class="col-md-3 col-sm-6 col-12"><div class="card card-product mb-3"><img class="card-img-top" src="images/light_on.png" id = "img_'+id+'"  width="180" height="180" onclick="img_'+ id + '_click()"><div class="card-body"><h5 class="card-title" id="title_'+id+'" style="text-align:center;" > Thiết bị '+ id + '</h5><p class="card-text" id="label_'+id+'">Nhấn vô cái bóng đèn để thay đổi trạng thái!</p><center><a class="btn btn-secondary" id = '+is+' onclick="btn_'+id+'_click()" style="text-align:center;">Không Có Dữ Liệu</a></center></div></div></div>'
+            phantuchon.append(code);
+        }
+        }
+});
+       $('#btn_5').click( function(){
+            alert("click den 3");
+
+       });
+
+
+    function btn_2_click() {
+        alert(is);
+        var x = document.getElementById("labeb_5");   // Get the element with id="demo"
+            x.style.color = "red"; 
+    }
+    </script>
+</body>
+
+</html>

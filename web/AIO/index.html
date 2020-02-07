@@ -263,13 +263,13 @@
            <!-- Đèn Số 1 phòng khách -->
           <div class="col-lg-3 col-6">
             <!-- small card -->
-            <div class="card card-product bg-dark" id = "lvrden1card">
+            <div class="card card-product bg-dark" id = "card_lvr_den1">
               <div class="inner"><center>
                 <h3>Đèn 1</h3>
               </div></center>
               <div class="icon">
                 <!--<i class="fas fa-shopping-cart"></i>-->
-                <img class="card-img-top" src="images/light_load.gif" id = "lvrden1img"  onclick="lvrden1imgclick()">
+                <img class="card-img-top" src="images/light_load.gif" id = "lvrden1img"  onclick="img_click_lvr_den1()">
               </div>
               <center> <a class="btn btn-secondary" id = "lvrden1btn" onclick="lvrden1btnclick()" style="text-align:center;">Không Có Dữ Liệu</a></center> 
             </div>
@@ -491,7 +491,18 @@
         appId: "1:1018859871923:web:a6ddbc98dc1c5ebed29ac6"
     };
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+  /**
+   * Chỗ này code class mấy đối tượng linh tinh
+   */
+   //Đèn (light)
+   //bao gồm tên, id, link ảnh.
+   class Light {
+  constructor(name,id,img) {
+    this.name = name;
+    this.id = id;
+    this.img = img;
+  }
+}
   //Gọi ra để dùng 
     firebase.initializeApp(config);
     var firebaseSesor = firebase.database().ref().child('cambien/phongkhach');
@@ -525,7 +536,7 @@
 
   //Đoạn chương trình xảy ra khi nhấn vào cái hình của thiết bị
   //có nhiều cách để thực hiện cái này :)))
-    function lvrden1imgclick() 
+    function img_click_lvr_den1() 
     {    
       var datasend = ""; //biến này chỉ dùng 1 lần => dùng chung đc
       if (Lvrden1stt == "0")//nếu value đang bằng 0 tức đang off
@@ -573,8 +584,8 @@
       var stt = snapshot.child('den1').val(); // tạo cái mới để k lộn nhé
       var btnstt = document.getElementById('lvrden1btn');
       var imgelement = document.getElementById('lvrden1img');
-      var card = document.getElementById('lvrden1card');
-      thaydoi(stt,btnstt,imgelement,card);
+      var card = document.getElementById('card_lvr_den1');
+      thaydoi(stt,btnstt,imgelement,card,"light");
     });
 
 
@@ -628,7 +639,7 @@
       var btnstt = document.getElementById('lvrden2btn');
       var imgelement = document.getElementById('lvrden2img');
       var card = document.getElementById('lvrden2card');
-      thaydoi(stt,btnstt,imgelement,card);
+      thaydoi(stt,btnstt,imgelement,card,"light");
     });
     ///hết đèn 2
     //Quạt 1
@@ -681,18 +692,80 @@
       var btnstt = document.getElementById('lvrfan1btn');
       var imgelement = document.getElementById('lvrfan1img');
       var card = document.getElementById('lvrfan1card');
-      thaydoi(stt,btnstt,imgelement,card);
+      thaydoi(stt,btnstt,imgelement,card,"fan");
     });
 
     //hết quạt1
+    //Quạt 2
+      function lvrfan2imgclick() 
+    {    
+      var datasend = ""; //biến này chỉ dùng 1 lần => dùng chung đc
+      if (Lvrfan2stt == "0")//nếu value đang bằng 0 tức đang off
+      {
+        //gửi dữ liệu ngược lại vào biến data
+        datasend = 
+        {
+            quat2: "1",
+        };
+      }
+      else if(Lvrfan2stt =="1")
+      {
+        datasend = {
+            quat2: "0",
+          };   
+      }
+      FirebaseLivingroomDecive.update(datasend); //cập nhật dữ liệu vào firebase
+    };
+
+  //xảy ra khi nhấn vô cái nút
+    function lvrfan2btnclick() 
+    {    
+      var datasend = ""; //biến này chỉ dùng 1 lần => dùng chung đc
+      if (Lvrfan2stt == "0")//nếu value đang bằng 0 tức đang off
+      {
+        //gửi dữ liệu ngược lại vào biến data
+        datasend = 
+        {
+            quat2: "1",
+        };
+      }
+      else if(Lvrfan2stt =="1")
+      {
+        datasend = {
+            quat2: "0",
+          };   
+      }
+      FirebaseLivingroomDecive.update(datasend); //cập nhật dữ liệu vào firebase
+    };
 
 
-  function thaydoi(stt,btnstt,imgelement,card) 
+  //Đoạn này dùng để thay đổi trạng thái các cái hình
+    FirebaseLivingroomDecive.on('value', function(snapshot) 
+    {
+      var stt = snapshot.child('quat2').val(); // tạo cái mới để k lộn nhé
+      var btnstt = document.getElementById('lvrfan2btn');
+      var imgelement = document.getElementById('lvrfan2img');
+      var card = document.getElementById('lvrfan2card');
+      thaydoi(stt,btnstt,imgelement,card,"fan");
+    });
+
+    //hết quạt2
+
+  function thaydoi(stt,btnstt,imgelement,card,decivename) 
   {
+        if (decivename=="fan") {
+          var img_decive_on= "images/fan_on.png"
+          var img_decive_off= "images/fan_off.png"
+        }
+
+        if (decivename=="light") {
+          var img_decive_on= "images/light_on.png"
+          var img_decive_off= "images/light_off.png"
+        }
 
         if(stt=="1")
         {
-          imgelement.src = "images/light_on.png";
+          imgelement.src = img_decive_on;
           btnstt.innerHTML = "Đang Bật";
           btnstt.className = "btn btn-info";
           card.className = "card card-product bg-success";
@@ -700,7 +773,7 @@
         }
         else if(stt == "0")
         {
-          imgelement.src = "images/light_off.png";
+          imgelement.src = img_decive_off;
           btnstt.innerHTML = "Đang Tắt";
           btnstt.className = "btn btn-danger";
           card.className = "card card-product bg-dark";
