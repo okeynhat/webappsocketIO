@@ -84,7 +84,6 @@
         var firebaseSoluong = firebase.database().ref().child('thietbi/phongkhach/decive');
         var soluong =0;
         var i = 1;
-var is = " ";
         firebaseSoluong.on('value', function(snapshot) 
         {
             soluong = snapshot.child('soluong').val();
@@ -95,23 +94,14 @@ var is = " ";
         var phantuchon = $("#row_cr");
         for ( i; i <= soluong; i++) {
             var id = i;
-            var btnid = "btn_"+i;
-              is = btnid.toString();
-            var code = '<div class="col-md-3 col-sm-6 col-12"><div class="card card-product mb-3"><img class="card-img-top" src="images/light_on.png" id = "img_'+id+'"  width="180" height="180" onclick="img_'+ id + '_click()"><div class="card-body"><h5 class="card-title" id="title_'+id+'" style="text-align:center;" > Thiết bị '+ id + '</h5><p class="card-text" id="label_'+id+'">Nhấn vô cái bóng đèn để thay đổi trạng thái!</p><center><a class="btn btn-secondary" id = '+is+' onclick="btn_'+id+'_click()" style="text-align:center;">Không Có Dữ Liệu</a></center></div></div></div>'
+            var code = '<div class="col-md-3 col-sm-6 col-12"><div class="card card-product mb-3"><img class="card-img-top" src="images/light_on.png" id = "img_device"  width="180" height="180" onclick="img_'+ id + '_click()"><div class="card-body"><h5 class="card-title" id="title_device" style="text-align:center;" > Thiết bị '+ id + '</h5><p class="card-text" id="label_device">Nhấn vô cái bóng đèn để thay đổi trạng thái!</p><center><a class="btn btn-secondary" id = "btn_id" onclick="btn_'+id+'_click()" style="text-align:center;">Không Có Dữ Liệu</a></center></div></div></div>'
             phantuchon.append(code);
         }
         }
 });
-       $('#btn_5').click( function(){
-            alert("click den 3");
-
-       });
-
-
+       
     function btn_2_click() {
         alert(is);
-        var x = document.getElementById("labeb_5");   // Get the element with id="demo"
-            x.style.color = "red"; 
     }
     </script>
 </body>
