@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <button onclick="append_jquery()" id = "123">Nhấn Vào Đây Để Hiện Lên</button>
+    <button onclick="append_jquery()" id="123">Nhấn Vào Đây Để Hiện Lên</button>
     <!-- end list product -->
     <!----------------------------------------------------------------->
     <h1 style="text-align:center;">Thông Số Nhiệt Độ Và Độ Ẩm</h1>
@@ -70,38 +70,45 @@
     <!-- js chính -->
     <script>
     //Khúc này khai báo cấu hình Firebase
-        var config = {
-            apiKey: "AIzaSyDQeQ-Y2vo9VvcO5fQjLAJiywXS8M51qGM",
-            authDomain: "iotthuc.firebaseapp.com",
-            databaseURL: "https://iotthuc.firebaseio.com",
-            projectId: "iotthuc",
-            storageBucket: "iotthuc.appspot.com",
-            messagingSenderId: "1018859871923",
-            appId: "1:1018859871923:web:a6ddbc98dc1c5ebed29ac6"
-        };
+    var config = {
+        apiKey: "AIzaSyDQeQ-Y2vo9VvcO5fQjLAJiywXS8M51qGM",
+        authDomain: "iotthuc.firebaseapp.com",
+        databaseURL: "https://iotthuc.firebaseio.com",
+        projectId: "iotthuc",
+        storageBucket: "iotthuc.appspot.com",
+        messagingSenderId: "1018859871923",
+        appId: "1:1018859871923:web:a6ddbc98dc1c5ebed29ac6"
+    };
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!      
-        firebase.initializeApp(config);
-        var firebaseSoluong = firebase.database().ref().child('thietbi/phongkhach/decive');
-        var soluong =0;
-        var i = 1;
-        firebaseSoluong.on('value', function(snapshot) 
-        {
-            soluong = snapshot.child('soluong').val();
-        
+    firebase.initializeApp(config);
+    var firebasedata = firebase.database().ref().child('data_1');
+    var soluong = 0;
+    var i = 1;
+    firebasedata.on('value', function(snapshot) {
+        soluong = snapshot.child('device_num').val();
 
-        if(soluong>0){
-        alert("Đã Hoàn Tất Lấy Dữ Liệu!!- Bạn Có: "+soluong+" Thiết bị");
-        var phantuchon = $("#row_cr");
-        for ( i; i <= soluong; i++) {
-            var id = i;
-            var code = '<div class="col-md-3 col-sm-6 col-12"><div class="card card-product mb-3"><img class="card-img-top" src="images/light_on.png" id = "img_device"  width="180" height="180" onclick="img_'+ id + '_click()"><div class="card-body"><h5 class="card-title" id="title_device" style="text-align:center;" > Thiết bị '+ id + '</h5><p class="card-text" id="label_device">Nhấn vô cái bóng đèn để thay đổi trạng thái!</p><center><a class="btn btn-secondary" id = "btn_id" onclick="btn_'+id+'_click()" style="text-align:center;">Không Có Dữ Liệu</a></center></div></div></div>'
-            phantuchon.append(code);
+
+        if (soluong > 0) {
+            alert("Đã Hoàn Tất Lấy Dữ Liệu!!- Bạn Có: " + soluong + " Thiết bị");
+            var phantuchon = $("#row_cr");
+            for (i; i <= soluong; i++) {
+                var id = i;
+                var code = '<div class="col-md-3 col-sm-6 col-12">'
+                code +='<div class="card card-product mb-3">'
+                code +='<img class="card-img-top" src="images/light_on.png" id = "img_device_' + id + '"  width="180" height="180" onclick="img_' + id + '_click()"><div class="card-body"><h5 class="card-title" id="title_device" style="text-align:center;" > Thiết bị ' + id + '</h5><p class="card-text" id="label_device">Nhấn vô cái bóng đèn để thay đổi trạng thái!</p><center><a class="btn btn-secondary" id = "btn_id_'+id+'" onclick="btn_' + id + '_click()" style="text-align:center;">Không Có Dữ Liệu</a></center></div></div></div>'
+                phantuchon.append(code);
+            }
         }
-        }
-});
-       
-    function btn_2_click() {
-        alert(is);
+    });
+
+    function btn_1_click() {
+        alert("is");
+        var a = document.getElementById('img_device_2');
+        var b = document.getElementById('btn_id_2');
+        a.src = "images/light_off.png";
+        b.className = "btn btn-success";
+        b.innerHTML = 'Đang Bật';
+
     }
     </script>
 </body>
